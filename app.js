@@ -11,24 +11,33 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!response.ok) throw new Error(response.statusText);
         window.externalData = await response.json();
         console.log('Loaded local data:', window.externalData);
+        
+        // Инициализируем графики после успешной загрузки данных
+        if (typeof Chart !== 'undefined') {
+            console.log('Chart.js доступен, инициализируем графики');
+            initCharts();
+        } else {
+            console.error('Chart.js не доступен, показываем запасной вариант');
+            showChartFallbacks();
+        }
     } catch (error) {
         console.warn('Could not load govtech_data.json, falling back to hard-coded datasets', error);
         window.externalData = null;
-    }
-
-    // Проверяем, доступен ли Chart.js
-    if (typeof Chart !== 'undefined') {
-        console.log('Chart.js доступен, инициализируем графики');
-        initCharts();
-    } else {
-        console.error('Chart.js не доступен, показываем запасной вариант');
-        showChartFallbacks();
+        
+        // Инициализируем графики с резервными данными
+        if (typeof Chart !== 'undefined') {
+            console.log('Chart.js доступен, инициализируем графики с резервными данными');
+            initCharts();
+        } else {
+            console.error('Chart.js не доступен, показываем запасной вариант');
+            showChartFallbacks();
+        }
     }
 
     initScrollAnimations();
 });
 
-// Функция для отображения запасного варианта вместо графиков
+// Универсальная функция для отображения запасного варианта вместо графиков
 function showChartFallbacks() {
     document.querySelectorAll('.chart-container').forEach(container => {
         const canvas = container.querySelector('canvas');
@@ -43,23 +52,14 @@ function showChartFallbacks() {
     });
 }
 
+// Функция для отображения запасного варианта для конкретного графика
 function showChartFallback(chartId) {
-    const container = document.getElementById(chartId).parentNode;
-    if (container) {
-        const canvas = container.querySelector('canvas');
-        if (canvas) {
-            canvas.style.display = 'none';
-        }
-        
-        const fallback = container.querySelector('.chart-fallback');
-        if (fallback) {
-            fallback.style.display = 'block';
-        }
-    }
+    showChartFallbacks([document.getElementById(chartId)]);
 }
 
 // Theme Toggle Functionality
 function initThemeToggle() {
+    console.log('Initializing theme toggle');
     const themeToggle = document.getElementById('themeToggle');
     if (!themeToggle) {
         console.error('Theme toggle button not found');
@@ -67,14 +67,17 @@ function initThemeToggle() {
     }
     
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    console.log('System prefers dark theme:', prefersDark);
     
     // Set initial theme
     let currentTheme = localStorage.getItem('theme');
+    console.log('Stored theme:', currentTheme);
     
     // If no theme is stored, use system preference
     if (!currentTheme) {
         currentTheme = prefersDark ? 'dark' : 'light';
         localStorage.setItem('theme', currentTheme);
+        console.log('Setting initial theme to:', currentTheme);
     }
     
     // Apply theme immediately
@@ -84,41 +87,82 @@ function initThemeToggle() {
     // Listen for click events
     themeToggle.addEventListener('click', function(e) {
         e.preventDefault();
+        console.log('Theme toggle clicked, current theme:', currentTheme);
         currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+        console.log('Switching to theme:', currentTheme);
         applyTheme(currentTheme);
         localStorage.setItem('theme', currentTheme);
         updateThemeToggleText(currentTheme);
         
         // Update charts with new theme
         setTimeout(() => {
-            updateChartsTheme();
+            try {
+                updateChartsTheme();
+                console.log('Charts theme updated');
+            } catch (error) {
+                console.error('Error updating charts theme:', error);
+            }
         }, 100);
     });
     
     // Also listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            applyTheme(newTheme);
-            updateThemeToggleText(newTheme);
-            setTimeout(() => {
-                updateChartsTheme();
-            }, 100);
+    try {
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        if (darkModeMediaQuery.addEventListener) {
+            darkModeMediaQuery.addEventListener('change', (e) => {
+                console.log('System theme preference changed:', e.matches ? 'dark' : 'light');
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    console.log('Applying system theme:', newTheme);
+                    applyTheme(newTheme);
+                    updateThemeToggleText(newTheme);
+                    setTimeout(() => {
+                        try {
+                            updateChartsTheme();
+                        } catch (error) {
+                            console.error('Error updating charts theme:', error);
+                        }
+                    }, 100);
+                }
+            });
+        } else {
+            console.log('addEventListener not supported for media query, using deprecated addListener');
+            // Fallback for older browsers
+            darkModeMediaQuery.addListener((e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    applyTheme(newTheme);
+                    updateThemeToggleText(newTheme);
+                }
+            });
         }
-    });
+    } catch (error) {
+        console.error('Error setting up media query listener:', error);
+    }
 }
 
 function applyTheme(theme) {
-    document.documentElement.setAttribute('data-color-scheme', theme);
-    document.body.classList.toggle('dark-theme', theme === 'dark');
-    console.log('Theme applied:', theme);
+    try {
+        document.documentElement.setAttribute('data-color-scheme', theme);
+        document.body.classList.toggle('dark-theme', theme === 'dark');
+        console.log('Theme applied:', theme);
+    } catch (error) {
+        console.error('Error applying theme:', error);
+    }
 }
 
 function updateThemeToggleText(theme) {
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.innerHTML = theme === 'light' ? '🌙' : '☀️';
-        themeToggle.setAttribute('aria-label', theme === 'light' ? 'Включить темную тему' : 'Включить светлую тему');
+    try {
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.innerHTML = theme === 'light' ? '🌙' : '☀️';
+            themeToggle.setAttribute('aria-label', theme === 'light' ? 'Включить темную тему' : 'Включить светлую тему');
+            console.log('Theme toggle text updated:', theme === 'light' ? '🌙' : '☀️');
+        } else {
+            console.error('Theme toggle button not found when updating text');
+        }
+    } catch (error) {
+        console.error('Error updating theme toggle text:', error);
     }
 }
 
@@ -240,7 +284,7 @@ function initCharts() {
             console.error('Error in chart initialization:', error);
             showChartFallbacks();
         }
-    }, 500); // Увеличиваем задержку для надежности
+    }, 50); // Уменьшаем задержку для быстрой отрисовки
 }
 
 function getChartColors() {
@@ -273,7 +317,8 @@ function createAdoptionChart() {
             blockchain_adoption: [85, 75, 70, 45, 60, 40, 25, 40, 55, 45],
             ai_in_gov: [80, 90, 75, 65, 85, 55, 35, 50, 92, 75],
             digital_services: [99, 95, 80, 85, 75, 65, 60, 65, 85, 88],
-            investments: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8, 1850.0, null]
+            investments: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8, "$1,800.0 bn", null],
+            gtmi_score: [0.95, 0.92, "n/a", "n/a", "n/a", "n/a", "n/a", "n/a", 0.90, "n/a"]
         };
     
     try {
@@ -390,6 +435,7 @@ function createTimelineChart() {
     const ctx = document.getElementById('timelineChart');
     if (!ctx) {
         console.error('Element with id "timelineChart" not found');
+        showChartFallback('timelineChart');
         return;
     }
     console.log('Creating timeline chart...');
@@ -504,6 +550,7 @@ function createInvestmentChart() {
     const ctx = document.getElementById('investmentChart');
     if (!ctx) {
         console.error('Element with id "investmentChart" not found');
+        showChartFallback('investmentChart');
         return;
     }
     console.log('Creating investment chart...');
@@ -589,6 +636,7 @@ function createBenefitsChart() {
     const ctx = document.getElementById('benefitsChart');
     if (!ctx) {
         console.error('Element with id "benefitsChart" not found');
+        showChartFallback('benefitsChart');
         return;
     }
     console.log('Creating benefits chart...');
