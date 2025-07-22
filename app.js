@@ -239,11 +239,11 @@ function createAdoptionChart() {
         const colors = getChartColors();
         // Используем данные из govtech_data.json, если они загружены, иначе fallback
         const adoptionData = (window.externalData && window.externalData.adoption_data) ? window.externalData.adoption_data : {
-            countries: ["Эстония", "Сингапур", "Дубай", "Великобритания", "Китай", "Индия", "Австралия", "Швейцария"],
-            blockchain_adoption: [85, 75, 70, 45, 60, 40, 25, 40],
-            ai_in_gov: [80, 90, 75, 65, 85, 55, 35, 50],
-            digital_services: [99, 95, 80, 85, 75, 65, 60, 65],
-            investments: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8]
+            countries: ["Эстония", "Сингапур", "Дубай", "Великобритания", "Китай", "Индия", "Австралия", "Швейцария", "США", "Россия"],
+            blockchain_adoption: [85, 75, 70, 45, 60, 40, 25, 40, 55, 45],
+            ai_in_gov: [80, 90, 75, 65, 85, 55, 35, 50, 92, 75],
+            digital_services: [99, 95, 80, 85, 75, 65, 60, 65, 85, 88],
+            investments: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8, 1850.0, null]
         };
     
     try {

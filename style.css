@@ -1164,6 +1164,43 @@ select.form-control {
   color: var(--color-text);
 }
 
+.country-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
+}
+
+@media (max-width: 768px) {
+  .country-comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+.country-info {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+}
+
+.country-info h4 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.country-info p {
+  margin-bottom: var(--space-16);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.country-info strong {
+  font-weight: var(--font-weight-semibold);
+}
+
 .chart-container {
   position: relative;
   width: 100%;
