@@ -1,18 +1,29 @@
-// App initialization
-document.addEventListener('DOMContentLoaded', function() {
+// App initialization: сначала загружаем локальные данные, затем строим графики
+
+document.addEventListener('DOMContentLoaded', async function() {
     initThemeToggle();
     initNavigation();
-    
+
+    // Пытаемся загрузить локальный файл govtech_data.json до инициализации графиков
+    try {
+        const response = await fetch('govtech_data.json');
+        if (!response.ok) throw new Error(response.statusText);
+        window.externalData = await response.json();
+        console.log('Loaded local data:', window.externalData);
+    } catch (error) {
+        console.warn('Could not load govtech_data.json, falling back to hard-coded datasets', error);
+        window.externalData = null;
+    }
+
     // Проверяем, доступен ли Chart.js
     if (typeof Chart !== 'undefined') {
         console.log('Chart.js доступен, инициализируем графики');
         initCharts();
-        loadExternalData();
     } else {
         console.error('Chart.js не доступен, показываем запасной вариант');
         showChartFallbacks();
     }
-    
+
     initScrollAnimations();
 });
 
@@ -217,7 +228,8 @@ function createAdoptionChart() {
         console.log('Creating adoption chart...');
         
         const colors = getChartColors();
-        const adoptionData = {
+        // Используем данные из govtech_data.json, если они загружены, иначе fallback
+        const adoptionData = (window.externalData && window.externalData.adoption_data) ? window.externalData.adoption_data : {
             countries: ["Эстония", "Сингапур", "Дубай", "Великобритания", "Китай", "Индия", "Австралия", "Швейцария"],
             blockchain_adoption: [85, 75, 70, 45, 60, 40, 25, 40],
             ai_in_gov: [80, 90, 75, 65, 85, 55, 35, 50],
