@@ -33,21 +33,43 @@
 <nav class="nav">
 <ul class="nav-list">
 <li><a href="#home" class="nav-link active">Главная</a></li>
+<li><a href="#introduction" class="nav-link">Введение</a></li>
+<li><a href="#web3-governance" class="nav-link">Web 3.0</a></li>
 <li><a href="#cases" class="nav-link">Кейсы</a></li>
+<li><a href="#dao" class="nav-link">DAO</a></li>
 <li><a href="#experts" class="nav-link">Цитаты</a></li>
 <li><a href="#challenges" class="nav-link">Вызовы</a></li>
-<li><a href="#dao" class="nav-link">DAO</a></li>
 <li><a href="#timeline" class="nav-link">Сроки</a></li>
 <li><a href="#conclusion" class="nav-link">Заключение</a></li>
-
 </ul>
 </nav>
+<!-- Hamburger menu for mobile -->
+<div class="hamburger-menu" id="hamburgerMenu">
+<span></span>
+<span></span>
+<span></span>
+</div>
 <button class="theme-toggle btn btn--icon" id="themeToggle">
 🌙
 </button>
 </div>
 </div>
 </header>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav" id="mobileNav">
+<ul class="mobile-nav-list">
+<li><a href="#home" class="mobile-nav-link active">Главная</a></li>
+<li><a href="#introduction" class="mobile-nav-link">Введение</a></li>
+<li><a href="#web3-governance" class="mobile-nav-link">Web 3.0</a></li>
+<li><a href="#cases" class="mobile-nav-link">Кейсы</a></li>
+<li><a href="#dao" class="mobile-nav-link">DAO</a></li>
+<li><a href="#experts" class="mobile-nav-link">Цитаты</a></li>
+<li><a href="#challenges" class="mobile-nav-link">Вызовы</a></li>
+<li><a href="#timeline" class="mobile-nav-link">Сроки</a></li>
+<li><a href="#conclusion" class="mobile-nav-link">Заключение</a></li>
+</ul>
+</div>
 
 <!-- Main Content -->
 <main>
@@ -127,6 +149,33 @@
 <div class="benefit-icon">🔍</div>
 <h4>Повышение прозрачности</h4>
 <p>Открытый доступ к&nbsp;государственным данным</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Web 3.0 Governance Section -->
+<section id="web3-governance" class="section">
+<div class="container">
+<h2>Государство-2.0: Web 3.0-парадигма</h2>
+<div class="intro-grid">
+<div class="card">
+<div class="card__body">
+<p>Web 3.0 выводит цифровое государство на новый уровень. Вместо централизованных баз данных — распределённые реестры, где <strong>каждая транзакция проверяема</strong>; вместо бумажной бюрократии — <em>смарт-контракты</em>, мгновенно исполняющие «код как закон».</p>
+
+<p>Три ключевых преимущества для государственного сектора:</p>
+<ul>
+<li><strong>Self-sovereign identity (SSI)</strong>. Гражданин хранит идентификационные данные у себя, делясь лишь необходимыми атрибутами. Это минимизирует утечки и упрощает KYC-процедуры.</li>
+<li><strong>Неизменяемые реестры</strong>. Регистры земель, авто и лицензий становятся прозрачными: любое изменение мгновенно фиксируется на блокчейне, устраняя простор для коррупции.</li>
+<li><strong>dApp-госуслуги</strong>. Подача заявки, выплата пособия или голосование происходят через децентрализованные приложения без посредников и «человеческого фактора».</li>
+</ul>
+
+<p><em>Мини-кейс</em>: Эстония интегрировала X-Road c DID-кошельками; 99% госуслуг доступны онлайн, а 100% медкарт хранятся в распределённом регистре.</p>
+
+<div class="info-box">
+<p><strong>Что дальше?</strong> Изучите, как DAO-механизмы дополняют Web 3.0-госуслуги в разделе «DAO и бюджетирование».</p>
+</div>
 </div>
 </div>
 </div>
@@ -394,7 +443,96 @@
 </div>
 </div>
 
+<div class="card">
+<div class="card__body">
+<h3>Verifiable AI</h3>
+<p><strong>Verifiable AI</strong> — это искусственный интеллект, решения которого можно криптографически подтвердить. Модели не скрываются «в чёрном ящике»; проверка корректности выполняется так же, как проверяются блокчейн-транзакции.</p>
+
+<p>Технологии:</p>
+<ul>
+<li><strong>zk-SNARKs</strong>: создают короткое криптодоказательство того, что модель сделала расчёт по заданному алгоритму, не раскрывая параметры.</li>
+<li><strong>Cryptographic commitments</strong>: фиксируют веса модели в неизменяемом хэше; любая подмена сразу обнаруживается.</li>
+</ul>
+
+<p><strong>Преимущества перед обычным AI</strong>:</p>
+<ul>
+<li>Прозрачность процессов принятия решений.</li>
+<li>Юридическая ответственность: при аудите можно доказать корректность выводов.</li>
+<li>Киберустойчивость: доказательство не позволяет подменить модель или данные незаметно.</li>
+</ul>
+
+<div class="flow-diagram">
+<img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8c3R5bGU+CiAgICAubm9kZSB7IGZpbGw6ICM0ZGFiZjc7IHN0cm9rZTogIzMzOWFmMDsgc3Ryb2tlLXdpZHRoOiAycHg7IH0KICAgIC5hcnJvdyB7IGZpbGw6IG5vbmU7IHN0cm9rZTogIzMzOWFmMDsgc3Ryb2tlLXdpZHRoOiAycHg7IH0KICAgIC50ZXh0IHsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGZpbGw6ICMzMzM7IH0KICAgIC5ub2RlLXRleHQgeyBmb250LXNpemU6IDEycHg7IGZpbGw6ICNmZmY7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICA8L3N0eWxlPgogIAogIDwhLS0gTm9kZXMgLS0+CiAgPHJlY3QgY2xhc3M9Im5vZGUiIHg9IjUwIiB5PSI1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcng9IjUiIC8+CiAgPHRleHQgY2xhc3M9Im5vZGUtdGV4dCIgeD0iMTAwIiB5PSI3NSI+0JTQsNGC0LDRgdC10YIg0LPQvtGB0YPRgdC70YPQs9C4PC90ZXh0PgogIAogIDxyZWN0IGNsYXNzPSJub2RlIiB4PSI1MCIgeT0iMTUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiByeD0iNSIgLz4KICA8dGV4dCBjbGFzcz0ibm9kZS10ZXh0IiB4PSIxMDAiIHk9IjE3NSI+TUwt0LzQvtC00LXQu9GMPC90ZXh0PgogIAogIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjMwIiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjIwMCIgeT0iMTU1Ij56ay1Qcm9vZjwvdGV4dD4KICAKICA8cmVjdCBjbGFzcz0ibm9kZSIgeD0iMzAwIiB5PSIxNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHJ4PSI1IiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjM1MCIgeT0iMTc1Ij7QkdC70L7QutGH0LXQudC9LdGA0LXQtdGB0YLRgDwvdGV4dD4KICAKICA8cmVjdCBjbGFzcz0ibm9kZSIgeD0iMzAwIiB5PSIyNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHJ4PSI1IiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjM1MCIgeT0iMjc1Ij7Qk9C+0YEt0L/QvtGA0YLQsNC7PC90ZXh0PgogIAogIDxyZWN0IGNsYXNzPSJub2RlIiB4PSI0MDAiIHk9IjE1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcng9IjUiIC8+CiAgPHRleHQgY2xhc3M9Im5vZGUtdGV4dCIgeD0iNDUwIiB5PSIxNzUiPtCT0YDQsNC20LTQsNC90LjQvTwvdGV4dD4KICAKICA8IS0tIEFycm93cyAtLT4KICA8cGF0aCBjbGFzcz0iYXJyb3ciIGQ9Ik0xMDAgOTAgTCAxMDAgMTUwIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CiAgPHBhdGggY2xhc3M9ImFycm93IiBkPSJNMTUwIDE1MCBMIDE3MCAxNTAiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KICA8cGF0aCBjbGFzcz0iYXJyb3ciIGQ9Ik0yMzAgMTUwIEwgMzAwIDE1MCIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgogIDxwYXRoIGNsYXNzPSJhcnJvdyIgZD0iTTM1MCAxOTAgTCAzNTAgMjUwIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CiAgPHBhdGggY2xhc3M9ImFycm93IiBkPSJNNDAwIDE1MCBMIDQwMCAxNTAiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KICAKICA8IS0tIEFycm93aGVhZCBtYXJrZXIgLS0+CiAgPGRlZnM+CiAgICA8bWFya2VyIGlkPSJhcnJvd2hlYWQiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSI3IiByZWZYPSIwIiByZWZZPSIzLjUiIG9yaWVudD0iYXV0byI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwLCAxMCAzLjUsIDAgNyIgZmlsbD0iIzMzOWFmMCIgLz4KICAgIDwvbWFya2VyPgogIDwvZGVmcz4KPC9zdmc+" alt="Схема работы Verifiable AI" width="100%">
+<p class="diagram-caption">Схема работы Verifiable AI в государственных сервисах</p>
 </div>
+</div>
+</div>
+
+</div>
+
+<!-- DAO Treasury Metrics Section -->
+<div class="dao-treasury-section">
+<h3>Метрики DAO-казначейств</h3>
+<div class="treasury-metrics">
+<h4>Ключевые показатели (июль 2025)</h4>
+<div class="metrics-table-container">
+<table class="metrics-table">
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значение</th>
+<th>Изменение за 12 мес.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Активные DAO</td>
+<td>30,842</td>
+<td>+19%</td>
+</tr>
+<tr>
+<td>Совокупный treasury</td>
+<td>$40.7 млрд</td>
+<td>+22%</td>
+</tr>
+<tr>
+<td>Средний treasury 100 крупнейших</td>
+<td>$187 млн</td>
+<td>+15%</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="chart-section">
+<h4>Распределение средств в DAO-экосистеме, июль 2025</h4>
+<div class="chart-container">
+<canvas id="daoTreasury"></canvas>
+<div class="chart-fallback">
+<table class="data-table">
+<thead>
+<tr>
+<th>Категория</th>
+<th>Объем средств (млн $)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100 крупнейших</td>
+<td>18,700</td>
+</tr>
+<tr>
+<td>Прочие DAO</td>
+<td>22,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 </section>
 
@@ -403,13 +541,52 @@
 <div class="container">
 <h2>Цитаты</h2>
 <div class="quotes-grid">
+<!-- Row 1: Most important quotes -->
 <div class="quote-card card">
 <div class="card__body">
 <blockquote>
-&laquo;Блокчейн позволяет нам переосмыслить доверие и&nbsp;обеспечить peer-to-peer транзакции без
-посредников&raquo;
+&laquo;ИИ имеет потенциал кардинально трансформировать общество и экономику... и может стать ключевым инструментом в управлении, который в перспективе способен заменить некоторые традиционные государственные институты&raquo;
 </blockquote>
-<cite>&mdash;&nbsp;Виталик Бутерин, создатель Ethereum</cite>
+<cite>&mdash;&nbsp;Сэм Альтман, CEO OpenAI</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Человечество находится на пороге эпохи, когда авторитет и власть могут перейти от людей к алгоритмам&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Юваль Ной Харари, историк, философ</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Возможности систем ИИ будут лучше всего рассматриваться как нечто похожее на совершенно новое государство, населенное высокоинтеллектуальными людьми, появляющееся на мировой сцене — «страна гениев в центре обработки данных»&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Дарио Амодеи, основатель Anthropic</cite>
+</div>
+</div>
+
+<!-- Row 2: Second tier important quotes -->
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Блокчейн имеет потенциал нарушить централизованные властные структуры и&nbsp;обеспечить
+более партисипативные модели управления&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Виталик Бутерин, &laquo;The Meaning of&nbsp;Decentralization&raquo;</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Когда децентрализованные блокчейн-протоколы начнут вытеснять централизованные
+веб-сервисы, мы&nbsp;начнем видеть настоящий интернет-суверенитет&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Олаф Карлсон-Ви, CEO Polychain Capital</cite>
 </div>
 </div>
 
@@ -423,13 +600,14 @@
 </div>
 </div>
 
+<!-- Row 3: Less important quotes -->
 <div class="quote-card card">
 <div class="card__body">
 <blockquote>
-&laquo;Блокчейн имеет потенциал нарушить централизованные властные структуры и&nbsp;обеспечить
-более партисипативные модели управления&raquo;
+&laquo;Блокчейн позволяет нам переосмыслить доверие и&nbsp;обеспечить peer-to-peer транзакции без
+посредников&raquo;
 </blockquote>
-<cite>&mdash;&nbsp;Виталик Бутерин, &laquo;The Meaning of&nbsp;Decentralization&raquo;</cite>
+<cite>&mdash;&nbsp;Виталик Бутерин, создатель Ethereum</cite>
 </div>
 </div>
 
@@ -449,43 +627,6 @@
 &laquo;Блокчейн символизирует сдвиг власти от&nbsp;центров к&nbsp;краям сетей&raquo;
 </blockquote>
 <cite>&mdash;&nbsp;Уильям Мугайяр, блокчейн-стратег</cite>
-</div>
-</div>
-
-<div class="quote-card card">
-<div class="card__body">
-<blockquote>
-&laquo;Когда децентрализованные блокчейн-протоколы начнут вытеснять централизованные
-веб-сервисы, мы&nbsp;начнем видеть настоящий интернет-суверенитет&raquo;
-</blockquote>
-<cite>&mdash;&nbsp;Олаф Карлсон-Ви, CEO Polychain Capital</cite>
-</div>
-</div>
-
-<div class="quote-card card">
-<div class="card__body">
-<blockquote>
-&laquo;Возможности систем ИИ будут лучше всего рассматриваться как нечто похожее на совершенно новое государство, населенное высокоинтеллектуальными людьми, появляющееся на мировой сцене — «страна гениев в центре обработки данных»&raquo;
-</blockquote>
-<cite>&mdash;&nbsp;Дарио Амодеи, основатель Anthropic</cite>
-</div>
-</div>
-
-<div class="quote-card card">
-<div class="card__body">
-<blockquote>
-&laquo;ИИ имеет потенциал кардинально трансформировать общество и экономику... и может стать ключевым инструментом в управлении, который в перспективе способен заменить некоторые традиционные государственные институты&raquo;
-</blockquote>
-<cite>&mdash;&nbsp;Сэм Альтман, CEO OpenAI</cite>
-</div>
-</div>
-
-<div class="quote-card card">
-<div class="card__body">
-<blockquote>
-&laquo;Человечество находится на пороге эпохи, когда авторитет и власть могут перейти от людей к алгоритмам&raquo;
-</blockquote>
-<cite>&mdash;&nbsp;Юваль Ной Харари, историк, философ</cite>
 </div>
 </div>
 </div>

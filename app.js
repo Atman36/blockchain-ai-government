@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', async function() {
     initThemeToggle();
     initNavigation();
+    initMobileMenu();
 
     // Пытаемся загрузить локальный файл govtech_data.json до инициализации графиков
     try {
@@ -88,7 +89,7 @@ function applyTheme(theme) {
 
 function updateThemeToggleText(theme) {
     const themeToggle = document.getElementById('themeToggle');
-    themeToggle.innerHTML = theme === 'light' ? '🌙 Темная тема' : '☀️ Светлая тема';
+    themeToggle.innerHTML = theme === 'light' ? '🌙' : '☀️';
 }
 
 // Navigation
@@ -194,6 +195,14 @@ function initCharts() {
             } catch (error) {
                 console.error('Error creating benefits chart:', error);
                 showChartFallback('benefitsChart');
+            }
+            
+            try {
+                createDaoTreasuryChart();
+                console.log('DAO Treasury chart created');
+            } catch (error) {
+                console.error('Error creating DAO Treasury chart:', error);
+                showChartFallback('daoTreasury');
             }
             
             console.log('Charts initialization completed');
@@ -660,7 +669,8 @@ function updateChartsTheme() {
         window.adoptionChart, 
         window.investmentChart, 
         window.timelineChart, 
-        window.benefitsChart
+        window.benefitsChart,
+        window.daoTreasuryChart
     ];
     
     charts.forEach(chart => {
@@ -783,5 +793,124 @@ if ('performance' in window) {
             const perfData = performance.getEntriesByType('navigation')[0];
             console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
         }, 0);
+    });
+}// Mo
+bile menu functionality
+function initMobileMenu() {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (hamburgerMenu && mobileNav) {
+        hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+        
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                
+                // Update active state
+                mobileNavLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Smooth scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const elementPosition = targetSection.offsetTop;
+                    const offsetPosition = elementPosition - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Update active mobile nav link on scroll
+    window.addEventListener('scroll', throttle(function() {
+        updateActiveNavigation();
+        updateActiveMobileNavigation();
+    }, 100));
+}
+
+function updateActiveMobileNavigation() {
+    const sections = document.querySelectorAll('.section');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    const scrollPosition = window.scrollY + headerHeight + 100;
+    
+    let activeSection = null;
+    
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            activeSection = section;
+        }
+    });
+    
+    if (activeSection) {
+        mobileNavLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`.mobile-nav-link[href="#${activeSection.id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+    }
+}// D
+AO Treasury Chart
+function createDaoTreasuryChart() {
+    const ctx = document.getElementById('daoTreasury');
+    if (!ctx) {
+        console.error('Element with id "daoTreasury" not found');
+        return;
+    }
+    console.log('Creating DAO Treasury chart...');
+    
+    const colors = getChartColors();
+    
+    window.daoTreasuryChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['100 крупнейших', 'Прочие DAO'],
+            datasets: [{
+                data: [18700, 22000],   // значения в млн $
+                backgroundColor: [colors.chart1, colors.chart2],
+                borderColor: [colors.chart1, colors.chart2],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: colors.textColor,
+                        padding: 20
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Распределение средств в DAO-экосистеме (млн $)',
+                    color: colors.textColor,
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                }
+            },
+            cutout: '60%'
+        }
     });
 }

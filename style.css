@@ -166,35 +166,42 @@
     --color-bg-8: rgba(16, 185, 129, 0.08); /* Dark emerald variant */
     
     /* Semantic Color Tokens (Dark Mode) */
-    --color-background: var(--color-slate-900);
-    --color-surface: var(--color-slate-800);
-    --color-text: var(--color-slate-100);
-    --color-text-secondary: var(--color-slate-400);
-    --color-primary: var(--color-indigo-500);
-    --color-primary-hover: var(--color-indigo-400);
-    --color-primary-active: var(--color-indigo-600);
-    --color-secondary: var(--color-slate-700);
-    --color-secondary-hover: var(--color-slate-600);
-    --color-secondary-active: var(--color-slate-500);
-    --color-border: var(--color-slate-700);
-    --color-error: var(--color-red-500);
-    --color-success: var(--color-emerald-500);
-    --color-warning: var(--color-amber-500);
-    --color-info: var(--color-blue-500);
-    --color-focus-ring: rgba(var(--color-indigo-500-rgb), 0.4);
-    --color-btn-primary-text: var(--color-white);
-    --color-card-border: var(--color-slate-700);
-    --color-card-border-inner: var(--color-slate-600);
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-text: #f5f5f5;
+    --color-text-secondary: #a0a0a0;
+    --color-primary: #4dabf7;
+    --color-primary-hover: #74c0fc;
+    --color-primary-active: #339af0;
+    --color-secondary: rgba(160, 160, 160, 0.12);
+    --color-secondary-hover: rgba(160, 160, 160, 0.2);
+    --color-secondary-active: rgba(160, 160, 160, 0.25);
+    --color-border: rgba(160, 160, 160, 0.2);
+    --color-error: #ff6b6b;
+    --color-success: #51cf66;
+    --color-warning: #fcc419;
+    --color-info: #4dabf7;
+    --color-focus-ring: rgba(77, 171, 247, 0.4);
+    --color-btn-primary-text: #121212;
+    --color-card-border: rgba(160, 160, 160, 0.12);
+    --color-card-border-inner: rgba(160, 160, 160, 0.12);
     --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.05),
       inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-    --color-border-secondary: var(--color-slate-600);
-    --color-select-caret: rgba(var(--color-slate-100-rgb), 0.8);
+    --color-border-secondary: rgba(160, 160, 160, 0.2);
+    --color-select-caret: rgba(245, 245, 245, 0.8);
 
     /* RGB versions for dark mode */
-    --color-success-rgb: var(--color-emerald-500-rgb);
-    --color-error-rgb: var(--color-red-500-rgb);
-    --color-warning-rgb: var(--color-amber-500-rgb);
-    --color-info-rgb: var(--color-blue-500-rgb);
+    --color-success-rgb: 81, 207, 102;
+    --color-error-rgb: 255, 107, 107;
+    --color-warning-rgb: 252, 196, 25;
+    --color-info-rgb: 77, 171, 247;
+    
+    /* Chart colors for dark mode */
+    --chart-1: #4dabf7;
+    --chart-2: #51cf66;
+    --chart-3: #fcc419;
+    --chart-4: #ff6b6b;
+    --chart-5: #cc5de8;
   }
 }
 
@@ -1753,4 +1760,264 @@ section[id] {
     box-shadow: var(--shadow-md);
     border-color: var(--color-primary);
     color: var(--color-primary);
+}/* 
+Mobile menu styles */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.hamburger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--color-primary);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-surface);
+  z-index: 150;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.mobile-nav.active {
+  transform: translateX(0);
+}
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.mobile-nav-list li {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--radius-base);
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.hamburger-menu.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1023px) {
+  .nav {
+    display: none;
+  }
+  
+  .hamburger-menu {
+    display: flex;
+  }
+  
+  .quotes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  }
+  
+  .cases-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  }
+}
+
+/* Quotes grid styles to ensure equal height */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-32);
+}
+
+.quote-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-card .card__body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-card blockquote {
+  flex-grow: 1;
+  margin: 0 0 var(--space-16) 0;
+  font-style: italic;
+  position: relative;
+  padding-left: var(--space-16);
+  border-left: 3px solid var(--color-primary);
+}
+
+.quote-card cite {
+  display: block;
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+  margin-top: auto;
+  text-align: right;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .quotes-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .section h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+  }
+}/* Pr
+event scrolling when mobile menu is open */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Fix for theme toggle on mobile */
+@media (max-width: 768px) {
+  .theme-toggle {
+    margin-left: 10px;
+    padding: var(--space-6) var(--space-8);
+    font-size: 1rem;
+  }
+}/* Ст
+или для Web 3.0 Governance Section */
+.info-box {
+  background-color: var(--color-bg-7);
+  border-left: 3px solid var(--color-primary);
+  padding: var(--space-16);
+  margin-top: var(--space-24);
+  border-radius: var(--radius-base);
+}
+
+.info-box p {
+  margin-bottom: 0;
+}
+
+/* Стили для Verifiable AI Section */
+.flow-diagram {
+  margin-top: var(--space-24);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-base);
+  padding: var(--space-16);
+  border: 1px solid var(--color-border);
+}
+
+.diagram-caption {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-8);
+  margin-bottom: 0;
+}
+
+/* Стили для DAO Treasury Metrics Section */
+.dao-treasury-section {
+  margin-top: var(--space-48);
+}
+
+.treasury-metrics {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  border: 1px solid var(--color-border);
+  margin-top: var(--space-24);
+}
+
+.treasury-metrics h4 {
+  margin-bottom: var(--space-16);
+  text-align: center;
+}
+
+.metrics-table-container {
+  overflow-x: auto;
+  margin-bottom: var(--space-24);
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.metrics-table th,
+.metrics-table td {
+  padding: var(--space-12);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.metrics-table th {
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--color-bg-1);
+}
+
+.metrics-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Исправление стилей для цитат (убираем дублирование вертикальной линии) */
+.quote-card blockquote {
+  flex-grow: 1;
+  margin: 0 0 var(--space-16) 0;
+  font-style: italic;
+  position: relative;
+  padding-left: var(--space-16);
+  border-left: 3px solid var(--color-primary);
+}
+
+/* Убедимся, что нет дублирования стилей */
+.quote-card blockquote::before,
+.quote-card blockquote::after {
+  display: none;
 }
