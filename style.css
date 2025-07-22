@@ -207,6 +207,34 @@
 
 /* Data attribute for manual theme switching */
 [data-color-scheme="dark"] {
+  /* Основные цвета для темной темы */
+  --background: #121212;
+  --foreground: #f5f5f5;
+  --card: #1e1e1e;
+  --card-foreground: #f5f5f5;
+  --popover: #1e1e1e;
+  --popover-foreground: #f5f5f5;
+  --primary: #4dabf7;
+  --primary-foreground: #121212;
+  --secondary: rgba(160, 160, 160, 0.12);
+  --secondary-foreground: #e0e0e0;
+  --muted: #2a2a2a;
+  --muted-foreground: #a0a0a0;
+  --accent: rgba(77, 171, 247, 0.2);
+  --accent-foreground: #f5f5f5;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #121212;
+  --border: rgba(160, 160, 160, 0.2);
+  --input: rgba(160, 160, 160, 0.2);
+  --ring: rgba(77, 171, 247, 0.4);
+  
+  /* Цвета для графиков в темной теме */
+  --chart-1: #4dabf7;
+  --chart-2: #51cf66;
+  --chart-3: #fcc419;
+  --chart-4: #ff6b6b;
+  --chart-5: #cc5de8;
+  
   /* RGB versions for opacity control (dark mode) */
   --color-gray-400-rgb: 119, 124, 124;
   --color-teal-300-rgb: 50, 184, 198;
@@ -2351,4 +2379,309 @@ body.no-scroll {
   .web3-stat {
     flex: 0 0 calc(33.33% - var(--space-16));
   }
+}/* Стил
+и для обновлений кейса Эстония */
+.estonia-updates {
+  margin-top: var(--space-24);
+  padding: var(--space-16);
+  background: var(--color-bg-7);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.estonia-updates h4 {
+  margin-bottom: var(--space-12);
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+}
+
+.estonia-updates ul {
+  margin-bottom: 0;
+}/* Regulato
+ry Compliance Section */
+.section-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-40);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.regulatory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-48);
+}
+
+.regulatory-card .card__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.regulatory-card h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+  font-size: var(--font-size-xl);
+}
+
+.regulatory-card p {
+  flex-grow: 1;
+  margin-bottom: var(--space-16);
+}
+
+.regulatory-tag {
+  display: inline-block;
+  padding: var(--space-4) var(--space-12);
+  background: var(--color-bg-7);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  align-self: flex-start;
+}
+
+.regulatory-info-box {
+  background: var(--color-bg-2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  border: 1px solid var(--color-border);
+  margin-top: var(--space-48);
+}
+
+.regulatory-info-box h3 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+}
+
+.regulatory-info-box p {
+  margin-bottom: var(--space-16);
+  line-height: 1.6;
+}
+
+.regulatory-info-box p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .regulatory-grid {
+    grid-template-columns: 1fr;
+  }
+}/* Стил
+и для кейса Эстония в разделе Кейсы внедрения */
+.estonia-case-header {
+  text-align: center;
+  margin-bottom: var(--space-32);
+}
+
+.estonia-case-header h3 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.estonia-case-header h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-purple-500));
+  border-radius: var(--radius-full);
+}
+
+.estonia-case-full {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-32);
+  margin-bottom: var(--space-48);
+  box-shadow: var(--shadow-md);
+}
+
+.estonia-case-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-32);
+}
+
+.estonia-case-text {
+  flex: 3;
+  min-width: 300px;
+}
+
+.estonia-case-stats {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.stat-item {
+  background: var(--color-bg-7);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+.stat-value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-8);
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .estonia-case-content {
+    flex-direction: column;
+  }
+  
+  .estonia-case-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .stat-item {
+    flex: 1;
+    min-width: 120px;
+  }
+}/* Ст
+или для раздела Источники и база знаний */
+.knowledge-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-32);
+  margin-top: var(--space-32);
+}
+
+.knowledge-category {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.knowledge-category h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+  font-size: var(--font-size-xl);
+  position: relative;
+  padding-bottom: var(--space-8);
+}
+
+.knowledge-category h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+.knowledge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.knowledge-list li {
+  margin-bottom: var(--space-12);
+  position: relative;
+  padding-left: var(--space-24);
+}
+
+.knowledge-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+}
+
+.knowledge-list a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+  line-height: 1.5;
+}
+
+.knowledge-list a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .knowledge-categories {
+    grid-template-columns: 1fr;
+  }
+}/
+* Дополнительные стили для темной темы */
+.dark-theme {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.dark-theme .card {
+  background-color: var(--card);
+  border-color: var(--border);
+}
+
+.dark-theme .header {
+  background-color: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.dark-theme .nav {
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+.dark-theme .footer {
+  background-color: #1a1a1a;
+  color: #a0a0a0;
+}
+
+/* Улучшенная видимость для темной темы */
+.dark-theme .card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(77, 171, 247, 0.3);
+}
+
+.dark-theme .btn--primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.dark-theme .btn--secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.dark-theme .theme-toggle {
+  color: var(--foreground);
+}
+
+/* Улучшенная видимость для графиков в темной теме */
+.dark-theme .chart-container {
+  background-color: rgba(30, 30, 30, 0.5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
 }

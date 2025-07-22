@@ -61,13 +61,27 @@ function showChartFallback(chartId) {
 // Theme Toggle Functionality
 function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) {
+        console.error('Theme toggle button not found');
+        return;
+    }
+    
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     // Set initial theme
-    let currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+    let currentTheme = localStorage.getItem('theme');
+    
+    // If no theme is stored, use system preference
+    if (!currentTheme) {
+        currentTheme = prefersDark ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
+    }
+    
+    // Apply theme immediately
     applyTheme(currentTheme);
     updateThemeToggleText(currentTheme);
     
+    // Listen for click events
     themeToggle.addEventListener('click', function(e) {
         e.preventDefault();
         currentTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -80,16 +94,32 @@ function initThemeToggle() {
             updateChartsTheme();
         }, 100);
     });
+    
+    // Also listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            applyTheme(newTheme);
+            updateThemeToggleText(newTheme);
+            setTimeout(() => {
+                updateChartsTheme();
+            }, 100);
+        }
+    });
 }
 
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-color-scheme', theme);
     document.body.classList.toggle('dark-theme', theme === 'dark');
+    console.log('Theme applied:', theme);
 }
 
 function updateThemeToggleText(theme) {
     const themeToggle = document.getElementById('themeToggle');
-    themeToggle.innerHTML = theme === 'light' ? '🌙' : '☀️';
+    if (themeToggle) {
+        themeToggle.innerHTML = theme === 'light' ? '🌙' : '☀️';
+        themeToggle.setAttribute('aria-label', theme === 'light' ? 'Включить темную тему' : 'Включить светлую тему');
+    }
 }
 
 // Navigation
