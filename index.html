@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блокчейн и&nbsp;ИИ: будущее государственного управления</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+        // Проверка загрузки Chart.js
+        window.addEventListener('load', function () {
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js не загружен!');
+                document.querySelectorAll('.chart-container').forEach(container => {
+                    container.innerHTML = '<div style="padding: 20px; text-align: center; color: red;">Ошибка загрузки графика. Chart.js не загружен.</div>';
+                });
+            } else {
+                console.log('Chart.js успешно загружен, версия:', Chart.version);
+            }
+        });</script>
+</head>
+
+<body>
+
+<!-- Header with navigation and theme toggle -->
+<header class="header">
+<div class="container">
+<div class="flex items-center justify-between">
+<div class="logo">
+<h1>GovTech 3.0</h1>
+</div>
+<nav class="nav">
+<ul class="nav-list">
+<li><a href="#home" class="nav-link active">Главная</a></li>
+<li><a href="#cases" class="nav-link">Кейсы</a></li>
+<li><a href="#experts" class="nav-link">Цитаты</a></li>
+<li><a href="#challenges" class="nav-link">Вызовы</a></li>
+<li><a href="#dao" class="nav-link">DAO</a></li>
+<li><a href="#timeline" class="nav-link">Сроки</a></li>
+<li><a href="#conclusion" class="nav-link">Заключение</a></li>
+</ul>
+</nav>
+<button class="theme-toggle btn btn--icon" id="themeToggle">
+🌙
+</button>
+</div>
+</div>
+</header>
+
+<!-- Main Content -->
+<main>
+<!-- Home Section -->
+<section id="home" class="section section--hero">
+<div class="container">
+<div class="hero-content">
+<h1 class="hero-title">Блокчейн и&nbsp;ИИ: будущее государственного управления</h1>
+<p class="hero-subtitle">
+Блокчейн и&nbsp;искусственный интеллект позволяют создать более прозрачное,
+эффективное и&nbsp;справедливое государство. Исследуйте, как эти технологии
+трансформируют государственное управление по&nbsp;всему миру.
+</p>
+<blockquote class="hero-manifesto">
+<p>«Будущее управления — это код. Когда смарт-контракт фиксирует бюджет, а ИИ-агент отслеживает его исполнение, мы переосмысливаем само понятие государства. В этом мире гражданин — не проситель, а со-архитектор цифрового полиса. Добро пожаловать в эру GovTech 3.0, где доверие запечатлено в хэшах, а решения принимаются скоростью света.»</p>
+</blockquote>
+<div class="hero-stats">
+<div class="stat-card">
+<h3>100%</h3>
+<p>госуслуг Эстонии онлайн</p>
+</div>
+<div class="stat-card">
+<h3>$1.5 млрд</h3>
+<p>экономии в&nbsp;Дубае ежегодно</p>
+</div>
+<div class="stat-card">
+<h3>15&nbsp;млрд</h3>
+<p>евро экономии от&nbsp;ИИ в&nbsp;налогах ЕС</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Introduction Section -->
+<section id="introduction" class="section">
+<div class="container">
+<h2>Введение</h2>
+<div class="intro-grid">
+<div class="card">
+<div class="card__body">
+<h3>Смарт-контракты</h3>
+<p>Автоматически исполняемые контракты, которые устраняют посредников и&nbsp;обеспечивают
+прозрачность государственных операций.</p>
+</div>
+</div>
+<div class="card">
+<div class="card__body">
+<h3>GovTech 3.0</h3>
+<p>Новое поколение государственных технологий, основанное на&nbsp;блокчейне, ИИ&nbsp;и&nbsp;автоматизации
+процессов.</p>
+</div>
+</div>
+<div class="card">
+<div class="card__body">
+<h3>AI-аудит</h3>
+<p>Использование искусственного интеллекта для автоматической проверки государственных
+расходов и&nbsp;выявления коррупции.</p>
+</div>
+</div>
+</div>
+
+<div class="benefits-section">
+<h3>Ключевые преимущества</h3>
+<div class="benefits-grid">
+<div class="benefit-item">
+<div class="benefit-icon">🛡️</div>
+<h4>Снижение коррупции</h4>
+<p>Прозрачные транзакции и&nbsp;неизменяемые записи</p>
+</div>
+<div class="benefit-item">
+<div class="benefit-icon">⚡</div>
+<h4>Ускорение процессов</h4>
+<p>Автоматизация рутинных операций на&nbsp;60-90%</p>
+</div>
+<div class="benefit-item">
+<div class="benefit-icon">🔍</div>
+<h4>Повышение прозрачности</h4>
+<p>Открытый доступ к&nbsp;государственным данным</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Cases Section -->
+<section id="cases" class="section">
+<div class="container">
+<h2>Кейсы внедрения</h2>
+<div class="cases-grid">
+<div class="case-card card">
+<div class="card__body">
+<h3>Эстония e-Governance 2.0</h3>
+<div class="status status--success">Активно</div>
+<p>100% государственных услуг доступны онлайн с&nbsp;декабря 2024&nbsp;г. KSI-blockchain защищает все государственные
+записи. Экономия составляет 2% ВВП ежегодно.</p>
+<div class="case-metrics">
+<span class="metric">📈 Экономия: 1.3 млрд евро</span>
+<span class="metric">⏱️ Время: сокращено на&nbsp;98%</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>Дубай Blockchain Strategy</h3>
+<div class="status status--success">В&nbsp;развитии</div>
+<p>План стать первым blockchain-powered городом. Токенизация недвижимости и
+правительственных документов. Проект Crypto Tower для блокчейн-компаний.</p>
+<div class="case-metrics">
+<span class="metric">📈 Экономия: 5.5 млрд дирхам/год ($1.5 млрд)</span>
+<span class="metric">🏢 Сервисы: 50+&nbsp;департаментов</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>ЕС&nbsp;Project TITAN</h3>
+<div class="status status--info">Пилот</div>
+<p>ИИ&nbsp;для выявления НДС-уклонений в&nbsp;Италии, Франции, Испании. Машинное обучение анализирует
+налоговые декларации.</p>
+<div class="case-metrics">
+<span class="metric">📈 Экономия: 4-6 млрд евро</span>
+<span class="metric">🎯 Точность: 85% выявления нарушений</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>Китай Smart Cities</h3>
+<div class="status status--success">Масштабирование</div>
+<p>ИИ&nbsp;в&nbsp;управлении городами: Шэньчжэнь, Ханчжоу (City Brain от&nbsp;Alibaba), Пекин. Управление
+трафиком и&nbsp;городскими ресурсами.</p>
+<div class="case-metrics">
+<span class="metric">🚦 Трафик: улучшение на&nbsp;40%</span>
+<span class="metric">🏙️ Города: 100+ пилотных проектов</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>Австралия Blockchain Voting</h3>
+<div class="status status--warning">Тестирование</div>
+<p>Пилот блокчейн-голосования в&nbsp;штате Виктория. Обеспечение прозрачности и&nbsp;неизменности
+результатов выборов. Система использует смарт-контракты для автоматической верификации
+голосов и&nbsp;предотвращения фальсификаций.</p>
+<div class="case-metrics">
+<span class="metric">🗳️ Избиратели: 70,000+ участников</span>
+<span class="metric">🔒 Безопасность: 100% верификация</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>Великобритания AI&nbsp;Automation</h3>
+<div class="status status--info">Развитие</div>
+<p>84% государственных услуг могут быть автоматизированы с&nbsp;помощью ИИ. Обработка 1&nbsp;млрд
+транзакций граждан ежегодно через 377&nbsp;сервисов.</p>
+<div class="case-metrics">
+<span class="metric">🤖 Автоматизация: 84% услуг</span>
+<span class="metric">📊 Транзакции: 1&nbsp;млрд/год</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>CityDAO Web 3.0</h3>
+<div class="status status--warning">Эксперимент</div>
+<p>Децентрализованная автономная организация (DAO), купившая 40&nbsp;акров земли в&nbsp;Вайоминге. Более 5000 участников собрали $8&nbsp;млн для экспериментов с&nbsp;коллективным управлением на&nbsp;базе Ethereum.</p>
+<div class="case-metrics">
+<span class="metric">👥 Участники: 5000+&nbsp;человек</span>
+<span class="metric">💰 Инвестиции: $8&nbsp;млн</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>GenAI 4 Public Admin (EU)</h3>
+<div class="status status--info">Пилот</div>
+<p>Проект Digital Europe с бюджетом €21 млн для автоматизации документооборота и симуляции политики с использованием GenAI.</p>
+<div class="case-metrics">
+<span class="metric">💰 Бюджет: €21 млн</span>
+<span class="metric">🎯 Фокус: Мультиязычный доступ</span>
+</div>
+</div>
+</div>
+
+<div class="case-card card">
+<div class="card__body">
+<h3>Arbitrum DAO</h3>
+<div class="status status--success">Активно</div>
+<p>Децентрализованное распределение бюджетов с казной более $3.5 млрд. Модель subDAO и делегирование голосов.</p>
+<div class="case-metrics">
+<span class="metric">💰 Казна: >$3.5 млрд</span>
+<span class="metric">🗳️ Модель: subDAO</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Chart Section -->
+<div class="chart-section">
+<h3>Сравнение внедрения технологий по&nbsp;странам</h3>
+<div class="chart-container">
+<canvas id="adoptionChart"></canvas>
+<div class="chart-fallback">
+<table class="data-table">
+<thead>
+<tr>
+<th>Страна</th>
+<th>Блокчейн (%)</th>
+<th>ИИ&nbsp;(%)</th>
+<th>Цифровые услуги (%)</th>
+<th>Инвестиции (млрд&nbsp;$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Эстония</td>
+<td>85</td>
+<td>80</td>
+<td>100</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>Сингапур</td>
+<td>75</td>
+<td>90</td>
+<td>95</td>
+<td>12.0</td>
+</tr>
+<tr>
+<td>Дубай</td>
+<td>70</td>
+<td>75</td>
+<td>80</td>
+<td>8.5</td>
+</tr>
+<tr>
+<td>Великобритания</td>
+<td>45</td>
+<td>65</td>
+<td>85</td>
+<td>4.2</td>
+</tr>
+<tr>
+<td>Китай</td>
+<td>60</td>
+<td>85</td>
+<td>75</td>
+<td>30.0</td>
+</tr>
+<tr>
+<td>Индия</td>
+<td>40</td>
+<td>55</td>
+<td>65</td>
+<td>30.0</td>
+</tr>
+<tr>
+<td>Австралия</td>
+<td>25</td>
+<td>35</td>
+<td>60</td>
+<td>2.1</td>
+</tr>
+<tr>
+<td>Швейцария</td>
+<td>40</td>
+<td>50</td>
+<td>65</td>
+<td>1.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+</div>
+</section>
+
+<!-- DAO Section -->
+<section id="dao" class="section">
+<div class="container">
+<h2>Web 3.0 &amp; DAO</h2>
+<blockquote class="section-quote">
+<p>DAO — это парламент без стен. Вместо бюллетеней — токены, вместо бюрократии — неизменяемый код. Добавьте AI-аналитику, и мы получим «интеллектуальные DAO», которые прогнозируют последствия каждого закона ещё до голосования.</p>
+</blockquote>
+<div class="intro-grid">
+<div class="card">
+<div class="card__body">
+<h3>Что такое DAO?</h3>
+<p>Децентрализованные автономные организации (DAO) — это организации, управляемые смарт-контрактами на блокчейне, где решения принимаются коллективно через голосование. В госуправлении DAO позволяют гражданам напрямую участвовать в распределении бюджета или разработке политики.</p>
+</div>
+</div>
+<div class="card">
+<div class="card__body">
+<h3>WEB 3.0 и государство</h3>
+<p>WEB 3.0 — это децентрализованный интернет, где пользователи контролируют свои данные. Для государства это означает прозрачность, безопасность и прямое участие граждан в управлении.</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Experts Section -->
+<section id="experts" class="section">
+<div class="container">
+<h2>Цитаты</h2>
+<div class="quotes-grid">
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Блокчейн позволяет нам переосмыслить доверие и&nbsp;обеспечить peer-to-peer транзакции без
+посредников&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Виталик Бутерин, создатель Ethereum</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Технология должна усиливать демократию: алгоритмы открыты, законодательство &mdash;
+транспарентно, а&nbsp;граждане&nbsp;&mdash; со-создатели решений&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Одри Танг, министр цифровых технологий Тайваня</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Блокчейн имеет потенциал нарушить централизованные властные структуры и&nbsp;обеспечить
+более партисипативные модели управления&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Виталик Бутерин, &laquo;The Meaning of&nbsp;Decentralization&raquo;</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Криптовалюты&nbsp;&mdash; это настолько мощная концепция, что они могут почти свергнуть
+правительства&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Чарльз&nbsp;Ли, создатель Litecoin</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Блокчейн символизирует сдвиг власти от&nbsp;центров к&nbsp;краям сетей&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Уильям Мугайяр, блокчейн-стратег</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Когда децентрализованные блокчейн-протоколы начнут вытеснять централизованные
+веб-сервисы, мы&nbsp;начнем видеть настоящий интернет-суверенитет&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Олаф Карлсон-Ви, CEO Polychain Capital</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Возможности систем ИИ будут лучше всего рассматриваться как нечто похожее на совершенно новое государство, населенное высокоинтеллектуальными людьми, появляющееся на мировой сцене — «страна гениев в центре обработки данных»&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Дарио Амодеи, основатель Anthropic</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;ИИ имеет потенциал кардинально трансформировать общество и экономику... и может стать ключевым инструментом в управлении, который в перспективе способен заменить некоторые традиционные государственные институты&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Сэм Альтман, CEO OpenAI</cite>
+</div>
+</div>
+
+<div class="quote-card card">
+<div class="card__body">
+<blockquote>
+&laquo;Человечество находится на пороге эпохи, когда авторитет и власть могут перейти от людей к алгоритмам&raquo;
+</blockquote>
+<cite>&mdash;&nbsp;Юваль Ной Харари, историк, философ</cite>
+</div>
+</div>
+</div>
+
+<div class="analysis-section">
+<h3>Баланс централизации и&nbsp;децентрализации</h3>
+<div class="balance-grid">
+<div class="balance-item">
+<h4>Централизация</h4>
+<ul>
+<li>Быстрое принятие решений</li>
+<li>Единые стандарты</li>
+<li>Контроль качества</li>
+</ul>
+</div>
+<div class="balance-item">
+<h4>Децентрализация</h4>
+<ul>
+<li>Устойчивость к&nbsp;отказам</li>
+<li>Прозрачность процессов</li>
+<li>Участие граждан</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Challenges Section -->
+<section id="challenges" class="section">
+<div class="container">
+<h2>Вызовы и&nbsp;препятствия</h2>
+<div class="challenges-grid">
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Правовые рамки</h3>
+<p>GDPR требует права на&nbsp;забвение данных, что противоречит неизменяемости блокчейна. EU&nbsp;AI
+Act устанавливает строгие требования к&nbsp;ИИ-системам в&nbsp;госуправлении.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--high">Высокий риск</span>
+</div>
+</div>
+</div>
+
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Масштабируемость</h3>
+<p>Существующие блокчейны не&nbsp;справляются с&nbsp;нагрузкой государственных систем. Необходимы
+L2-решения и&nbsp;гибридные блокчейны.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--medium">Средний риск</span>
+</div>
+</div>
+</div>
+
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Приватность vs&nbsp;Прозрачность</h3>
+<p>Дилемма между открытостью государственных данных и&nbsp;защитой персональной информации.
+Zero-knowledge proofs как возможное решение.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--medium">Средний риск</span>
+</div>
+</div>
+</div>
+
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Институциональное сопротивление</h3>
+<p>37% чиновников&nbsp;ЕС опасаются потери своей роли. Необходимы программы переобучения и
+адаптации персонала.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--low">Низкий риск</span>
+</div>
+</div>
+</div>
+
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Кибербезопасность и&nbsp;уязвимости</h3>
+<p>Увеличение числа цифровых госуслуг создает новые векторы атак. Блокчейн-системы могут
+стать мишенью для хакеров, а&nbsp;ИИ-алгоритмы подвержены манипуляциям.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--high">Высокий риск</span>
+</div>
+</div>
+</div>
+
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Цифровое неравенство</h3>
+<p>Переход к&nbsp;полностью цифровым госуслугам исключает граждан без доступа к&nbsp;интернету или
+цифровым навыкам. Критично для пожилых людей и&nbsp;малообеспеченных слоев.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--medium">Средний риск</span>
+</div>
+</div>
+</div>
+
+<div class="challenge-card card">
+<div class="card__body">
+<h3>Интеграция DAO с&nbsp;правовыми рамками</h3>
+<p>Децентрализованные автономные организации требуют новых юридических структур для соответствия регуляторным требованиям. Необходимы гибридные DAO с&nbsp;традиционными правовыми оболочками.</p>
+<div class="challenge-impact">
+<span class="impact-level impact--medium">Средний риск</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Timeline Section -->
+<section id="timeline" class="section">
+<div class="container">
+<h2>Временные рамки внедрения</h2>
+<div class="timeline-container">
+<div class="timeline-item">
+<div class="timeline-year">2025-2027</div>
+<div class="timeline-content">
+<h3>Первая волна</h3>
+<p>Автоматизация базовых услуг: лицензирование, реестры недвижимости, субсидии</p>
+<div class="timeline-stats">
+<span>🌍 15+&nbsp;стран</span>
+<span>📊 60% автоматизация</span>
+</div>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-year">2028-2032</div>
+<div class="timeline-content">
+<h3>Средний этап</h3>
+<p>Электронное голосование, таможенные процедуры, государственные закупки</p>
+<div class="timeline-stats">
+<span>🌍 25+&nbsp;стран</span>
+<span>📊 75% автоматизация</span>
+</div>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-year">2033-2040</div>
+<div class="timeline-content">
+<h3>Поздний этап</h3>
+<p>Частичная монетарная политика, ИИ-арбитры в&nbsp;судах, полицейские расследования</p>
+<div class="timeline-stats">
+<span>🌍 40+&nbsp;стран</span>
+<span>📊 85% автоматизация</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="critical-point">
+<div class="card">
+<div class="card__body">
+<h3>⚠️ Критический перелом</h3>
+<p>При достижении <strong>35% ВВП в&nbsp;смарт-контрактах</strong> возврат к&nbsp;традиционным
+бумажным процессам станет технически невозможным (IMF, 2024)</p>
+</div>
+</div>
+</div>
+
+
+</div>
+</section>
+
+<!-- Conclusion Section -->
+<section id="conclusion" class="section">
+<div class="container">
+<h2>Заключение</h2>
+<div class="conclusion-grid">
+<div class="prediction-card card">
+<div class="card__body">
+<h3>2027</h3>
+<p>Лицензии и&nbsp;реестры автоматизируются в&nbsp;20+&nbsp;странах. Первые полностью цифровые
+государственные услуги.</p>
+</div>
+</div>
+
+<div class="prediction-card card">
+<div class="card__body">
+<h3>2032</h3>
+<p>Первая волна блокчейн-бюджетов. Падение коррупции на&nbsp;15-20% в&nbsp;развитых странах.</p>
+</div>
+</div>
+
+<div class="prediction-card card">
+<div class="card__body">
+<h3>2040</h3>
+<p>Гибридная модель &laquo;алгоритмического федерализма&raquo;&nbsp;&mdash; 70% автоматизации рутинных функций
+государства.</p>
+</div>
+</div>
+</div>
+
+<div class="final-thoughts">
+<div class="card">
+<div class="card__body">
+<h3>Будущее государственного управления</h3>
+<div class="spacer"></div>
+<p>Блокчейн и&nbsp;ИИ не&nbsp;&laquo;убьют&raquo; государство, а&nbsp;перезапустят его в&nbsp;более справедливой форме.
+Транспарентные цепочки поставок уменьшат коррупционные ренты, а&nbsp;автоматизация
+освободит государственных служащих для более сложных задач, требующих человеческого
+суждения.</p>
+
+<p>Web 3.0 и&nbsp;DAO открывают новые возможности для гражданского участия в&nbsp;управлении. Децентрализованные платформы позволяют гражданам напрямую влиять на&nbsp;распределение бюджета и&nbsp;разработку политики, как показывают эксперименты CityDAO и&nbsp;пилотные проекты в&nbsp;Мельбурне.</p>
+
+<p>Ключевой вопрос не&nbsp;в&nbsp;том, произойдет&nbsp;ли эта трансформация, а&nbsp;в&nbsp;том, как быстро
+государства адаптируются к&nbsp;новым технологическим возможностям и&nbsp;смогут&nbsp;ли сохранить
+баланс между эффективностью и&nbsp;человечностью в&nbsp;управлении.</p>
+</div>
+</div>
+</div>
+
+<!-- Economic Benefits Chart -->
+<div class="chart-section">
+<h3>Экономические выгоды по&nbsp;типам</h3>
+<div class="chart-container">
+<canvas id="benefitsChart"></canvas>
+<div class="chart-fallback">
+<table class="data-table">
+<thead>
+<tr>
+<th>Тип услуги</th>
+<th>Экономия времени (%)</th>
+<th>Экономия средств (млрд&nbsp;$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Налоговые проверки</td>
+<td>70</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>Обработка документов</td>
+<td>80</td>
+<td>2.3</td>
+</tr>
+<tr>
+<td>Регистрация недвижимости</td>
+<td>90</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>Выдача лицензий</td>
+<td>85</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td>Социальные выплаты</td>
+<td>80</td>
+<td>4.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<p>&copy;&nbsp;2025 GovTech 3.0. Исследование трансформации государственного управления.</p>
+</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+
+</html>
