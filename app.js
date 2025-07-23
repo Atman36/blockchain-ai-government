@@ -57,83 +57,39 @@ function showChartFallback(chartId) {
     showChartFallbacks([document.getElementById(chartId)]);
 }
 
-// Theme Toggle Functionality
+// Automatic Theme Detection
 function initThemeToggle() {
-    console.log('Initializing theme toggle');
-    const themeToggle = document.getElementById('themeToggle');
-    if (!themeToggle) {
-        console.error('Theme toggle button not found');
-        return;
+    console.log('Initializing automatic theme detection');
+    
+    // Get current theme from system preference
+    function getCurrentTheme() {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return prefersDark ? 'dark' : 'light';
     }
     
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    console.log('System prefers dark theme:', prefersDark);
-    
-    // Set initial theme
-    let currentTheme = localStorage.getItem('theme');
-    console.log('Stored theme:', currentTheme);
-    
-    // If no theme is stored, use system preference
-    if (!currentTheme) {
-        currentTheme = prefersDark ? 'dark' : 'light';
-        localStorage.setItem('theme', currentTheme);
-        console.log('Setting initial theme to:', currentTheme);
-    }
-    
-    // Apply theme immediately
+    // Apply initial theme
+    const currentTheme = getCurrentTheme();
+    console.log('Detected system theme:', currentTheme);
     applyTheme(currentTheme);
-    updateThemeToggleText(currentTheme);
     
-    // Listen for click events
-    themeToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('Theme toggle clicked, current theme:', currentTheme);
-        currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-        console.log('Switching to theme:', currentTheme);
-        applyTheme(currentTheme);
-        localStorage.setItem('theme', currentTheme);
-        updateThemeToggleText(currentTheme);
-        
-        // Update charts with new theme
-        setTimeout(() => {
-            try {
-                updateChartsTheme();
-                console.log('Charts theme updated');
-            } catch (error) {
-                console.error('Error updating charts theme:', error);
-            }
-        }, 100);
-    });
-    
-    // Also listen for system preference changes
+    // Listen for system preference changes
     try {
         const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         if (darkModeMediaQuery.addEventListener) {
             darkModeMediaQuery.addEventListener('change', (e) => {
-                console.log('System theme preference changed:', e.matches ? 'dark' : 'light');
-                if (!localStorage.getItem('theme')) {
-                    const newTheme = e.matches ? 'dark' : 'light';
-                    console.log('Applying system theme:', newTheme);
-                    applyTheme(newTheme);
-                    updateThemeToggleText(newTheme);
-                    setTimeout(() => {
-                        try {
-                            updateChartsTheme();
-                        } catch (error) {
-                            console.error('Error updating charts theme:', error);
-                        }
-                    }, 100);
-                }
-            });
-        } else {
-            console.log('addEventListener not supported for media query, using deprecated addListener');
-            // Fallback for older browsers
-            darkModeMediaQuery.addListener((e) => {
-                if (!localStorage.getItem('theme')) {
-                    const newTheme = e.matches ? 'dark' : 'light';
-                    applyTheme(newTheme);
-                    updateThemeToggleText(newTheme);
-                }
+                const newTheme = e.matches ? 'dark' : 'light';
+                console.log('System theme changed to:', newTheme);
+                applyTheme(newTheme);
+                
+                // Update charts with new theme
+                setTimeout(() => {
+                    try {
+                        updateChartsTheme();
+                        console.log('Charts theme updated');
+                    } catch (error) {
+                        console.error('Error updating charts theme:', error);
+                    }
+                }, 100);
             });
         }
     } catch (error) {
@@ -151,20 +107,7 @@ function applyTheme(theme) {
     }
 }
 
-function updateThemeToggleText(theme) {
-    try {
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.innerHTML = theme === 'light' ? '🌙' : '☀️';
-            themeToggle.setAttribute('aria-label', theme === 'light' ? 'Включить темную тему' : 'Включить светлую тему');
-            console.log('Theme toggle text updated:', theme === 'light' ? '🌙' : '☀️');
-        } else {
-            console.error('Theme toggle button not found when updating text');
-        }
-    } catch (error) {
-        console.error('Error updating theme toggle text:', error);
-    }
-}
+// Theme toggle function removed - using automatic detection only
 
 // Navigation
 function initNavigation() {

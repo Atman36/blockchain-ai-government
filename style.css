@@ -932,20 +932,7 @@ select.form-control {
   margin: 0;
 }
 
-.theme-toggle {
-  border-radius: var(--radius-full);
-  padding: var(--space-8) var(--space-16);
-  background: var(--color-secondary);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.theme-toggle:hover {
-  background: var(--color-secondary-hover);
-  transform: scale(1.05);
-}
+/* Переключатель темы удален - используется автоматическое определение системной темы */
 
 /* Navigation */
 .nav {
@@ -1793,10 +1780,7 @@ section[id] {
 /* Focus styles for accessibility */
 .nav-link:focus-visible,
 .btn:focus-visible,
-.theme-toggle:focus-visible {
-  outline: var(--focus-outline);
-  outline-offset: 2px;
-}
+/* Стили переключателя темы удалены */
 
 /* Knowledge Base Section */
 .knowledge-list {
@@ -2486,17 +2470,7 @@ ry Compliance Section */
   display: inline-block;
 }
 
-.estonia-case-header h3::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-purple-500));
-  border-radius: var(--radius-full);
-}
+/* Убираем линию после заголовка Эстонии */
 
 .estonia-case-full {
   background: var(--color-surface);
@@ -2674,9 +2648,7 @@ ry Compliance Section */
   color: var(--secondary-foreground);
 }
 
-.dark-theme .theme-toggle {
-  color: var(--foreground);
-}
+/* Стили темной темы для переключателя удалены */
 
 /* Улучшенная видимость для графиков в темной теме */
 .dark-theme .chart-container {
@@ -3088,4 +3060,38 @@ lusion-actions {
 
 .future-governance-card p strong {
   color: var(--color-primary);
+}/* Ст
+или для заголовка "Будущее государственного управления" */
+.future-governance-title {
+  text-align: center;
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin: var(--space-48) 0 var(--space-32) 0;
+  font-weight: var(--font-weight-semibold);
+}/
+* Адаптивные стили для переключателя темы */
+@media (max-width: 768px) {
+  .theme-toggle-container {
+    gap: var(--space-6);
+  }
+  
+  .theme-toggle-switch {
+    width: 44px;
+    height: 22px;
+  }
+  
+  .theme-toggle-slider:before {
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+  }
+  
+  .theme-toggle-input:checked + .theme-toggle-slider:before {
+    transform: translateX(22px);
+  }
+  
+  .theme-toggle-label {
+    font-size: var(--font-size-base);
+  }
 }
