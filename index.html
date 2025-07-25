@@ -4,24 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Блокчейн и ИИ: будущее государственного управления</title>
+    <title data-key="pageTitle">Блокчейн и ИИ: будущее государственного управления</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script>
-        // Проверка загрузки Chart.js
-        window.addEventListener('load', function () {
-            if (typeof Chart === 'undefined') {
-                console.error('Chart.js не загружен!');
-                document.querySelectorAll('.chart-container').forEach(container => {
-                    container.innerHTML = '<div style="padding: 20px; text-align: center; color: red;">Ошибка загрузки графика. Chart.js не загружен.</div>';
-                });
-            } else {
-                console.log('Chart.js успешно загружен, версия:', Chart.version);
-            }
-        });</script>
 </head>
 
-<body>
+<body class="light-theme">
 
     <!-- Header with navigation and theme toggle -->
     <header class="header">
@@ -30,19 +18,25 @@
                 <div class="logo">
                     <h1>GovTech 3.0</h1>
                 </div>
+                <!-- FIX: Десктопная навигация дополнена всеми разделами -->
                 <nav class="nav">
                     <ul class="nav-list">
-                        <li><a href="#home" class="nav-link active">Главная</a></li>
-                        <li><a href="#blockchain-ai" class="nav-link">Блокчейн и ИИ</a></li>
-                        <li><a href="#web3-governance" class="nav-link">Web 3.0</a></li>
-                        <li><a href="#cases" class="nav-link">Кейсы</a></li>
-                        <li><a href="#dao" class="nav-link">DAO</a></li>
-                        <li><a href="#experts" class="nav-link">Цитаты</a></li>
-                        <li><a href="#challenges" class="nav-link">Вызовы</a></li>
-                        <li><a href="#timeline" class="nav-link">Сроки</a></li>
-                        <li><a href="#conclusion" class="nav-link">Заключение</a></li>
+                        <li><a href="#home" class="nav-link active" data-key="navHome">Главная</a></li>
+                        <li><a href="#blockchain-ai" class="nav-link" data-key="navBlockchainAI">Блокчейн и ИИ</a></li>
+                        <li><a href="#web3-governance" class="nav-link" data-key="navWeb3">Web 3.0</a></li>
+                        <li><a href="#cases" class="nav-link" data-key="navCases">Кейсы</a></li>
+                        <li><a href="#trends" class="nav-link" data-key="navTrends">Тренды</a></li>
+                        <li><a href="#dao" class="nav-link" data-key="navDAO">DAO</a></li>
+                        <li><a href="#experts" class="nav-link" data-key="navExperts">Цитаты</a></li>
+                        <!-- Убраны пункты вызовов, регуляторики, сроков и источников -->
+                        <li><a href="#conclusion" class="nav-link" data-key="navConclusion">Заключение</a></li>
                     </ul>
                 </nav>
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                    <span>/</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
                 <!-- Hamburger menu for mobile -->
                 <div class="hamburger-menu" id="hamburgerMenu">
                     <span></span>
@@ -55,17 +49,20 @@
     </header>
 
     <!-- Mobile Navigation -->
+    <!-- В мобильном меню оставлены только необходимые пункты и добавлена кнопка закрытия -->
     <div class="mobile-nav" id="mobileNav">
+        <!-- Кнопка закрытия мобильного меню -->
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Закрыть меню">&times;</button>
         <ul class="mobile-nav-list">
-            <li><a href="#home" class="mobile-nav-link active">Главная</a></li>
-            <li><a href="#blockchain-ai" class="mobile-nav-link">Блокчейн и ИИ</a></li>
-            <li><a href="#web3-governance" class="mobile-nav-link">Web 3.0</a></li>
-            <li><a href="#cases" class="mobile-nav-link">Кейсы</a></li>
-            <li><a href="#dao" class="mobile-nav-link">DAO</a></li>
-            <li><a href="#experts" class="mobile-nav-link">Цитаты</a></li>
-            <li><a href="#challenges" class="mobile-nav-link">Вызовы</a></li>
-            <li><a href="#timeline" class="mobile-nav-link">Сроки</a></li>
-            <li><a href="#conclusion" class="mobile-nav-link">Заключение</a></li>
+            <li><a href="#home" class="mobile-nav-link active" data-key="navHome">Главная</a></li>
+            <li><a href="#blockchain-ai" class="mobile-nav-link" data-key="navBlockchainAI">Блокчейн и ИИ</a></li>
+            <li><a href="#web3-governance" class="mobile-nav-link" data-key="navWeb3">Web 3.0</a></li>
+            <li><a href="#cases" class="mobile-nav-link" data-key="navCases">Кейсы</a></li>
+            <li><a href="#trends" class="mobile-nav-link" data-key="navTrends">Тренды</a></li>
+            <li><a href="#dao" class="mobile-nav-link" data-key="navDAO">DAO</a></li>
+            <li><a href="#experts" class="mobile-nav-link" data-key="navExperts">Цитаты</a></li>
+            <!-- Убраны пункты вызовов, регуляторики, сроков и источников -->
+            <li><a href="#conclusion" class="mobile-nav-link" data-key="navConclusion">Заключение</a></li>
         </ul>
     </div>
 
@@ -75,41 +72,41 @@
         <section id="home" class="section section--hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Блокчейн и ИИ: будущее государственного управления</h1>
-                    <p class="hero-subtitle">
-                        AI-агенты и неизменяемые реестры уже переводят государство из бумажной эпохи в режим
-                        код-как-политика, где доверие строится математикой, а решения принимаются в реальном времени.
-                        Исследуйте, как эти технологии трансформируют государственное управление по всему миру.
+                    <h1 class="hero-title" data-key="heroTitle">Блокчейн и ИИ: будущее государственного управления</h1>
+                    <p class="hero-subtitle" data-key="heroSubtitle">
+                        AI-агенты и неизменяемые реестры уже переводят государство из бумажной эпохи в режим
+                        код-как-политика, где доверие строится математикой, а решения принимаются в реальном времени.
+                        Исследуйте, как эти технологии трансформируют государственное управление по всему миру.
                     </p>
                     <blockquote class="hero-manifesto">
-                        <p>«Будущее управления — это код. Когда смарт-контракт фиксирует бюджет, а ИИ-агент отслеживает
-                            его исполнение, мы переосмысливаем само понятие государства. В этом мире гражданин — не проситель, а со-архитектор цифрового полиса. Добро пожаловать в эру GovTech 3.0, где доверие
-                            запечатлено в хэшах, а решения принимаются скоростью света.»</p>
+                        <p data-key="heroManifesto">«Будущее управления — это код. Когда смарт-контракт фиксирует бюджет, а ИИ-агент отслеживает
+                            его исполнение, мы переосмысливаем само понятие государства. В этом мире гражданин — не проситель, а со-архитектор цифрового полиса. Добро пожаловать в эру GovTech 3.0, где доверие
+                            запечатлено в хэшах, а решения принимаются скоростью света.»</p>
                     </blockquote>
                     <div class="hero-stats">
                         <div class="stat-card">
                             <h3>99%</h3>
-                            <p>онлайн-услуг в Эстонии</p>
+                            <p data-key="statEstonia">онлайн-услуг в Эстонии</p>
                         </div>
                         <div class="stat-card">
                             <h3>30%</h3>
-                            <p>сокращение коррупционных потерь при on-chain-закупках в Дубае</p>
+                            <p data-key="statDubaiCorruption">сокращение коррупционных потерь при on-chain-закупках в Дубае</p>
                         </div>
                         <div class="stat-card">
                             <h3>$7.6 млрд</h3>
-                            <p>экономия бюджета США от AI-аудита гос-закупок (FY 2024)</p>
+                            <p data-key="statUSAudit">экономия бюджета США от AI-аудита гос-закупок (FY 2024)</p>
                         </div>
                         <div class="stat-card">
                             <h3>$1.5 млрд</h3>
-                            <p>экономии в Дубае ежегодно</p>
+                            <p data-key="statDubaiSavings">экономии в Дубае ежегодно</p>
                         </div>
                         <div class="stat-card">
                             <h3>15.8%</h3>
-                            <p>CAGR мирового GovTech-рынка 2024-2034</p>
+                            <p data-key="statGovTechCAGR">CAGR мирового GovTech-рынка 2024-2034</p>
                         </div>
                         <div class="stat-card">
                             <h3>42%</h3>
-                            <p>доля «зелёных» блокчейн-узлов в ЕС-секторе</p>
+                            <p data-key="statGreenNodes">доля «зелёных» блокчейн-узлов в ЕС-секторе</p>
                         </div>
                     </div>
                 </div>
@@ -119,39 +116,39 @@
         <!-- Blockchain and AI Section -->
         <section id="blockchain-ai" class="section">
             <div class="container">
-                <h2>Блокчейн и ИИ: технологии для будущего государственного управления</h2>
+                <h2 data-key="sectionBlockchainAITitle">Блокчейн и ИИ: технологии для будущего государственного управления</h2>
 
                 <div class="web3-intro">
-                    <p class="web3-tagline">В эпоху, когда традиционные структуры власти сталкиваются с беспрецедентными
-                        вызовами, блокчейн и искусственный интеллект (ИИ) становятся трансформирующими инструментами для создания прозрачных, устойчивых и эффективных систем управления. Эти технологии не просто
-                        улучшают существующие процессы — они переопределяют саму суть управления, способствуя участию
-                        граждан и защищая от внешних угроз.</p>
+                    <p class="web3-tagline" data-key="web3IntroTagline">В эпоху, когда традиционные структуры власти сталкиваются с беспрецедентными
+                        вызовами, блокчейн и искусственный интеллект (ИИ) становятся трансформирующими инструментами для создания прозрачных, устойчивых и эффективных систем управления. Эти технологии не просто
+                        улучшают существующие процессы — они переопределяют саму суть управления, способствуя участию
+                        граждан и защищая от внешних угроз.</p>
                 </div>
 
                 <div class="web3-grid">
                     <div class="card">
                         <div class="card__body">
-                            <h3>1. Блокчейн для создания и укрепления сетевого государства</h3>
-                            <div class="web3-icon">🔗</div>
-                            <p>Децентрализованная структура блокчейна позволяет создать сетевое государство, распределяя
-                                полномочия между участниками, а не централизуя их. Это укрепляет суверенитет, делая
-                                системы устойчивыми к внешним атакам и вмешательствам.</p>
-                            <div class="web3-example">
-                                <strong>Пример:</strong> Блокчейн может защищать государственные данные, обеспечивая их целостность и ограничивая доступ только авторизованным лицам.
+                            <h3 data-key="web3Card1Title">1. Блокчейн для создания и укрепления сетевого государства</h3>
+                            <div class="web3-icon" data-key="web3Card1Icon">🔗</div>
+                            <p data-key="web3Card1Text">Децентрализованная структура блокчейна позволяет создать сетевое государство, распределяя
+                                полномочия между участниками, а не централизуя их. Это укрепляет суверенитет, делая
+                                системы устойчивыми к внешним атакам и вмешательствам.</p>
+                            <div class="web3-example" data-key="web3Card1Example">
+                                <strong>Пример:</strong> Блокчейн может защищать государственные данные, обеспечивая их целостность и ограничивая доступ только авторизованным лицам.
                             </div>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card__body">
-                            <h3>2. Стабилизация систем управления</h3>
-                            <div class="web3-icon">🛡️</div>
-                            <p>Блокчейн стабилизирует управление, защищая его от коррупции и манипуляций.
-                                Децентрализованные реестры отслеживают транзакции и действия в реальном времени,
+                            <h3 data-key="web3Card2Title">2. Стабилизация систем управления</h3>
+                            <div class="web3-icon" data-key="web3Card2Icon">🛡️</div>
+                            <p data-key="web3Card2Text">Блокчейн стабилизирует управление, защищая его от коррупции и манипуляций.
+                                Децентрализованные реестры отслеживают транзакции и действия в реальном времени,
                                 исключая скрытое вмешательство.</p>
-                            <div class="web3-example">
-                                <strong>Дополнение:</strong> ИИ повышает эту стабильность, анализируя огромные массивы
-                                данных для оптимизации процессов управления, прогнозирования угроз и предложения
+                            <div class="web3-example" data-key="web3Card2Example">
+                                <strong>Дополнение:</strong> ИИ повышает эту стабильность, анализируя огромные массивы
+                                данных для оптимизации процессов управления, прогнозирования угроз и предложения
                                 превентивных решений.
                             </div>
                         </div>
@@ -159,14 +156,14 @@
 
                     <div class="card">
                         <div class="card__body">
-                            <h3>3. Прозрачные и устойчивые системы</h3>
-                            <div class="web3-icon">👁️</div>
-                            <p>Блокчейн способствует прозрачности, регистрируя все операции в неизменяемом, проверяемом
-                                реестре. Граждане и контролирующие органы могут отслеживать использование ресурсов,
+                            <h3 data-key="web3Card3Title">3. Прозрачные и устойчивые системы</h3>
+                            <div class="web3-icon" data-key="web3Card3Icon">👁️</div>
+                            <p data-key="web3Card3Text">Блокчейн способствует прозрачности, регистрируя все операции в неизменяемом, проверяемом
+                                реестре. Граждане и контролирующие органы могут отслеживать использование ресурсов,
                                 снижая риски коррупции.</p>
-                            <div class="web3-example">
-                                <strong>Синергия:</strong> ИИ дополняет это, анализируя данные на предмет аномалий,
-                                повышая эффективность в таких областях, как национальная безопасность и распределение
+                            <div class="web3-example" data-key="web3Card3Example">
+                                <strong>Синергия:</strong> ИИ дополняет это, анализируя данные на предмет аномалий,
+                                повышая эффективность в таких областях, как национальная безопасность и распределение
                                 бюджета.
                             </div>
                         </div>
@@ -174,44 +171,44 @@
                 </div>
 
                 <div class="web3-case-study">
-                    <h3>Децентрализация и суверенитет</h3>
+                    <h3 data-key="decentralizationTitle">Децентрализация и суверенитет</h3>
                     <div class="web3-case-content">
                         <div class="web3-case-text">
-                            <h4>4. Децентрализация: угроза или возможность?</h4>
-                            <p>Децентрализация через блокчейн может бросить вызов традиционной централизованной власти,
+                            <h4 data-key="decentralizationCard1Title">4. Децентрализация: угроза или возможность?</h4>
+                            <p data-key="decentralizationCard1Text1">Децентрализация через блокчейн может бросить вызов традиционной централизованной власти,
                                 представляя воспринимаемую угрозу для устоявшихся систем. Однако она также предлагает
                                 возможности для гибких, адаптивных моделей управления, где граждане активно формируют
                                 решения.</p>
-                            <p><strong>Примеры:</strong> Децентрализованное голосование на блокчейне или управление
+                            <p data-key="decentralizationCard1Text2"><strong>Примеры:</strong> Децентрализованное голосование на блокчейне или управление
                                 общественными ресурсами, переосмысливая гражданское участие.</p>
 
-                            <h4>5. Цифровые и децентрализованные подходы к суверенитету</h4>
-                            <p>Цифровое управление на основе блокчейна усиливает государственный суверенитет, защищая
-                                критически важные данные и системы от внешних угроз. Децентрализованные сети, не имеющие
-                                единой точки отказа, превосходят по устойчивости — что критически важно в условиях
-                                кибер-конфликтов и глобальных вызовов.</p>
+                            <h4 data-key="decentralizationCard2Title">5. Цифровые и децентрализованные подходы к суверенитету</h4>
+                            <p data-key="decentralizationCard2Text">Цифровое управление на основе блокчейна усиливает государственный суверенитет, защищая
+                                критически важные данные и системы от внешних угроз. Децентрализованные сети, не имеющие
+                                единой точки отказа, превосходят по устойчивости — что критически важно в условиях
+                                кибер-конфликтов и глобальных вызовов.</p>
                         </div>
                         <div class="web3-case-stats">
                             <div class="web3-stat">
                                 <div class="web3-stat-value">0</div>
-                                <div class="web3-stat-label">Единых точек отказа</div>
+                                <div class="web3-stat-label" data-key="statNoSPOF">Единых точек отказа</div>
                             </div>
                             <div class="web3-stat">
                                 <div class="web3-stat-value">100%</div>
-                                <div class="web3-stat-label">Прозрачность</div>
+                                <div class="web3-stat-label" data-key="statTransparency">Прозрачность</div>
                             </div>
                             <div class="web3-stat">
                                 <div class="web3-stat-value">24/7</div>
-                                <div class="web3-stat-label">Доступность</div>
+                                <div class="web3-stat-label" data-key="statAvailability">Доступность</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="info-box">
-                    <p>Блокчейн и ИИ не просто меняют управление — они закладывают основу для новой эры цифровой
-                        демократии. Власть переходит к людям, а технологии становятся инструментом обеспечения
-                        прозрачности, устойчивости и суверенитета.</p>
+                    <p data-key="infoBoxText">Блокчейн и ИИ не просто меняют управление — они закладывают основу для новой эры цифровой
+                        демократии. Власть переходит к людям, а технологии становятся инструментом обеспечения
+                        прозрачности, устойчивости и суверенитета.</p>
                 </div>
 
             </div>
@@ -220,48 +217,48 @@
         <!-- Introduction Section -->
         <section id="introduction" class="section">
             <div class="container">
-                <h2>Что дальше? Изучите, как DAO-механизмы дополняют Web 3.0-госуслуги</h2>
+                <h2 data-key="sectionIntroTitle">Что дальше? Изучите, как DAO-механизмы дополняют Web 3.0-госуслуги</h2>
                 <div class="intro-grid">
                     <div class="card">
                         <div class="card__body">
-                            <h3>Смарт-контракты</h3>
-                            <p>Автоматически исполняемые контракты, которые устраняют посредников и обеспечивают
+                            <h3 data-key="introCard1Title">Смарт-контракты</h3>
+                            <p data-key="introCard1Text">Автоматически исполняемые контракты, которые устраняют посредников и обеспечивают
                                 прозрачность государственных операций.</p>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card__body">
-                            <h3>GovTech 3.0</h3>
-                            <p>Новое поколение государственных технологий, основанное на блокчейне,
-                                ИИ и автоматизации процессов.</p>
+                            <h3 data-key="introCard2Title">GovTech 3.0</h3>
+                            <p data-key="introCard2Text">Новое поколение государственных технологий, основанное на блокчейне,
+                                ИИ и автоматизации процессов.</p>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card__body">
-                            <h3>AI-аудит</h3>
-                            <p>Использование искусственного интеллекта для автоматической проверки государственных
-                                расходов и выявления коррупции.</p>
+                            <h3 data-key="introCard3Title">AI-аудит</h3>
+                            <p data-key="introCard3Text">Использование искусственного интеллекта для автоматической проверки государственных
+                                расходов и выявления коррупции.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="benefits-section">
-                    <h3>Ключевые преимущества</h3>
+                    <h3 data-key="benefitsTitle">Ключевые преимущества</h3>
                     <div class="benefits-grid">
                         <div class="benefit-item">
                             <div class="benefit-icon">🛡️</div>
-                            <h4>Снижение коррупции</h4>
-                            <p>Прозрачные транзакции и неизменяемые записи</p>
+                            <h4 data-key="benefit1Title">Снижение коррупции</h4>
+                            <p data-key="benefit1Text">Прозрачные транзакции и неизменяемые записи</p>
                         </div>
                         <div class="benefit-item">
                             <div class="benefit-icon">⚡</div>
-                            <h4>Ускорение процессов</h4>
-                            <p>Автоматизация рутинных операций на 60-90%</p>
+                            <h4 data-key="benefit2Title">Ускорение процессов</h4>
+                            <p data-key="benefit2Text">Автоматизация рутинных операций на 60-90%</p>
                         </div>
                         <div class="benefit-item">
                             <div class="benefit-icon">🔍</div>
-                            <h4>Повышение прозрачности</h4>
-                            <p>Открытый доступ к государственным данным</p>
+                            <h4 data-key="benefit3Title">Повышение прозрачности</h4>
+                            <p data-key="benefit3Text">Открытый доступ к государственным данным</p>
                         </div>
                     </div>
                 </div>
@@ -271,57 +268,57 @@
         <!-- Web 3.0 Governance Section -->
         <section id="web3-governance" class="section">
             <div class="container">
-                <h2>Государство-2.0: Web 3.0-парадигма</h2>
+                <h2 data-key="sectionWeb3GovTitle">Государство-2.0: Web 3.0-парадигма</h2>
 
                 <div class="web3-intro">
-                    <p class="web3-tagline">Web 3.0 выводит цифровое государство на новый уровень. Вместо
-                        централизованных баз данных — распределённые реестры, где <strong>каждая транзакция
-                            проверяема</strong>; вместо бумажной бюрократии — <em>смарт-контракты</em>, мгновенно
+                    <p class="web3-tagline" data-key="web3GovTagline">Web 3.0 выводит цифровое государство на новый уровень. Вместо
+                        централизованных баз данных — распределённые реестры, где <strong>каждая транзакция
+                            проверяема</strong>; вместо бумажной бюрократии — <em>смарт-контракты</em>, мгновенно
                         исполняющие «код как закон».</p>
                 </div>
 
                 <div class="web3-grid">
                     <div class="card">
                         <div class="card__body">
-                            <h3>Self-sovereign identity (SSI)</h3>
+                            <h3 data-key="ssiTitle">Self-sovereign identity (SSI)</h3>
                             <div class="web3-icon">🔐</div>
-                            <p>Гражданин хранит идентификационные данные у себя, делясь лишь необходимыми атрибутами.
-                                Это минимизирует утечки и упрощает KYC-процедуры.</p>
-                            <div class="web3-example">
-                                <strong>Пример:</strong> В Эстонии граждане используют DID-кошельки для безопасной
-                                аутентификации в 99% госуслуг.
+                            <p data-key="ssiText">Гражданин хранит идентификационные данные у себя, делясь лишь необходимыми атрибутами.
+                                Это минимизирует утечки и упрощает KYC-процедуры.</p>
+                            <div class="web3-example" data-key="ssiExample">
+                                <strong>Пример:</strong> В Эстонии граждане используют DID-кошельки для безопасной
+                                аутентификации в 99% госуслуг.
                             </div>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card__body">
-                            <h3>Неизменяемые реестры</h3>
+                            <h3 data-key="immutableLedgersTitle">Неизменяемые реестры</h3>
                             <div class="web3-icon">📊</div>
-                            <p>Регистры земель, авто и лицензий становятся прозрачными: любое изменение мгновенно
-                                фиксируется на блокчейне, устраняя простор для коррупции.</p>
-                            <div class="web3-example">
+                            <p data-key="immutableLedgersText">Регистры земель, авто и лицензий становятся прозрачными: любое изменение мгновенно
+                                фиксируется на блокчейне, устраняя простор для коррупции.</p>
+                            <div class="web3-example" data-key="immutableLedgersExample">
                                 <strong>Пример:</strong> Швеция тестирует блокчейн-реестр недвижимости, сокращающий
-                                время регистрации с месяцев до минут.
+                                время регистрации с месяцев до минут.
                             </div>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card__body">
-                            <h3>dApp-госуслуги</h3>
+                            <h3 data-key="dAppServicesTitle">dApp-госуслуги</h3>
                             <div class="web3-icon">📱</div>
-                            <p>Подача заявки, выплата пособия или голосование происходят через децентрализованные
-                                приложения без посредников и «человеческого фактора».</p>
-                            <div class="web3-example">
-                                <strong>Пример:</strong> В Западной Вирджинии (США) тестируется блокчейн-голосование для военнослужащих за рубежом.
+                            <p data-key="dAppServicesText">Подача заявки, выплата пособия или голосование происходят через децентрализованные
+                                приложения без посредников и «человеческого фактора».</p>
+                            <div class="web3-example" data-key="dAppServicesExample">
+                                <strong>Пример:</strong> В Западной Вирджинии (США) тестируется блокчейн-голосование для военнослужащих за рубежом.
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="info-box">
-                    <p>Web 3.0 технологии создают новую парадигму государственного управления, основанную на прозрачности, эффективности и участии граждан.</p>
+                    <p data-key="web3InfoBox">Web 3.0 технологии создают новую парадигму государственного управления, основанную на прозрачности, эффективности и участии граждан.</p>
                 </div>
 
             </div>
@@ -330,49 +327,49 @@
         <!-- Cases Section -->
         <section id="cases" class="section section--alternate">
             <div class="container">
-                <h2>Кейсы внедрения</h2>
+                <h2 data-key="sectionCasesTitle">Кейсы внедрения</h2>
 
                 <div class="estonia-case-header">
-                    <h3>Эстония — пионер Web 3.0 в госуправлении</h3>
+                    <h3 data-key="estoniaCaseTitle">Эстония — пионер Web 3.0 в госуправлении</h3>
                 </div>
 
                 <div class="estonia-case-full">
                     <div class="estonia-case-content">
                         <div class="estonia-case-text">
-                            <p>Эстония интегрировала X-Road c DID-кошельками, создав единую экосистему цифровых
+                            <p data-key="estoniaCaseText1">Эстония интегрировала X-Road c DID-кошельками, создав единую экосистему цифровых
                                 госуслуг. Результаты впечатляют:</p>
                             <ul>
-                                <li>99% госуслуг доступны онлайн 24/7</li>
-                                <li>100% медицинских карт хранятся в распределённом реестре</li>
-                                <li>125,000+ электронных резидентов из 170+ стран</li>
-                                <li>Экономия 2% ВВП ежегодно на административных расходах</li>
+                                <li data-key="estoniaCaseList1">99% госуслуг доступны онлайн 24/7</li>
+                                <li data-key="estoniaCaseList2">100% медицинских карт хранятся в распределённом реестре</li>
+                                <li data-key="estoniaCaseList3">125,000+ электронных резидентов из 170+ стран</li>
+                                <li data-key="estoniaCaseList4">Экономия 2% ВВП ежегодно на административных расходах</li>
                             </ul>
                             <div class="estonia-updates">
-                                <h4>Обновления 2024-2025:</h4>
+                                <h4 data-key="estoniaUpdatesTitle">Обновления 2024-2025:</h4>
                                 <ul>
-                                    <li><strong>KSI-блокчейн</strong> защищает все реестры страны; в 2024 г. объём
-                                        подписанных хэшей превысил 2,1 млрд записей</li>
-                                    <li><strong>Децентрализованный ID (SSI)</strong>: в 2025 г. запущен пилот
-                                        «e-Residency 3.0» с нативной поддержкой zk-пруфов для проверки адреса без
+                                    <li data-key="estoniaUpdate1"><strong>KSI-блокчейн</strong> защищает все реестры страны; в 2024 г. объём
+                                        подписанных хэшей превысил 2,1 млрд записей</li>
+                                    <li data-key="estoniaUpdate2"><strong>Децентрализованный ID (SSI)</strong>: в 2025 г. запущен пилот
+                                        «e-Residency 3.0» с нативной поддержкой zk-пруфов для проверки адреса без
                                         раскрытия персональных данных</li>
-                                    <li><strong>AI-услуга «Kratt»</strong>: алгоритмы автоматически подбирают льготы;
-                                        экономия бюджета оценивается МВД Эстонии в €42 млн в год (2025)</li>
-                                    <li><strong>Результат</strong>: время на получение услуги сократилось до 30 сек, а уровень доверия граждан к цифровым сервисам превысил 90% (2025)</li>
+                                    <li data-key="estoniaUpdate3"><strong>AI-услуга «Kratt»</strong>: алгоритмы автоматически подбирают льготы;
+                                        экономия бюджета оценивается МВД Эстонии в €42 млн в год (2025)</li>
+                                    <li data-key="estoniaUpdate4"><strong>Результат</strong>: время на получение услуги сократилось до 30 сек, а уровень доверия граждан к цифровым сервисам превысил 90% (2025)</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="estonia-case-stats">
                             <div class="stat-item">
                                 <div class="stat-value">99%</div>
-                                <div class="stat-label">Госуслуг онлайн</div>
+                                <div class="stat-label" data-key="estoniaStat1Label">Госуслуг онлайн</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">2%</div>
-                                <div class="stat-label">ВВП экономия</div>
+                                <div class="stat-label" data-key="estoniaStat2Label">ВВП экономия</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">2.1B</div>
-                                <div class="stat-label">Хэшей (2024)</div>
+                                <div class="stat-label" data-key="estoniaStat3Label">Хэшей (2024)</div>
                             </div>
                         </div>
                     </div>
@@ -382,158 +379,144 @@
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Дубай Blockchain Strategy</h3>
-                            <div class="status status--success">В развитии</div>
-                            <p>План стать первым blockchain-powered городом. Токенизация недвижимости и правительственных документов.</p>
+                            <h3 data-key="caseDubaiTitle">Дубай Blockchain Strategy</h3>
+                            <div class="status status--success" data-key="caseDubaiStatus">В развитии</div>
+                            <p data-key="caseDubaiText">План стать первым blockchain-powered городом. Токенизация недвижимости и правительственных документов.</p>
                             <div class="case-metrics">
-                                <span class="metric">📈 Экономия: 5.5 млрд дирхам/год ($1.5 млрд)</span>
-                                <span class="metric">🏢 Сервисы: 50+ департаментов</span>
+                                <span class="metric" data-key="caseDubaiMetric1">📈 Экономия: 5.5 млрд дирхам/год ($1.5 млрд)</span>
+                                <span class="metric" data-key="caseDubaiMetric2">🏢 Сервисы: 50+ департаментов</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Crypto Tower (Dubai)</h3>
-                            <div class="status status--info">Проект</div>
-                            <p>Инфраструктура для Web 3-компаний, объединяющая госуслуги и недвижимость. On-chain аренда
-                                и голосование через смарт-контракты.</p>
+                            <h3 data-key="caseCryptoTowerTitle">Crypto Tower (Dubai)</h3>
+                            <div class="status status--info" data-key="caseCryptoTowerStatus">Проект</div>
+                            <p data-key="caseCryptoTowerText">Инфраструктура для Web 3-компаний, объединяющая госуслуги и недвижимость. On-chain аренда и голосование через смарт-контракты.</p>
                             <div class="case-metrics">
-                                <span class="metric">🏢 Площадь: 13,935 м²</span>
-                                <span class="metric">🎯 Цель: Тест-площадка для умных кадастров</span>
+                                <span class="metric" data-key="caseCryptoTowerMetric1">🏢 Площадь: 13,935 м²</span>
+                                <span class="metric" data-key="caseCryptoTowerMetric2">🎯 Цель: Тест-площадка для умных кадастров</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>ЕС Project TITAN</h3>
-                            <div class="status status--info">Пилот</div>
-                            <p>ИИ для выявления НДС-уклонений в Италии, Франции, Испании. Машинное обучение
-                                анализирует
-                                налоговые декларации.</p>
+                            <h3 data-key="caseTitanTitle">ЕС Project TITAN</h3>
+                            <div class="status status--info" data-key="caseTitanStatus">Пилот</div>
+                            <p data-key="caseTitanText">ИИ для выявления НДС-уклонений в Италии, Франции, Испании. Машинное обучение анализирует налоговые декларации.</p>
                             <div class="case-metrics">
-                                <span class="metric">📈 Экономия: 4-6 млрд евро</span>
-                                <span class="metric">🎯 Точность: 85% выявления нарушений</span>
+                                <span class="metric" data-key="caseTitanMetric1">📈 Экономия: 4-6 млрд евро</span>
+                                <span class="metric" data-key="caseTitanMetric2">🎯 Точность: 85% выявления нарушений</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Китай Smart Cities</h3>
-                            <div class="status status--success">Масштабирование</div>
-                            <p>ИИ в управлении городами: Шэньчжэнь, Ханчжоу (City Brain от Alibaba),
-                                Пекин. Управление
-                                трафиком и городскими ресурсами.</p>
+                            <h3 data-key="caseChinaTitle">Китай Smart Cities</h3>
+                            <div class="status status--success" data-key="caseChinaStatus">Масштабирование</div>
+                            <p data-key="caseChinaText">ИИ в управлении городами: Шэньчжэнь, Ханчжоу (City Brain от Alibaba), Пекин. Управление трафиком и городскими ресурсами.</p>
                             <div class="case-metrics">
-                                <span class="metric">🚦 Трафик: улучшение на 40%</span>
-                                <span class="metric">🏙️ Города: 100+ пилотных проектов</span>
+                                <span class="metric" data-key="caseChinaMetric1">🚦 Трафик: улучшение на 40%</span>
+                                <span class="metric" data-key="caseChinaMetric2">🏙️ Города: 100+ пилотных проектов</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Австралия Blockchain Voting</h3>
-                            <div class="status status--warning">Тестирование</div>
-                            <p>Пилот блокчейн-голосования в штате Виктория. Обеспечение прозрачности
-                                и неизменности
-                                результатов выборов. Система использует смарт-контракты для автоматической верификации
-                                голосов и предотвращения фальсификаций.</p>
+                            <h3 data-key="caseAustraliaTitle">Австралия Blockchain Voting</h3>
+                            <div class="status status--warning" data-key="caseAustraliaStatus">Тестирование</div>
+                            <p data-key="caseAustraliaText">Пилот блокчейн-голосования в штате Виктория. Обеспечение прозрачности и неизменности результатов выборов. Система использует смарт-контракты для автоматической верификации голосов и предотвращения фальсификаций.</p>
                             <div class="case-metrics">
-                                <span class="metric">🗳️ Избиратели: 70,000+ участников</span>
-                                <span class="metric">🔒 Безопасность: 100% верификация</span>
+                                <span class="metric" data-key="caseAustraliaMetric1">🗳️ Избиратели: 70,000+ участников</span>
+                                <span class="metric" data-key="caseAustraliaMetric2">🔒 Безопасность: 100% верификация</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Великобритания AI Automation</h3>
-                            <div class="status status--info">Развитие</div>
-                            <p>84% государственных услуг могут быть автоматизированы с помощью ИИ. Обработка
-                                1 млрд
-                                транзакций граждан ежегодно через 377 сервисов.</p>
+                            <h3 data-key="caseUKTitle">Великобритания AI Automation</h3>
+                            <div class="status status--info" data-key="caseUKStatus">Развитие</div>
+                            <p data-key="caseUKText">84% государственных услуг могут быть автоматизированы с помощью ИИ. Обработка 1 млрд транзакций граждан ежегодно через 377 сервисов.</p>
                             <div class="case-metrics">
-                                <span class="metric">🤖 Автоматизация: 84% услуг</span>
-                                <span class="metric">📊 Транзакции: 1 млрд/год</span>
+                                <span class="metric" data-key="caseUKMetric1">🤖 Автоматизация: 84% услуг</span>
+                                <span class="metric" data-key="caseUKMetric2">📊 Транзакции: 1 млрд/год</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Сеул — город DID</h3>
-                            <div class="status status--success">Активно</div>
-                            <p>В 2024 г. столичный муниципалитет внедрил DID-кошелёк «Seoul MyID»; к концу 2025 г.
-                                зарегистрировано 5,8 млн жителей. Технология: Hyperledger Indy + AI-оценка рисков.</p>
+                            <h3 data-key="caseSeoulTitle">Сеул — город DID</h3>
+                            <div class="status status--success" data-key="caseSeoulStatus">Активно</div>
+                            <p data-key="caseSeoulText">В 2024 г. столичный муниципалитет внедрил DID-кошелёк «Seoul MyID»; к концу 2025 г. зарегистрировано 5,8 млн жителей. Технология: Hyperledger Indy + AI-оценка рисков.</p>
                             <div class="case-metrics">
-                                <span class="metric">💰 Экономия: $46 млн/год (2025)</span>
-                                <span class="metric">👥 Пользователи: 5.8 млн жителей</span>
+                                <span class="metric" data-key="caseSeoulMetric1">💰 Экономия: $46 млн/год (2025)</span>
+                                <span class="metric" data-key="caseSeoulMetric2">👥 Пользователи: 5.8 млн жителей</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>CityDAO Web 3.0</h3>
-                            <div class="status status--warning">Эксперимент</div>
-                            <p>Децентрализованная автономная организация (DAO), купившая 40 акров земли
-                                в Вайоминге. Более 5000 участников собрали $8 млн для экспериментов
-                                с коллективным управлением на базе Ethereum.</p>
+                            <h3 data-key="caseCityDAOTitle">CityDAO Web 3.0</h3>
+                            <div class="status status--warning" data-key="caseCityDAOStatus">Эксперимент</div>
+                            <p data-key="caseCityDAOText">Децентрализованная автономная организация (DAO), купившая 40 акров земли в Вайминге. Более 5000 участников собрали $8 млн для экспериментов с коллективным управлением на базе Ethereum.</p>
                             <div class="case-metrics">
-                                <span class="metric">👥 Участники: 5000+ человек</span>
-                                <span class="metric">💰 Инвестиции: $8 млн</span>
+                                <span class="metric" data-key="caseCityDAOMetric1">👥 Участники: 5000+ человек</span>
+                                <span class="metric" data-key="caseCityDAOMetric2">💰 Инвестиции: $8 млн</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Arbitrum DAO</h3>
-                            <div class="status status--success">Активно</div>
-                            <p>Децентрализованное распределение бюджетов с казной более $3.5 млрд. Модель subDAO и делегирование голосов.</p>
+                            <h3 data-key="caseArbitrumTitle">Arbitrum DAO</h3>
+                            <div class="status status--success" data-key="caseArbitrumStatus">Активно</div>
+                            <p data-key="caseArbitrumText">Децентрализованное распределение бюджетов с казной более $3.5 млрд. Модель subDAO и делегирование голосов.</p>
                             <div class="case-metrics">
-                                <span class="metric">💰 Казна: >$3.5 млрд</span>
-                                <span class="metric">🗳️ Модель: subDAO</span>
+                                <span class="metric" data-key="caseArbitrumMetric1">💰 Казна: >$3.5 млрд</span>
+                                <span class="metric" data-key="caseArbitrumMetric2">🗳️ Модель: subDAO</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Gen-AI агенты в США</h3>
-                            <div class="status status--info">Развитие</div>
-                            <p>Мульти-агентные модели в муниципалитетах (например, Raleigh Smart City) для сервис-десков и анализа трафика. 24/7-поддержка жителей и предиктивная аналитика.</p>
+                            <h3 data-key="caseGenAITitle">Gen-AI агенты в США</h3>
+                            <div class="status status--info" data-key="caseGenAIStatus">Развитие</div>
+                            <p data-key="caseGenAIText">Мульти-агентные модели в муниципалитетах (например, Raleigh Smart City) для сервис-десков и анализа трафика. 24/7-поддержка жителей и предиктивная аналитика.</p>
                             <div class="case-metrics">
-                                <span class="metric">🤖 Применение: AI-агенты</span>
-                                <span class="metric">📈 Эффект: Экономия на операциях</span>
+                                <span class="metric" data-key="caseGenAIMetric1">🤖 Применение: AI-агенты</span>
+                                <span class="metric" data-key="caseGenAIMetric2">📈 Эффект: Экономия на операциях</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>Индия (Телангана) Land Registry</h3>
-                            <div class="status status--success">Масштабирование</div>
-                            <p>Блокчейн для регистрации земельных участков. Снижение коррупции и защита прав
-                                собственности. Проект охватывает более 50 млн записей.</p>
+                            <h3 data-key="caseIndiaTitle">Индия (Телангана) Land Registry</h3>
+                            <div class="status status--success" data-key="caseIndiaStatus">Масштабирование</div>
+                            <p data-key="caseIndiaText">Блокчейн для регистрации земельных участков. Снижение коррупции и защита прав собственности. Проект охватывает более 50 млн записей.</p>
                             <div class="case-metrics">
-                                <span class="metric">👥 Пользователи: 50M+</span>
-                                <span class="metric">⏱️ Время: с 30 дней до 10 мин</span>
+                                <span class="metric" data-key="caseIndiaMetric1">👥 Пользователи: 50M+</span>
+                                <span class="metric" data-key="caseIndiaMetric2">⏱️ Время: с 30 дней до 10 мин</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="case-card card">
                         <div class="card__body">
-                            <h3>США (CREATE AI Act)</h3>
-                            <div class="status status--active">Действует</div>
-                            <p>Закон открывает федеральные датасеты для обучения ИИ, создавая национальный ресурс для AI-стартапов и исследователей.</p>
+                            <h3 data-key="caseCreateAITitle">США (CREATE AI Act)</h3>
+                            <div class="status status--active" data-key="caseCreateAIStatus">Действует</div>
+                            <p data-key="caseCreateAIText">Закон открывает федеральные датасеты для обучения ИИ, создавая национальный ресурс для AI-стартапов и исследователей.</p>
                             <div class="case-metrics">
-                                <span class="metric">📊 Данные: 100+ датасетов</span>
-                                <span class="metric">🚀 Стартапы: 200+</span>
+                                <span class="metric" data-key="caseCreateAIMetric1">📊 Данные: 100+ датасетов</span>
+                                <span class="metric" data-key="caseCreateAIMetric2">🚀 Стартапы: 200+</span>
                             </div>
                         </div>
                     </div>
@@ -544,35 +527,47 @@
 
             <section id="trends" class="section">
                 <div class="container">
-                    <h2>Тренды 2025-2030</h2>
-                    <p class="section-intro">Основные направления, которые будут определять развитие GovTech в ближайшие
+                    <h2 data-key="sectionTrendsTitle">Тренды 2025-2030</h2>
+                    <p class="section-intro" data-key="trendsIntro">Основные направления, которые будут определять развитие GovTech в ближайшие
                         годы.</p>
                     <div class="trends-grid">
                         <div class="trend-card card">
                             <div class="card__body">
-                                <h3>1. Гибридные DAO</h3>
-                                <p>Интеграция DAO с традиционными юридическими структурами (DAO LLC) для легальной работы в госсекторе. Рост на 45% к 2030 году. (добавить источник)</p>
+                                <h3 data-key="trend1Title">1. Гибридные DAO</h3>
+                                <p data-key="trend1Text">Интеграция DAO с традиционными юридическими структурами (DAO LLC) для легальной работы в госсекторе. Рост на 45% к 2030 году.</p>
                             </div>
                         </div>
                         <div class="trend-card card">
                             <div class="card__body">
-                                <h3>2. AI-агенты в госуслугах</h3>
-                                <p>Автономные AI-агенты для проактивного предоставления госуслуг, например, автоматического начисления льгот. Внедрение в 70+ странах к 2028 году. (добавить источник)</p>
+                                <h3 data-key="trend2Title">2. AI-агенты в госуслугах</h3>
+                                <p data-key="trend2Text">Автономные AI-агенты для проактивного предоставления госуслуг, например, автоматического начисления льгот. Внедрение в 70+ странах к 2028 году.</p>
                             </div>
                         </div>
                         <div class="trend-card card">
                             <div class="card__body">
-                                <h3>3. AI-first Regulation Sandboxes</h3>
-                                <p>30+ юрисдикций перешли к continuous compliance-модели: смарт-контракты автоматически
-                                    проверяют соблюдение норм в режиме near-real-time. (добавить источник)</p>
+                                <h3 data-key="trend3Title">3. AI-first Regulation Sandboxes</h3>
+                                <p data-key="trend3Text">30+ юрисдикций перешли к continuous compliance-модели: смарт-контракты автоматически
+                                    проверяют соблюдение норм в режиме near-real-time.</p>
                             </div>
                         </div>
                         <div class="trend-card card">
                             <div class="card__body">
-                                <h3>4. L2-решения для госсектора</h3>
-                                <p>Масштабирование госсервисов с помощью L2-rollups для снижения транзакционных издержек
-                                    и увеличения пропускной способности. Экономия до 90% на газе. (добавить источник)
+                                <h3 data-key="trend4Title">4. L2-решения для госсектора</h3>
+                                <p data-key="trend4Text">Масштабирование госсервисов с помощью L2-rollups для снижения транзакционных издержек
+                                    и увеличения пропускной способности. Экономия до 90% на газе.
                                 </p>
+                            </div>
+                        </div>
+                        <div class="trend-card card">
+                            <div class="card__body">
+                                <h3 data-key="trend5Title">5. Цифровые валюты ЦБ (CBDC)</h3>
+                                <p data-key="trend5Text">Более 90% центральных банков мира исследуют CBDC, что приведет к появлению программируемых денег для целевых госвыплат и автоматизации налогов.</p>
+                            </div>
+                        </div>
+                        <div class="trend-card card">
+                            <div class="card__body">
+                                <h3 data-key="trend6Title">6. ZK-доказательства для приватности</h3>
+                                <p data-key="trend6Text">Массовое внедрение Zero-Knowledge proofs для верификации данных граждан (возраст, статус) без раскрытия персональной информации.</p>
                             </div>
                         </div>
                     </div>
@@ -581,49 +576,46 @@
 
             <!-- GenAI Trend Section -->
             <div class="genai-section container">
-                <h3>GenAI: новый инструментарий госуслуг</h3>
-                <p>Генеративные модели помогают государству переводить документы на 24 языка, заполнять формы
-                    за граждан и моделировать последствия законопроектов ещё до их принятия. Проект
-                    Digital Europe с бюджетом €21 млн для автоматизации документооборота и симуляции политики с использованием GenAI уже показывает значительные результаты в мультиязычном доступе к госуслугам.
-                </p>
-                в ЕС, США и Сингапуре показывают сокращение времени обработки запросов граждан
-                до 90%.</p>
+                <h3 data-key="genAISectionTitle">GenAI: новый инструментарий госуслуг</h3>
+                <p data-key="genAISectionText">Генеративные модели помогают государству переводить документы на 24 языка, заполнять формы
+                    за граждан и моделировать последствия законопроектов ещё до их принятия. Проект
+                    Digital Europe с бюджетом €21 млн для автоматизации документооборота и симуляции политики с использованием GenAI уже показывает значительные результаты в мультиязычном доступе к госуслугам. в ЕС, США и Сингапуре показывают сокращение времени обработки запросов граждан до 90%.</p>
                 <ul class="genai-highlights">
-                    <li>🇪🇺 EU Digital Europe: чат-агенты на 24 языках</li>
-                    <li>🇸🇬 Сингапур Smart Nation: GenAI HelpBot в службе поддержки</li>
-                    <li>🇺🇸 Raleigh Smart City: AI-агенты сервис-десков 24/7</li>
+                    <li data-key="genAIHighlight1">🇪🇺 EU Digital Europe: чат-агенты на 24 языках</li>
+                    <li data-key="genAIHighlight2">🇸🇬 Сингапур Smart Nation: GenAI HelpBot в службе поддержки</li>
+                    <li data-key="genAIHighlight3">🇺🇸 Raleigh Smart City: AI-агенты сервис-десков 24/7</li>
                 </ul>
             </div>
 
             <!-- Technology Adoption Comparison Section -->
             <section id="tech-adoption" class="section section--alternate">
                 <div class="container">
-                    <h2>Сравнение внедрения технологий по странам</h2>
+                    <h2 data-key="techAdoptionTitle">Сравнение внедрения технологий по странам</h2>
                     <div class="country-comparison">
                         <div class="country-info">
-                            <h4>США</h4>
-                            <p><strong>Искусственный интеллект (ИИ):</strong> Уровень внедрения ИИ среди американских
-                                компаний достиг 9,2% во втором квартале 2025 года. Хотя только 6% фирм использовали ИИ в 2018 году, с поправкой на занятость средний уровень внедрения составил более 18%.
+                            <h4 data-key="usaTitle">США</h4>
+                            <p data-key="usaAIText"><strong>Искусственный интеллект (ИИ):</strong> Уровень внедрения ИИ среди американских
+                                компаний достиг 9,2% во втором квартале 2025 года. Хотя только 6% фирм использовали ИИ в 2018 году, с поправкой на занятость средний уровень внедрения составил более 18%.
                                 Крупные компании значительно чаще внедряют передовые технологии.</p>
-                            <p><strong>Цифровые услуги:</strong> В США наблюдается высокий уровень цифровизации,
-                                особенно в секторах информационных технологий, медиа, финансов и страхования. При этом,
-                                по данным McKinsey, американская экономика использует лишь 18% своего цифрового
+                            <p data-key="usaDigitalServicesText"><strong>Цифровые услуги:</strong> В США наблюдается высокий уровень цифровизации,
+                                особенно в секторах информационных технологий, медиа, финансов и страхования. При этом,
+                                по данным McKinsey, американская экономика использует лишь 18% своего цифрового
                                 потенциала.</p>
-                            <p><strong>Инвестиции:</strong> США привлекают триллионы долларов в виде частных и иностранных инвестиций в технологии. Только недавние обязательства крупных компаний
-                                включают $500 млрд от SoftBank и OpenAI для развития инфраструктуры ИИ, $500 млрд от NVIDIA, $500 млрд от Apple на производство и обучение, а также $150 млрд от IBM на развитие вычислительных мощностей. Суммарные инвестиции в технологический сектор
-                                значительно превышают $1,8 трлн.</p>
+                            <p data-key="usaInvestmentsText"><strong>Инвестиции:</strong> США привлекают триллионы долларов в виде частных и иностранных инвестиций в технологии. Только недавние обязательства крупных компаний
+                                включают $500 млрд от SoftBank и OpenAI для развития инфраструктуры ИИ, $500 млрд от NVIDIA, $500 млрд от Apple на производство и обучение, а также $150 млрд от IBM на развитие вычислительных мощностей. Суммарные инвестиции в технологический сектор
+                                значительно превышают $1,8 трлн.</p>
                         </div>
 
                         <div class="country-info">
-                            <h4>Россия</h4>
-                            <p><strong>Искусственный интеллект (ИИ):</strong> Россия входит в десятку ведущих стран мира
-                                по уровню интеграции искусственного интеллекта в различные сферы экономики и
-                                общественной жизни. Страна реализует национальную стратегию, направленную на то, чтобы к 2030 году стать одним из мировых лидеров в области ИИ. Государство активно содействует
-                                использованию ИИ как в гражданских, так и в военных целях.</p>
-                            <p><strong>Цифровые услуги:</strong> В начале 2023 года уровень проникновения интернета в России составлял 88,2%, а общее число интернет-пользователей достигало 127,6 миллиона
-                                человек. Около 87% россиян проявляют интерес к развитию технологий, однако только 21%
-                                интернет-пользователей активно внедряют новинки сразу после их появления.</p>
-                            <p><strong>Инвестиции:</strong> Правительство инициировало программы для стимулирования
+                            <h4 data-key="russiaTitle">Россия</h4>
+                            <p data-key="russiaAIText"><strong>Искусственный интеллект (ИИ):</strong> Россия входит в десятку ведущих стран мира
+                                по уровню интеграции искусственного интеллекта в различные сферы экономики и
+                                общественной жизни. Страна реализует национальную стратегию, направленную на то, чтобы к 2030 году стать одним из мировых лидеров в области ИИ. Государство активно содействует
+                                использованию ИИ как в гражданских, так и в военных целях.</p>
+                            <p data-key="russiaDigitalServicesText"><strong>Цифровые услуги:</strong> В начале 2023 года уровень проникновения интернета в России составлял 88,2%, а общее число интернет-пользователей достигало 127,6 миллиона
+                                человек. Около 87% россиян проявляют интерес к развитию технологий, однако только 21%
+                                интернет-пользователей активно внедряют новинки сразу после их появления.</p>
+                            <p data-key="russiaInvestmentsText"><strong>Инвестиции:</strong> Правительство инициировало программы для стимулирования
                                 роста отечественных технологических компаний, включая создание венчурных фондов.</p>
                         </div>
                     </div>
@@ -633,120 +625,49 @@
                             <table class="data-table">
                                 <thead>
                                     <tr>
-                                        <th>Страна</th>
-                                        <th>Блокчейн (%)</th>
-                                        <th>ИИ (%)</th>
-                                        <th>Цифровые услуги (%)</th>
-                                        <th>Инвестиции (млрд $)</th>
+                                        <th data-key="adoptionChartFallbackCountry">Страна</th>
+                                        <th data-key="adoptionChartFallbackBlockchain">Блокчейн (%)</th>
+                                        <th data-key="adoptionChartFallbackAI">ИИ (%)</th>
+                                        <th data-key="adoptionChartFallbackDigital">Цифровые услуги (%)</th>
+                                        <th data-key="adoptionChartFallbackInvest">Инвестиции (млрд $)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Эстония</td>
-                                        <td>85</td>
-                                        <td>80</td>
-                                        <td>100</td>
-                                        <td>0.3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Сингапур</td>
-                                        <td>75</td>
-                                        <td>90</td>
-                                        <td>95</td>
-                                        <td>12.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Дубай</td>
-                                        <td>70</td>
-                                        <td>75</td>
-                                        <td>80</td>
-                                        <td>8.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Великобритания</td>
-                                        <td>45</td>
-                                        <td>65</td>
-                                        <td>85</td>
-                                        <td>4.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Китай</td>
-                                        <td>60</td>
-                                        <td>85</td>
-                                        <td>75</td>
-                                        <td>30.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Индия</td>
-                                        <td>40</td>
-                                        <td>55</td>
-                                        <td>65</td>
-                                        <td>30.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Австралия</td>
-                                        <td>25</td>
-                                        <td>35</td>
-                                        <td>60</td>
-                                        <td>2.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Швейцария</td>
-                                        <td>40</td>
-                                        <td>50</td>
-                                        <td>65</td>
-                                        <td>1.8</td>
-                                    </tr>
-                                    <tr>
-                                        <td>США</td>
-                                        <td>55</td>
-                                        <td>92</td>
-                                        <td>85</td>
-                                        <td>1850.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Россия</td>
-                                        <td>45</td>
-                                        <td>75</td>
-                                        <td>88</td>
-                                        <td>N/A</td>
-                                    </tr>
+                                    <!-- Содержимое будет заполнено из JS -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-
                 </div>
             </section>
 
             <!-- DAO Section -->
             <section id="dao" class="section">
                 <div class="container">
-                    <h2>Web 3.0 &amp; DAO</h2>
+                    <h2 data-key="sectionDAOTitle">Web 3.0 & DAO</h2>
                     <blockquote class="section-quote">
-                        <p>DAO — это парламент без стен. Вместо бюллетеней — токены, вместо бюрократии — неизменяемый
+                        <p data-key="daoQuote">DAO — это парламент без стен. Вместо бюллетеней — токены, вместо бюрократии — неизменяемый
                             код.
-                            Добавьте AI-аналитику, и мы получим «интеллектуальные DAO», которые прогнозируют последствия
-                            каждого закона ещё до голосования.</p>
+                            Добавьте AI-аналитику, и мы получим «интеллектуальные DAO», которые прогнозируют последствия
+                            каждого закона ещё до голосования.</p>
                     </blockquote>
                     <!-- Два блока в одном ряду -->
                     <div class="dao-grid">
                         <div class="card">
                             <div class="card__body">
-                                <h3>Что такое DAO?</h3>
-                                <p>Децентрализованные автономные организации (DAO) — это организации, управляемые
-                                    смарт-контрактами на блокчейне, где решения принимаются коллективно через
-                                    голосование. В госуправлении DAO позволяют гражданам напрямую участвовать в распределении бюджета
+                                <h3 data-key="whatIsDAOTitle">Что такое DAO?</h3>
+                                <p data-key="whatIsDAOText">Децентрализованные автономные организации (DAO) — это организации, управляемые
+                                    смарт-контрактами на блокчейне, где решения принимаются коллективно через
+                                    голосование. В госуправлении DAO позволяют гражданам напрямую участвовать в распределении бюджета
                                     или разработке политики.</p>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card__body">
-                                <h3>WEB 3.0 и государство</h3>
-                                <p>WEB 3.0 — это децентрализованный интернет, где пользователи контролируют свои данные.
+                                <h3 data-key="web3AndStateTitle">WEB 3.0 и государство</h3>
+                                <p data-key="web3AndStateText">WEB 3.0 — это децентрализованный интернет, где пользователи контролируют свои данные.
                                     Для
-                                    государства это означает прозрачность, безопасность и прямое участие граждан в управлении.</p>
+                                    государства это означает прозрачность, безопасность и прямое участие граждан в управлении.</p>
                             </div>
                         </div>
                     </div>
@@ -755,43 +676,42 @@
                     <div class="verifiable-ai-section">
                         <div class="card full-width">
                             <div class="card__body">
-                                <h3>Verifiable AI: Прозрачный искусственный интеллект для госуправления</h3>
-                                <p><strong>Verifiable AI</strong> — это искусственный интеллект, решения которого можно
-                                    криптографически подтвердить. Модели не скрываются «в чёрном ящике»; проверка
-                                    корректности выполняется так же, как проверяются блокчейн-транзакции.</p>
+                                <h3 data-key="verifiableAITitle">Verifiable AI: Прозрачный искусственный интеллект для госуправления</h3>
+                                <p data-key="verifiableAIText"><strong>Verifiable AI</strong> — это искусственный интеллект, решения которого можно
+                                    криптографически подтвердить. Модели не скрываются «в чёрном ящике»; проверка
+                                    корректности выполняется так же, как проверяются блокчейн-транзакции.</p>
 
                                 <div class="verifiable-ai-content">
                                     <div class="verifiable-ai-text">
-                                        <p>Технологии:</p>
+                                        <p data-key="verifiableAITechTitle">Технологии:</p>
                                         <ul>
-                                            <li><strong>zk-SNARKs</strong>: создают короткое криптодоказательство того,
-                                                что
-                                                модель сделала расчёт по заданному алгоритму, не раскрывая параметры.
+                                            <li data-key="verifiableAITech1"><strong>zk-SNARKs</strong>: создают короткое криптодоказательство того, что
+                                                модель сделала расчёт по заданному алгоритму, не раскрывая параметры.
                                             </li>
-                                            <li><strong>Cryptographic commitments</strong>: фиксируют веса модели в
+                                            <li data-key="verifiableAITech2"><strong>Cryptographic commitments</strong>: фиксируют веса модели в
                                                 неизменяемом хэше; любая подмена сразу обнаруживается.</li>
                                         </ul>
 
-                                        <p><strong>Преимущества перед обычным AI</strong>:</p>
+                                        <p data-key="verifiableAIBenefitsTitle"><strong>Преимущества перед обычным AI</strong>:</p>
                                         <ul>
-                                            <li>Прозрачность процессов принятия решений.</li>
-                                            <li>Юридическая ответственность: при аудите можно доказать корректность
+                                            <li data-key="verifiableAIBenefit1">Прозрачность процессов принятия решений.</li>
+                                            <li data-key="verifiableAIBenefit2">Юридическая ответственность: при аудите можно доказать корректность
                                                 выводов.
                                             </li>
-                                            <li>Киберустойчивость: доказательство не позволяет подменить модель или
+                                            <li data-key="verifiableAIBenefit3">Киберустойчивость: доказательство не позволяет подменить модель или
                                                 данные незаметно.</li>
                                         </ul>
 
                                         <div class="verifiable-ai-cases">
-                                            <h4>Примеры применения в госсекторе:</h4>
+                                            <h4 data-key="verifiableAICasesTitle">Примеры применения в госсекторе:</h4>
                                             <ul>
-                                                <li><strong>Налоговый аудит</strong>: ИИ-системы с доказуемой
+                                                <li data-key="verifiableAICase1"><strong>Налоговый аудит</strong>: ИИ-системы с доказуемой
                                                     корректностью
-                                                    для выявления аномалий в налоговых декларациях.</li>
-                                                <li><strong>Распределение субсидий</strong>: Прозрачные алгоритмы для
+                                                    для выявления аномалий в налоговых декларациях.</li>
+                                                <li data-key="verifiableAICase2"><strong>Распределение субсидий</strong>: Прозрачные алгоритмы для
                                                     справедливого распределения государственных средств.</li>
-                                                <li><strong>Оценка рисков</strong>: Верифицируемые модели для принятия
-                                                    решений в сфере общественной безопасности.</li>
+                                                <li data-key="verifiableAICase3"><strong>Оценка рисков</strong>: Верифицируемые модели для принятия
+                                                    решений в сфере общественной безопасности.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -799,16 +719,16 @@
                                     <div class="flow-diagram">
                                         <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8c3R5bGU+CiAgICAubm9kZSB7IGZpbGw6ICM0ZGFiZjc7IHN0cm9rZTogIzMzOWFmMDsgc3Ryb2tlLXdpZHRoOiAycHg7IH0KICAgIC5hcnJvdyB7IGZpbGw6IG5vbmU7IHN0cm9rZTogIzMzOWFmMDsgc3Ryb2tlLXdpZHRoOiAycHg7IH0KICAgIC50ZXh0IHsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGZpbGw6ICMzMzM7IH0KICAgIC5ub2RlLXRleHQgeyBmb250LXNpemU6IDEycHg7IGZpbGw6ICNmZmY7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICA8L3N0eWxlPgogIAogIDwhLS0gTm9kZXMgLS0+CiAgPHJlY3QgY2xhc3M9Im5vZGUiIHg9IjUwIiB5PSI1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcng9IjUiIC8+CiAgPHRleHQgY2xhc3M9Im5vZGUtdGV4dCIgeD0iMTAwIiB5PSI3NSI+0JTQsNGC0LDRgdC10YIg0LPQvtGB0YPRgdC70YPQs9C4PC90ZXh0PgogIAogIDxyZWN0IGNsYXNzPSJub2RlIiB4PSI1MCIgeT0iMTUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiByeD0iNSIgLz4KICA8dGV4dCBjbGFzcz0ibm9kZS10ZXh0IiB4PSIxMDAiIHk9IjE3NSI+TUwt0LzQvtC00LXQu9GMPC90ZXh0PgogIAogIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjMwIiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjIwMCIgeT0iMTU1Ij56ay1Qcm9vZjwvdGV4dD4KICAKICA8cmVjdCBjbGFzcz0ibm9kZSIgeD0iMzAwIiB5PSIxNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHJ4PSI1IiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjM1MCIgeT0iMTc1Ij7QkdC70L7QutGH0LXQudC9LdGA0LXQtdGB0YLRgDwvdGV4dD4KICAKICA8cmVjdCBjbGFzcz0ibm9kZSIgeD0iMzAwIiB5PSIyNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHJ4PSI1IiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjM1MCIgeT0iMjc1Ij7Qk9C+0YEt0L/QvtGA0YLQsNC7PC90ZXh0PgogIAogIDxyZWN0IGNsYXNzPSJub2RlIiB4PSI0MDAiIHk9IjE1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcng9IjUiIC8+CiAgPHRleHQgY2xhc3M9Im5vZGUtdGV4dCIgeD0iNDUwIiB5PSIxNzUiPtCT0YDQsNC20LTQsNC90LjQvTwvdGV4dD4KICAKICA8IS0tIEFycm93cyAtLT4KICA8cGF0aCBjbGFzcz0iYXJyb3ciIGQ9Ik0xMDAgOTAgTCAxMDAgMTUwIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CiAgPHBhdGggY2xhc3M9ImFycm93IiBkPSJNMTUwIDE1MCBMIDE3MCAxNTAiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KICA8cGF0aCBjbGFzcz0iYXJyb3ciIGQ9Ik0yMzAgMTUwIEwgMzAwIDE1MCIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgogIDxwYXRoIGNsYXNzPSJhcnJvdyIgZD0iTTM1MCAxOTAgTCAzNTAgMjUwIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CiAgPHBhdGggY2xhc3M9ImFycm93IiBkPSJNNDAwIDE1MCBMIDQwMCAxNTAiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KICAKICA8IS0tIEFycm93aGVhZCBtYXJrZXIgLS0+CiAgPGRlZnM+CiAgICA8bWFya2VyIGlkPSJhcnJvd2hlYWQiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSI3IiByZWZYPSIwIiByZWZZPSIzLjUiIG9yaWVudD0iYXV0byI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwLCAxMCAzLjUsIDAgNyIgZmlsbD0iIzMzOWFmMCIgLz4KICAgIDwvbWFya2VyPgogIDwvZGVmcz4KPC9zdmc+"
                                             alt="Схема работы Verifiable AI" width="100%">
-                                        <p class="diagram-caption">Схема работы Verifiable AI в государственных сервисах
+                                        <p class="diagram-caption" data-key="verifiableAIDiagramCaption">Схема работы Verifiable AI в государственных сервисах
                                         </p>
 
                                         <div class="verifiable-ai-quote">
-                                            <blockquote>
-                                                «Verifiable AI — это мост между мощью искусственного интеллекта и
-                                                необходимостью прозрачности в государственном управлении. Это не просто
-                                                технология, а новый стандарт доверия.»
+                                            <blockquote data-key="verifiableAIQuote">
+                                                «Verifiable AI — это мост между мощью искусственного интеллекта и
+                                                необходимостью прозрачности в государственном управлении. Это не просто
+                                                технология, а новый стандарт доверия.»
                                             </blockquote>
-                                            <cite>— Исследовательская группа MIT, отчет «Прозрачный ИИ для
+                                            <cite data-key="verifiableAIQuoteCite">— Исследовательская группа MIT, отчет «Прозрачный ИИ для
                                                 госуправления»,
                                                 2025</cite>
                                         </div>
@@ -820,31 +740,31 @@
 
                     <!-- DAO Treasury Metrics Section -->
                     <div class="dao-treasury-section">
-                        <h3>Метрики DAO-казначейств</h3>
+                        <h3 class="centered-subtitle" data-key="daoTreasuryTitle">Метрики DAO-казначейств</h3>
                         <div class="treasury-metrics">
-                            <h4>Ключевые показатели (июль 2025)</h4>
+                            <h4 data-key="daoTreasurySubtitle">Ключевые показатели (июль 2025)</h4>
                             <div class="metrics-table-container">
                                 <table class="metrics-table">
                                     <thead>
                                         <tr>
-                                            <th>Метрика</th>
-                                            <th>Значение</th>
-                                            <th>Изменение за 12 мес.</th>
+                                            <th data-key="daoTreasuryMetric">Метрика</th>
+                                            <th data-key="daoTreasuryValue">Значение</th>
+                                            <th data-key="daoTreasuryChange">Изменение за 12 мес.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Активные DAO</td>
+                                            <td data-key="daoTreasuryActive">Активные DAO</td>
                                             <td>30,842</td>
                                             <td>+19%</td>
                                         </tr>
                                         <tr>
-                                            <td>Совокупный treasury</td>
+                                            <td data-key="daoTreasuryTotal">Совокупный treasury</td>
                                             <td>$40.7 млрд</td>
                                             <td>+22%</td>
                                         </tr>
                                         <tr>
-                                            <td>Средний treasury 100 крупнейших</td>
+                                            <td data-key="daoTreasuryAvg">Средний treasury 100 крупнейших</td>
                                             <td>$187 млн</td>
                                             <td>+15%</td>
                                         </tr>
@@ -853,7 +773,7 @@
                             </div>
 
                             <div class="chart-section">
-                                <h4>Распределение средств в DAO-экосистеме, июль 2025</h4>
+                                <h4 data-key="daoTreasuryChartTitle">Распределение средств в DAO-экосистеме, июль 2025</h4>
                                 <div class="chart-container">
                                     <canvas id="daoTreasury"
                                         aria-label="Распределение средств в DAO-экосистеме"></canvas>
@@ -866,14 +786,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>100 крупнейших</td>
-                                                    <td>18,700</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Прочие DAO</td>
-                                                    <td>22,000</td>
-                                                </tr>
+                                                 <!-- Содержимое будет заполнено из JS -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -884,44 +797,44 @@
 
                     <!-- DAO в государственном управлении -->
                     <div class="dao-governance-section">
-                        <h3>DAO в государственном управлении: Новая эра цифровой демократии</h3>
+                        <h3 data-key="daoGovTitle">DAO в государственном управлении: Новая эра цифровой демократии</h3>
                         <div class="dao-governance-content">
-                            <p>Децентрализованные автономные организации (DAO) — это структуры, управляемые
-                                смарт-контрактами на блокчейне, где решения принимаются коллективно через голосование
-                                участников, владеющих токенами. В контексте государственного управления DAO открывают
-                                новые возможности для реализации прямой демократии, позволяя гражданам активно участвовать в принятии решений.</p>
+                            <p data-key="daoGovText">Децентрализованные автономные организации (DAO) — это структуры, управляемые
+                                смарт-контрактами на блокчейне, где решения принимаются коллективно через голосование
+                                участников, владеющих токенами. В контексте государственного управления DAO открывают
+                                новые возможности для реализации прямой демократии, позволяя гражданам активно участвовать в принятии решений.</p>
 
                             <div class="dao-governance-grid">
                                 <div class="dao-governance-item">
-                                    <h4>Потенциал DAO для государства</h4>
+                                    <h4 data-key="daoGovPotentialTitle">Потенциал DAO для государства</h4>
                                     <ul>
-                                        <li><strong>Прозрачность</strong>: Все транзакции и решения фиксируются в
+                                        <li data-key="daoGovPotential1"><strong>Прозрачность</strong>: Все транзакции и решения фиксируются в
                                             блокчейне
-                                            и доступны для проверки в любой момент.</li>
-                                        <li><strong>Участие граждан</strong>: Люди могут напрямую голосовать за
+                                            и доступны для проверки в любой момент.</li>
+                                        <li data-key="daoGovPotential2"><strong>Участие граждан</strong>: Люди могут напрямую голосовать за
                                             распределение бюджета, новые законы или другие инициативы, минуя
                                             традиционных
                                             посредников.</li>
-                                        <li><strong>Эффективность</strong>: Смарт-контракты автоматически исполняют
+                                        <li data-key="daoGovPotential3"><strong>Эффективность</strong>: Смарт-контракты автоматически исполняют
                                             принятые решения, сокращая бюрократические задержки.</li>
                                     </ul>
                                 </div>
 
                                 <div class="dao-governance-item">
-                                    <h4>Примеры внедрения</h4>
+                                    <h4 data-key="daoGovExamplesTitle">Примеры внедрения</h4>
                                     <ul>
-                                        <li><strong>CityDAO</strong>: В 2021 году DAO приобрела 40 акров земли в штате
-                                            Вайоминг, США, чтобы экспериментировать с коллективным управлением и владением.
+                                        <li data-key="daoGovExample1"><strong>CityDAO</strong>: В 2021 году DAO приобрела 40 акров земли в штате
+                                            Вайоминг, США, чтобы экспериментировать с коллективным управлением и владением.
                                         </li>
-                                        <li><strong>Пилот в Мельбурне</strong>: Университет RMIT предложил использовать DAO для управления городскими ресурсами, внедрив токены для вовлечения жителей в процесс принятия решений.</li>
+                                        <li data-key="daoGovExample2"><strong>Пилот в Мельбурне</strong>: Университет RMIT предложил использовать DAO для управления городскими ресурсами, внедрив токены для вовлечения жителей в процесс принятия решений.</li>
                                     </ul>
                                 </div>
                             </div>
 
                             <div class="dao-governance-conclusion">
-                                <p>DAO могут стать основой для децентрализованного управления, где граждане играют
-                                    ключевую роль в формировании политики и распределении ресурсов. Эта технология представляет собой
-                                    следующий шаг в эволюции демократических процессов, делая их более прозрачными, инклюзивными и эффективными.</p>
+                                <p data-key="daoGovConclusion">DAO могут стать основой для децентрализованного управления, где граждане играют
+                                    ключевую роль в формировании политики и распределении ресурсов. Эта технология представляет собой
+                                    следующий шаг в эволюции демократических процессов, делая их более прозрачными, инклюзивными и эффективными.</p>
                             </div>
                         </div>
                     </div>
@@ -932,122 +845,122 @@
             <!-- Experts Section -->
             <section id="experts" class="section">
                 <div class="container">
-                    <h2>Цитаты</h2>
+                    <h2 data-key="sectionExpertsTitle">Цитаты</h2>
                     <div class="quotes-grid">
                         <!-- Row 1: Most important quotes -->
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
-                                    «ИИ имеет потенциал кардинально трансформировать общество и экономику… и может стать ключевым инструментом в управлении, который в перспективе способен заменить некоторые традиционные государственные институты»
+                                <blockquote data-key="quoteAltman">
+                                    «ИИ имеет потенциал кардинально трансформировать общество и экономику… и может стать ключевым инструментом в управлении, который в перспективе способен заменить некоторые традиционные государственные институты»
                                 </blockquote>
-                                <cite>— Сэм Альтман, CEO OpenAI</cite>
+                                <cite data-key="quoteAltmanCite">— Сэм Альтман, CEO OpenAI</cite>
                             </div>
                         </div>
 
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
-                                    «Человечество находится на пороге эпохи, когда авторитет и власть могут
-                                    перейти от людей к алгоритмам»
+                                <blockquote data-key="quoteHarari">
+                                    «Человечество находится на пороге эпохи, когда авторитет и власть могут
+                                    перейти от людей к алгоритмам»
                                 </blockquote>
-                                <cite>— Юваль Ной Харари, историк, философ</cite>
+                                <cite data-key="quoteHarariCite">— Юваль Ной Харари, историк, философ</cite>
                             </div>
                         </div>
 
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
-                                    «Возможности систем ИИ будут лучше всего рассматриваться как нечто похожее на
+                                <blockquote data-key="quoteAmodei">
+                                    «Возможности систем ИИ будут лучше всего рассматриваться как нечто похожее на
                                     совершенно новое государство, населенное высокоинтеллектуальными людьми,
-                                    появляющееся на мировой сцене — „страна гениев в центре обработки данных“»
+                                    появляющееся на мировой сцене — „страна гениев в центре обработки данных“»
                                 </blockquote>
-                                <cite>— Дарио Амодеи, основатель Anthropic</cite>
+                                <cite data-key="quoteAmodeiCite">— Дарио Амодеи, основатель Anthropic</cite>
                             </div>
                         </div>
 
                         <!-- Row 2: Second tier important quotes -->
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
+                                <blockquote data-key="quoteButerin1">
                                     «Блокчейн имеет потенциал нарушить централизованные властные структуры
-                                    и обеспечить более партисипативные модели управления»
+                                    и обеспечить более партисипативные модели управления»
                                 </blockquote>
-                                <cite>— Виталик Бутерин, «The Meaning
-                                    of Decentralization»</cite>
+                                <cite data-key="quoteButerin1Cite">— Виталик Бутерин, «The Meaning
+                                    of Decentralization»</cite>
                             </div>
                         </div>
 
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
+                                <blockquote data-key="quoteCarlssonWie">
                                     «Когда децентрализованные блокчейн-протоколы начнут вытеснять централизованные
-                                    веб-сервисы, мы начнем видеть настоящий интернет-суверенитет»
+                                    веб-сервисы, мы начнем видеть настоящий интернет-суверенитет»
                                 </blockquote>
-                                <cite>— Олаф Карлсон-Ви, CEO Polychain Capital</cite>
+                                <cite data-key="quoteCarlssonWieCite">— Олаф Карлсон-Ви, CEO Polychain Capital</cite>
                             </div>
                         </div>
 
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
+                                <blockquote data-key="quoteTang">
                                     «Технология должна усиливать демократию: алгоритмы открыты, законодательство
-                                    —
-                                    транспарентно, а граждане — со-создатели решений»
+                                   —
+                                    транспарентно, а граждане — со-создатели решений»
                                 </blockquote>
-                                <cite>— Одри Танг, министр цифровых технологий Тайваня</cite>
+                                <cite data-key="quoteTangCite">— Одри Танг, министр цифровых технологий Тайваня</cite>
                             </div>
                         </div>
 
                         <!-- Row 3: Less important quotes -->
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
-                                    «Блокчейн позволяет нам переосмыслить доверие и обеспечить peer-to-peer
+                                <blockquote data-key="quoteButerin2">
+                                    «Блокчейн позволяет нам переосмыслить доверие и обеспечить peer-to-peer
                                     транзакции без
                                     посредников»
                                 </blockquote>
-                                <cite>— Виталик Бутерин, создатель Ethereum</cite>
+                                <cite data-key="quoteButerin2Cite">— Виталик Бутерин, создатель Ethereum</cite>
                             </div>
                         </div>
 
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
-                                    «Криптовалюты — это настолько мощная концепция, что они могут почти
+                                <blockquote data-key="quoteLee">
+                                    «Криптовалюты — это настолько мощная концепция, что они могут почти
                                     свергнуть
                                     правительства»
                                 </blockquote>
-                                <cite>— Чарльз Ли, создатель Litecoin</cite>
+                                <cite data-key="quoteLeeCite">— Чарльз Ли, создатель Litecoin</cite>
                             </div>
                         </div>
 
                         <div class="quote-card card">
                             <div class="card__body">
-                                <blockquote>
-                                    «Блокчейн символизирует сдвиг власти от центров к краям сетей»
+                                <blockquote data-key="quoteMougayar">
+                                    «Блокчейн символизирует сдвиг власти от центров к краям сетей»
                                 </blockquote>
-                                <cite>— Уильям Мугайяр, блокчейн-стратег</cite>
+                                <cite data-key="quoteMougayarCite">— Уильям Мугайяр, блокчейн-стратег</cite>
                             </div>
                         </div>
                     </div>
 
                     <div class="analysis-section">
-                        <h3>Баланс централизации и децентрализации</h3>
+                        <h3 data-key="balanceTitle">Баланс централизации и децентрализации</h3>
                         <div class="balance-grid">
                             <div class="balance-item">
-                                <h4>Централизация</h4>
+                                <h4 data-key="centralizationTitle">Централизация</h4>
                                 <ul>
-                                    <li>Быстрое принятие решений</li>
-                                    <li>Единые стандарты</li>
-                                    <li>Контроль качества</li>
+                                    <li data-key="centralization1">Быстрое принятие решений</li>
+                                    <li data-key="centralization2">Единые стандарты</li>
+                                    <li data-key="centralization3">Контроль качества</li>
                                 </ul>
                             </div>
                             <div class="balance-item">
-                                <h4>Децентрализация</h4>
+                                <h4 data-key="decentralizationTitle2">Децентрализация</h4>
                                 <ul>
-                                    <li>Устойчивость к отказам</li>
-                                    <li>Прозрачность процессов</li>
-                                    <li>Участие граждан</li>
+                                    <li data-key="decentralization1">Устойчивость к отказам</li>
+                                    <li data-key="decentralization2">Прозрачность процессов</li>
+                                    <li data-key="decentralization3">Участие граждан</li>
                                 </ul>
                             </div>
                         </div>
@@ -1058,63 +971,63 @@
             <!-- Challenges Section -->
             <section id="challenges" class="section">
                 <div class="container">
-                    <h2>Вызовы и препятствия</h2>
+                    <h2 data-key="sectionChallengesTitle">Вызовы и препятствия</h2>
                     <div class="challenges-grid">
                         <div class="challenge-card card">
                             <div class="card__body">
-                                <h3>1. Интероперабельность и сохранность данных</h3>
-                                <p>Обеспечение совместимости L2-rollups со старыми госсистемами и сохранность данных при миграции — ключевая сложность.</p>
+                                <h3 data-key="challenge1Title">1. Интероперабельность и сохранность данных</h3>
+                                <p data-key="challenge1Text">Обеспечение совместимости L2-rollups со старыми госсистемами и сохранность данных при миграции — ключевая сложность.</p>
                                 <div class="challenge-impact">
-                                    <span class="impact-level impact--high">Высокий риск</span>
+                                    <span class="impact-level impact--high" data-key="challenge1Impact">Высокий риск</span>
                                 </div>
                             </div>
                         </div>
                         <div class="challenge-card card">
                             <div class="card__body">
-                                <h3>2. Deepfake-угрозы и дезинформация</h3>
-                                <p>Генеративные модели могут использоваться для создания фейков, что требует
-                                    законодательных мер (например, закон TAKE IT DOWN в США).</p>
+                                <h3 data-key="challenge2Title">2. Deepfake-угрозы и дезинформация</h3>
+                                <p data-key="challenge2Text">Генеративные модели могут использоваться для создания фейков, что требует
+                                    законодательных мер (например, закон TAKE IT DOWN в США).</p>
                                 <div class="challenge-impact">
-                                    <span class="impact-level impact--high">Высокий риск</span>
+                                    <span class="impact-level impact--high" data-key="challenge2Impact">Высокий риск</span>
                                 </div>
                             </div>
                         </div>
                         <div class="challenge-card card">
                             <div class="card__body">
-                                <h3>3. Кадровый дефицит</h3>
-                                <p>Нехватка специалистов по AI-governance и блокчейн-архитектуре тормозит внедрение
-                                    технологий в госсекторе.</p>
+                                <h3 data-key="challenge3Title">3. Кадровый дефицит</h3>
+                                <p data-key="challenge3Text">Нехватка специалистов по AI-governance и блокчейн-архитектуре тормозит внедрение
+                                    технологий в госсекторе.</p>
                                 <div class="challenge-impact">
-                                    <span class="impact-level impact--medium">Средний риск</span>
+                                    <span class="impact-level impact--medium" data-key="challenge3Impact">Средний риск</span>
                                 </div>
                             </div>
                         </div>
                         <div class="challenge-card card">
                             <div class="card__body">
-                                <h3>4. Стандартизация и регуляция</h3>
-                                <p>Необходимо обновить стандарты, как ISO TC-307, для регулирования «Smart governance» и смарт-контрактов.</p>
+                                <h3 data-key="challenge4Title">4. Стандартизация и регуляция</h3>
+                                <p data-key="challenge4Text">Необходимо обновить стандарты, как ISO TC-307, для регулирования «Smart governance» и смарт-контрактов.</p>
                                 <div class="challenge-impact">
-                                    <span class="impact-level impact--medium">Средний риск</span>
+                                    <span class="impact-level impact--medium" data-key="challenge4Impact">Средний риск</span>
                                 </div>
                             </div>
                         </div>
                         <div class="challenge-card card">
                             <div class="card__body">
-                                <h3>5. Энергоэффективность</h3>
-                                <p>Переход пилотных проектов CBDC на энергоэффективные механизмы консенсуса для
+                                <h3 data-key="challenge5Title">5. Энергоэффективность</h3>
+                                <p data-key="challenge5Text">Переход пилотных проектов CBDC на энергоэффективные механизмы консенсуса для
                                     устойчивого развития.</p>
                                 <div class="challenge-impact">
-                                    <span class="impact-level impact--low">Низкий риск</span>
+                                    <span class="impact-level impact--low" data-key="challenge5Impact">Низкий риск</span>
                                 </div>
                             </div>
                         </div>
                         <div class="challenge-card card">
                             <div class="card__body">
-                                <h3>6. Прозрачность ораклов</h3>
-                                <p>Для госсервисов требуется единый стандарт прозрачности и верифицируемости данных,
+                                <h3 data-key="challenge6Title">6. Прозрачность ораклов</h3>
+                                <p data-key="challenge6Text">Для госсервисов требуется единый стандарт прозрачности и верифицируемости данных,
                                     поставляемых оракулами.</p>
                                 <div class="challenge-impact">
-                                    <span class="impact-level impact--medium">Средний риск</span>
+                                    <span class="impact-level impact--medium" data-key="challenge6Impact">Средний риск</span>
                                 </div>
                             </div>
                         </div>
@@ -1125,62 +1038,62 @@
             <!-- Regulatory Compliance Section -->
             <section id="regulatory" class="section">
                 <div class="container">
-                    <h2>Regulatory (In)Compliance</h2>
-                    <p class="section-intro">Ключевые регуляторные изменения и стандарты, формирующие ландшафт GovTech в
+                    <h2 data-key="sectionRegulatoryTitle">Regulatory (In)Compliance</h2>
+                    <p class="section-intro" data-key="regulatoryIntro">Ключевые регуляторные изменения и стандарты, формирующие ландшафт GovTech в
                         2025 году.</p>
 
                     <div class="regulatory-grid">
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3>EU AI Act (2024)</h3>
-                                <p>Вводит категорию «высокого риска» для AI-систем в госуслугах, требуя аудита и
+                                <h3 data-key="regEUAIActTitle">EU AI Act (2024)</h3>
+                                <p data-key="regEUAIActText">Вводит категорию «высокого риска» для AI-систем в госуслугах, требуя аудита и
                                     прозрачности.</p>
-                                <span class="regulatory-tag status-active">В силе</span>
+                                <span class="regulatory-tag status-active" data-key="regEUAIActStatus">В силе</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3>ISO/IEC 42001 (2025)</h3>
-                                <p>Обязательная система менеджмента ИИ для всех IT-подрядчиков правительств стран ЕС.
+                                <h3 data-key="regISO42001Title">ISO/IEC 42001 (2025)</h3>
+                                <p data-key="regISO42001Text">Обязательная система менеджмента ИИ для всех IT-подрядчиков правительств стран ЕС.
                                 </p>
-                                <span class="regulatory-tag status-pending">Ожидается</span>
+                                <span class="regulatory-tag status-pending" data-key="regISO42001Status">Ожидается</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3>ISO TC-307 Update (2025)</h3>
-                                <p>Добавляет новый блок требований к «Smart governance», включая стандарты для DAO и
+                                <h3 data-key="regISO307Title">ISO TC-307 Update (2025)</h3>
+                                <p data-key="regISO307Text">Добавляет новый блок требований к «Smart governance», включая стандарты для DAO и
                                     оракулов.</p>
-                                <span class="regulatory-tag status-pending">Ожидается</span>
+                                <span class="regulatory-tag status-pending" data-key="regISO307Status">Ожидается</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3>US CREATE AI Act</h3>
-                                <p>Открывает и лицензирует федеральные датасеты для обучения AI, стимулируя стартапы.
+                                <h3 data-key="regUSCreateAITitle">US CREATE AI Act</h3>
+                                <p data-key="regUSCreateAIText">Открывает и лицензирует федеральные датасеты для обучения AI, стимулируя стартапы.
                                 </p>
-                                <span class="regulatory-tag status-active">В силе</span>
+                                <span class="regulatory-tag status-active" data-key="regUSCreateAIStatus">В силе</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3>APAC Stablecoin Guidelines</h3>
-                                <p>Устанавливает дополнительные KYC/AML-требования к муниципальным и государственным
+                                <h3 data-key="regAPACStablecoinTitle">APAC Stablecoin Guidelines</h3>
+                                <p data-key="regAPACStablecoinText">Устанавливает дополнительные KYC/AML-требования к муниципальным и государственным
                                     крипто-кошелькам.</p>
-                                <span class="regulatory-tag status-pending">В разработке</span>
+                                <span class="regulatory-tag status-pending" data-key="regAPACStablecoinStatus">В разработке</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3>Global Crypto Sandboxes</h3>
-                                <p>Более 30 юрисдикций расширили правовые «песочницы» для безопасного тестирования
+                                <h3 data-key="regGlobalSandboxesTitle">Global Crypto Sandboxes</h3>
+                                <p data-key="regGlobalSandboxesText">Более 30 юрисдикций расширили правовые «песочницы» для безопасного тестирования
                                     gov-dApps.</p>
-                                <span class="regulatory-tag status-active">Действует</span>
+                                <span class="regulatory-tag status-active" data-key="regGlobalSandboxesStatus">Действует</span>
                             </div>
                         </div>
                     </div>
@@ -1191,40 +1104,40 @@
             <!-- Timeline Section -->
             <section id="timeline" class="section">
                 <div class="container">
-                    <h2>Временные рамки внедрения</h2>
+                    <h2 data-key="sectionTimelineTitle">Временные рамки внедрения</h2>
                     <div class="timeline-container">
                         <div class="timeline-item">
-                            <div class="timeline-year">2025-2027</div>
+                            <div class="timeline-year" data-key="timeline1Year">2025-2027</div>
                             <div class="timeline-content">
-                                <h3>Первая волна</h3>
-                                <p>Автоматизация базовых услуг: лицензирование, реестры недвижимости, субсидии</p>
+                                <h3 data-key="timeline1Title">Первая волна</h3>
+                                <p data-key="timeline1Text">Автоматизация базовых услуг: лицензирование, реестры недвижимости, субсидии</p>
                                 <div class="timeline-stats">
-                                    <span>🌍 15+ стран</span>
-                                    <span>📊 60% автоматизация</span>
+                                    <span data-key="timeline1Stat1">🌍 15+ стран</span>
+                                    <span data-key="timeline1Stat2">📊 60% автоматизация</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="timeline-item">
-                            <div class="timeline-year">2028-2032</div>
+                            <div class="timeline-year" data-key="timeline2Year">2028-2032</div>
                             <div class="timeline-content">
-                                <h3>Средний этап</h3>
-                                <p>Электронное голосование, таможенные процедуры, государственные закупки</p>
+                                <h3 data-key="timeline2Title">Средний этап</h3>
+                                <p data-key="timeline2Text">Электронное голосование, таможенные процедуры, государственные закупки</p>
                                 <div class="timeline-stats">
-                                    <span>🌍 25+ стран</span>
-                                    <span>📊 75% автоматизация</span>
+                                    <span data-key="timeline2Stat1">🌍 25+ стран</span>
+                                    <span data-key="timeline2Stat2">📊 75% автоматизация</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="timeline-item">
-                            <div class="timeline-year">2033-2040</div>
+                            <div class="timeline-year" data-key="timeline3Year">2033-2040</div>
                             <div class="timeline-content">
-                                <h3>Поздний этап</h3>
-                                <p>Частичная монетарная политика, ИИ-арбитры в судах, полицейские расследования</p>
+                                <h3 data-key="timeline3Title">Поздний этап</h3>
+                                <p data-key="timeline3Text">Частичная монетарная политика, ИИ-арбитры в судах, полицейские расследования</p>
                                 <div class="timeline-stats">
-                                    <span>🌍 40+ стран</span>
-                                    <span>📊 85% автоматизация</span>
+                                    <span data-key="timeline3Stat1">🌍 40+ стран</span>
+                                    <span data-key="timeline3Stat2">📊 85% автоматизация</span>
                                 </div>
                             </div>
                         </div>
@@ -1233,9 +1146,9 @@
                     <div class="critical-point">
                         <div class="card">
                             <div class="card__body">
-                                <h3>⚠️ Критический перелом</h3>
-                                <p>При достижении <strong>35% ВВП в смарт-контрактах</strong> возврат
-                                    к традиционным
+                                <h3 data-key="criticalPointTitle">⚠️ Критический перелом</h3>
+                                <p data-key="criticalPointText">При достижении <strong>35% ВВП в смарт-контрактах</strong> возврат
+                                    к традиционным
                                     бумажным процессам станет технически невозможным (IMF, 2024)</p>
                             </div>
                         </div>
@@ -1247,12 +1160,12 @@
             <!-- Conclusion Section -->
             <section id="conclusion" class="section">
                 <div class="container">
-                    <h2>Заключение</h2>
+                    <h2 data-key="sectionConclusionTitle">Заключение</h2>
                     <div class="conclusion-grid">
                         <div class="prediction-card card">
                             <div class="card__body">
-                                <h3>2027</h3>
-                                <p>Лицензии и реестры автоматизируются в 20+ странах. Первые полностью
+                                <h3 data-key="prediction1Year">2027</h3>
+                                <p data-key="prediction1Text">Лицензии и реестры автоматизируются в 20+ странах. Первые полностью
                                     цифровые
                                     государственные услуги.</p>
                             </div>
@@ -1260,8 +1173,8 @@
 
                         <div class="prediction-card card">
                             <div class="card__body">
-                                <h3>2032</h3>
-                                <p>Первая волна блокчейн-бюджетов. Падение коррупции на 15-20% в развитых
+                                <h3 data-key="prediction2Year">2032</h3>
+                                <p data-key="prediction2Text">Первая волна блокчейн-бюджетов. Падение коррупции на 15-20% в развитых
                                     странах.
                                 </p>
                             </div>
@@ -1269,46 +1182,46 @@
 
                         <div class="prediction-card card">
                             <div class="card__body">
-                                <h3>2040</h3>
-                                <p>Гибридная модель «алгоритмического федерализма» — 70%
+                                <h3 data-key="prediction3Year">2040</h3>
+                                <p data-key="prediction3Text">Гибридная модель «алгоритмического федерализма» — 70%
                                     автоматизации рутинных функций
                                     государства.</p>
                             </div>
                         </div>
                     </div>
 
-                    <h3 class="future-governance-title">🚀 Будущее государственного управления</h3>
+                    <h3 class="future-governance-title" data-key="futureGovTitle">🚀 Будущее государственного управления</h3>
 
                     <div class="final-thoughts">
                         <div class="card">
                             <div class="card__body future-governance-card">
                                 <p> </p>
-                                <p>🔗 <strong>Блокчейн и ИИ</strong> не «убьют» государство, а перезапустят его в более
-                                    справедливой форме, создавая новые возможности для эффективного управления и участия
+                                <p data-key="futureGovText1">🔗 <strong>Блокчейн и ИИ</strong> не «убьют» государство, а перезапустят его в более
+                                    справедливой форме, создавая новые возможности для эффективного управления и участия
                                     граждан.</p>
 
-                                <p>🌐 <strong>Децентрализованная структура</strong> блокчейна позволяет создать сетевое
-                                    государство, распределяя полномочия между участниками, а не централизуя их. Это
-                                    укрепляет суверенитет, делая системы устойчивыми к внешним атакам и вмешательствам.
+                                <p data-key="futureGovText2">🌐 <strong>Децентрализованная структура</strong> блокчейна позволяет создать сетевое
+                                    государство, распределяя полномочия между участниками, а не централизуя их. Это
+                                    укрепляет суверенитет, делая системы устойчивыми к внешним атакам и вмешательствам.
                                 </p>
 
-                                <p>🔍 <strong>Транспарентные цепочки поставок</strong> уменьшат коррупционные ренты, а автоматизация освободит государственных служащих для более сложных задач, требующих
+                                <p data-key="futureGovText3">🔍 <strong>Транспарентные цепочки поставок</strong> уменьшат коррупционные ренты, а автоматизация освободит государственных служащих для более сложных задач, требующих
                                     человеческого суждения.</p>
 
-                                <p>🗳️ <strong>Web 3.0 и DAO</strong> открывают новые возможности для гражданского
-                                    участия в управлении. Децентрализованные платформы позволяют гражданам напрямую
-                                    влиять на распределение бюджета и разработку политики, как показывают эксперименты
-                                    CityDAO и пилотные проекты в Мельбурне.</p>
+                                <p data-key="futureGovText4">🗳️ <strong>Web 3.0 и DAO</strong> открывают новые возможности для гражданского
+                                    участия в управлении. Децентрализованные платформы позволяют гражданам напрямую
+                                    влиять на распределение бюджета и разработку политики, как показывают эксперименты
+                                    CityDAO и пилотные проекты в Мельбурне.</p>
 
-                                <p>⚡ <strong>Ключевой вопрос</strong> не в том, произойдет ли эта трансформация, а в том, как быстро государства адаптируются к новым технологическим возможностям и смогут ли сохранить баланс между эффективностью и человечностью в управлении.</p>
+                                <p data-key="futureGovText5">⚡ <strong>Ключевой вопрос</strong> не в том, произойдет ли эта трансформация, а в том, как быстро государства адаптируются к новым технологическим возможностям и смогут ли сохранить баланс между эффективностью и человечностью в управлении.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Economic Benefits Chart -->
                     <div class="chart-section">
-                        <h3>Экономические выгоды по типам</h3>
-                        <p class="chart-subtitle">Экономия средств, млрд $ (2024-2025)</p>
+                        <h3 data-key="economicBenefitsTitle">Экономические выгоды по типам</h3>
+                        <p class="chart-subtitle" data-key="economicBenefitsSubtitle">Экономия средств, млрд $ (2024-2025)</p>
                         <div class="chart-container">
                             <canvas id="benefitsChart"
                                 aria-label="Экономические выгоды по типам государственных услуг"></canvas>
@@ -1317,36 +1230,12 @@
                                     <thead>
                                         <tr>
                                             <th>Тип услуги</th>
-                                            <th>Экономия времени (%)</th>
-                                            <th>Экономия средств (млрд $)</th>
+                                            <th data-key="benefitsChartY1">Экономия времени (%)</th>
+                                            <th data-key="benefitsChartY2">Экономия средств (млрд $)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Налоговые проверки</td>
-                                            <td>70</td>
-                                            <td>15.0 млрд $ (2024)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Обработка документов</td>
-                                            <td>80</td>
-                                            <td>2.3 млрд $ (2025)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Регистрация недвижимости</td>
-                                            <td>90</td>
-                                            <td>1.8 млрд $ (2024)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Выдача лицензий</td>
-                                            <td>85</td>
-                                            <td>3.2 млрд $ (2025)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Социальные выплаты</td>
-                                            <td>80</td>
-                                            <td>4.5 млрд $ (2024)</td>
-                                        </tr>
+                                        <!-- Содержимое будет заполнено из JS -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1359,34 +1248,34 @@
     <!-- Compliance Section -->
     <section id="compliance" class="section">
         <div class="container">
-            <h2>Регуляторика и комплаенс</h2>
+            <h2 data-key="sectionComplianceTitle">Регуляторика и комплаенс</h2>
             <div class="compliance-grid">
                 <div class="card">
                     <div class="card__body">
-                        <h3>EU AI Act & MiCA</h3>
-                        <p>Законодательные рамки ЕС для регулирования искусственного интеллекта и крипто-активов.
-                            Устанавливают требования к прозрачности, безопасности и управлению рисками.</p>
+                        <h3 data-key="complianceCard1Title">EU AI Act & MiCA</h3>
+                        <p data-key="complianceCard1Text">Законодательные рамки ЕС для регулирования искусственного интеллекта и крипто-активов.
+                            Устанавливают требования к прозрачности, безопасности и управлению рисками.</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card__body">
-                        <h3>GDPR vs Immutable Ledger</h3>
-                        <p>Ключевой вызов: как совместить «право на забвение» (GDPR) с неизменяемостью данных в
-                            блокчейне. Решения включают off-chain хранение и использование ZK-доказательств.</p>
+                        <h3 data-key="complianceCard2Title">GDPR vs Immutable Ledger</h3>
+                        <p data-key="complianceCard2Text">Ключевой вызов: как совместить «право на забвение» (GDPR) с неизменяемостью данных в
+                            блокчейне. Решения включают off-chain хранение и использование ZK-доказательств.</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card__body">
-                        <h3>Юридические рамки для DAO</h3>
-                        <p>Появление специальных правовых форм, таких как Wyoming DAO LLC в США, для интеграции
-                            децентрализованных организаций в существующую юридическую систему.</p>
+                        <h3 data-key="complianceCard3Title">Юридические рамки для DAO</h3>
+                        <p data-key="complianceCard3Text">Появление специальных правовых форм, таких как Wyoming DAO LLC в США, для интеграции
+                            децентрализованных организаций в существующую юридическую систему.</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card__body">
-                        <h3>ZK-Proof Off-Chain Records</h3>
-                        <p>Zero-Knowledge доказательства позволяют подтверждать достоверность данных, хранящихся вне
-                            блокчейна, обеспечивая приватность и соблюдение GDPR при неизменности реестра.</p>
+                        <h3 data-key="complianceCard4Title">ZK-Proof Off-Chain Records</h3>
+                        <p data-key="complianceCard4Text">Zero-Knowledge доказательства позволяют подтверждать достоверность данных, хранящихся вне
+                            блокчейна, обеспечивая приватность и соблюдение GDPR при неизменности реестра.</p>
                     </div>
                 </div>
             </div>
@@ -1396,42 +1285,42 @@
     <!-- Knowledge Base Section -->
     <section id="knowledge" class="section">
         <div class="container">
-            <h2>Источники и база знаний</h2>
-            <p style="text-align: center;">Ключевые документы, отчеты и ресурсы, использованные при подготовке этого
+            <h2 data-key="sectionKnowledgeTitle">Источники и база знаний</h2>
+            <p style="text-align: center;" data-key="knowledgeIntro">Ключевые документы, отчеты и ресурсы, использованные при подготовке этого
                 обзора.</p>
             <div class="knowledge-categories">
                 <div class="knowledge-category">
-                    <h3>Аналитика и отчеты</h3>
+                    <h3 data-key="knowledgeCat1Title">Аналитика и отчеты</h3>
                     <div class="knowledge-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer">UN E-Government Survey 2024 (метрики
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link1">UN E-Government Survey 2024 (метрики
                             цифровой зрелости)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">Deloitte «GovTech Trends 2025»</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">Gartner: «AI in Public Sector» (Q2
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link2">Deloitte «GovTech Trends 2025»</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link3">Gartner: «AI in Public Sector» (Q2
                             2025)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">BIS «CBDC and the future of payments»
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link4">BIS «CBDC and the future of payments»
                             (July 2025)</a>
                         <a href="https://oecd.ai/en/dashboards/public-sector-2025" target="_blank"
-                            rel="noopener noreferrer">OECD: AI in the Public Sector 2025 Outlook</a>
+                            rel="noopener noreferrer" data-key="knowledgeCat1Link5">OECD: AI in the Public Sector 2025 Outlook</a>
                     </div>
                 </div>
                 <div class="knowledge-category">
-                    <h3>Нормативная база</h3>
+                    <h3 data-key="knowledgeCat2Title">Нормативная база</h3>
                     <div class="knowledge-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer">EU AI Act (Official Journal, May 2024)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">ISO/IEC 42001 & ISO TC-307 (Drafts
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link1">EU AI Act (Official Journal, May 2024)</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link2">ISO/IEC 42001 & ISO TC-307 (Drafts
                             2025)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">DLA Piper «Digital Assets Regulation
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link3">DLA Piper «Digital Assets Regulation
                             Review» (June 2025)</a>
                     </div>
                 </div>
                 <div class="knowledge-category">
-                    <h3>Технические ресурсы</h3>
+                    <h3 data-key="knowledgeCat3Title">Технические ресурсы</h3>
                     <div class="knowledge-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer">GitHub: Hyperledger Besu (Enterprise
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link1">GitHub: Hyperledger Besu (Enterprise
                             Ethereum)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">Chainlink Oracle Documentation</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">Aragon: DAO Framework</a>
-                        <a href="https://zkproof.org/2024-standard" target="_blank" rel="noopener noreferrer">ZKProof
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link2">Chainlink Oracle Documentation</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link3">Aragon: DAO Framework</a>
+                        <a href="https://zkproof.org/2024-standard" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link4">ZKProof
                             2024: Unified Standards</a>
                     </div>
                 </div>
@@ -1442,14 +1331,14 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>© 2025 GovTech 3.0. Исследование трансформации государственного управления.</p>
+            <p data-key="footerText">© 2025 GovTech 3.0. Исследование трансформации государственного управления.</p>
             <div class="support-project">
-                <h3>Поддержать проект</h3>
+                <h3 data-key="supportProjectTitle">Поддержать проект</h3>
                 <br>
                 <div class="crypto-wallets">
-                    <p><strong>Bitcoin:</strong> 1FEvqUr9fhx9z8jZQ3ympj19QaKG4sfe1u</p>
-                    <p><strong>Ethereum:</strong> 0×6b8d7137b60a6f3ee8869dc6c53ab989937e3462</p>
-                    <p><strong>USDT (TRC20):</strong> TBYiX5jAZ38qSHvkuyL3QMTytMf5P671VJ</p>
+                    <p data-key="btcAddress"><strong>Bitcoin:</strong> 1FEvqUr9fhx9z8jZQ3ympj19QaKG4sfe1u</p>
+                    <p data-key="ethAddress"><strong>Ethereum:</strong> 0x6b8d7137b60a6f3ee8869dc6c53ab989937e3462</p>
+                    <p data-key="usdtAddress"><strong>USDT (TRC20):</strong> TBYiX5jAZ38qSHvkuyL3QMTytMf5P671VJ</p>
                 </div>
             </div>
         </div>

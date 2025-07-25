@@ -5,4 +5,4 @@
 - `index.html` - основной HTML-файл
 - `style.css` - стили проекта
 - `app.js` - JavaScript для интерактивных элементов и графиков
-- `info.md` - исходные данные для проекта
+- `translations.json` - первод

@@ -1,43 +1,307 @@
-// App initialization: сначала загружаем локальные данные, затем строим графики
+// START OF FILE app.js
 
-document.addEventListener('DOMContentLoaded', async function() {
+// Глобальные переменные для локализации и данных
+// Удалены объявления интерфейсов TypeScript, так как они вызывают синтаксические ошибки в браузере.
+// Все свойства будут добавлены к объекту `window` динамически.
+
+// Инициализируем глобальные переменные
+window.translations = {};
+window.currentLanguage = 'ru'; // Язык по умолчанию
+window.externalData = null;
+
+// App initialization
+document.addEventListener('DOMContentLoaded', async function () {
+    // 1. Загружаем переводы в первую очередь
+    try {
+        const response = await fetch('translations.json');
+        // Для локальных файлов response.status может быть 0. Вместо использования response.json(),
+        // считываем как текст и парсим вручную, чтобы избежать ошибок при status 0.
+        const text = await response.text();
+        window.translations = JSON.parse(text);
+    } catch (error) {
+        console.error('Fatal Error: Could not load translations.json.', error);
+        document.body.innerHTML = '<h1 style="text-align: center; margin-top: 50px; color: red;">Error loading page content.</h1>';
+        return;
+    }
+
+    // 2. Инициализируем локализацию
+    initLocalization();
+
+    // 3. Остальные инициализации
     initThemeToggle();
     initNavigation();
     initMobileMenu();
 
-    // Пытаемся загрузить локальный файл govtech_data.json до инициализации графиков
+    // 4. Загружаем данные для графиков
     try {
         const response = await fetch('govtech_data.json');
-        if (!response.ok) throw new Error(response.statusText);
-        window.externalData = await response.json();
-        console.log('Loaded local data:', window.externalData);
-        
-        // Инициализируем графики после успешной загрузки данных
-        if (typeof Chart !== 'undefined') {
-            console.log('Chart.js доступен, инициализируем графики');
-            initCharts();
-        } else {
-            console.error('Chart.js не доступен, показываем запасной вариант');
-            showChartFallbacks();
-        }
+        const text = await response.text();
+        // Если файл не найден или пустой, парсинг может выбросить ошибку – отлавливаем её в catch.
+        window.externalData = JSON.parse(text);
     } catch (error) {
         console.warn('Could not load govtech_data.json, falling back to hard-coded datasets', error);
         window.externalData = null;
-        
-        // Инициализируем графики с резервными данными
-        if (typeof Chart !== 'undefined') {
-            console.log('Chart.js доступен, инициализируем графики с резервными данными');
-            initCharts();
-        } else {
-            console.error('Chart.js не доступен, показываем запасной вариант');
-            showChartFallbacks();
-        }
     }
 
-    initScrollAnimations();
+    // 5. Заполняем таблицы данными
+    populateFallbackTables();
+    
+    // 6. Инициализируем графики (или показываем запасной вариант)
+    if (typeof Chart !== 'undefined') {
+        initCharts();
+    } else {
+        console.error('Chart.js не доступен, показываем запасной вариант');
+        showChartFallbacks();
+    }
+    
+    // 7. Принудительно показываем таблицы, так как с графиками могут быть проблемы.
+    // Это надежное решение, чтобы клиент всегда видел данные.
+    // Небольшая задержка для завершения всех рендерингов
+    setTimeout(() => {
+        showChartFallbacks();
+        populateFallbackTables();
+    }, 200);
 });
 
-// Универсальная функция для отображения запасного варианта вместо графиков
+
+// --- Localization Functions ---
+
+function initLocalization() {
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const savedLang = localStorage.getItem('language');
+    const browserLang = navigator.language.slice(0, 2);
+    const initialLang = savedLang || (window.translations[browserLang] ? browserLang : 'ru');
+
+    langButtons.forEach(button => {
+        // Используем currentTarget и getAttribute, чтобы избежать проблемы, когда e.target
+        // может быть вложенным элементом. Это гарантирует корректное чтение атрибута data-lang.
+        button.addEventListener('click', (e) => {
+            const targetButton = e.currentTarget;
+            const langAttr = targetButton.getAttribute('data-lang');
+            setLanguage(langAttr);
+        });
+    });
+
+    setLanguage(initialLang, true); // true, чтобы избежать лишнего обновления графиков
+}
+
+function setLanguage(lang, isInitial = false) {
+    if (!lang || !window.translations[lang]) {
+        lang = 'ru';
+    }
+
+    window.currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
+
+    const translations = window.translations[lang];
+    if (!translations) {
+        console.error(`Translations for language ${lang} not found!`);
+        return;
+    }
+    
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.dataset.key;
+        if (translations[key] !== undefined) {
+            el.innerHTML = translations[key];
+        }
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Обновляем графики только при смене языка, а не при первоначальной загрузке
+    if (!isInitial && typeof Chart !== 'undefined') {
+        updateChartsLanguage();
+    }
+
+    // Обновляем таблицы при смене языка
+    if (!isInitial) {
+        populateFallbackTables();
+    }
+}
+
+function updateChartsLanguage() {
+    const lang = window.currentLanguage;
+    const translations = window.translations[lang];
+    if (!translations) return;
+
+    // Обновляем adoptionChart
+    if (window.adoptionChart) {
+        const chart = window.adoptionChart;
+        const adoptionData = getAdoptionData();
+        chart.options.plugins.title.text = translations.adoptionChartTitle;
+        chart.data.labels = adoptionData.country_keys.map(key => translations.countries[key]);
+        chart.data.datasets[0].label = translations.adoptionChartFallbackBlockchain;
+        chart.data.datasets[1].label = translations.adoptionChartFallbackAI;
+        chart.data.datasets[2].label = translations.adoptionChartFallbackDigital;
+        chart.data.datasets[3].label = translations.adoptionChartFallbackInvest;
+        chart.options.scales.y.title.text = translations.adoptionChartFallbackBlockchain;
+        chart.options.scales.y1.title.text = translations.adoptionChartFallbackInvest;
+        chart.update();
+    }
+
+    // Обновляем benefitsChart
+    if (window.benefitsChart) {
+        const chart = window.benefitsChart;
+        chart.options.plugins.title.text = translations.benefitsChartTitle;
+        chart.data.labels = [
+            translations.benefitsChartLabel1,
+            translations.benefitsChartLabel2,
+            translations.benefitsChartLabel3,
+            translations.benefitsChartLabel4,
+            translations.benefitsChartLabel5
+        ];
+        chart.data.datasets[0].label = translations.benefitsChartY1;
+        chart.data.datasets[1].label = translations.benefitsChartY2;
+        chart.options.scales.y.title.text = translations.benefitsChartY1;
+        chart.options.scales.y1.title.text = translations.benefitsChartY2;
+        chart.update();
+    }
+
+    // Обновляем daoTreasuryChart
+    if (window.daoTreasuryChart) {
+        const chart = window.daoTreasuryChart;
+        chart.options.plugins.title.text = translations.daoTreasuryChartTitle;
+        chart.data.labels = [translations.daoTreasuryChartLabelTop100, translations.daoTreasuryChartLabelOther];
+        chart.update();
+    }
+}
+
+
+// --- Chart Functions (Modified for Localization) ---
+
+function initCharts() {
+    Chart.defaults.font.family = 'Inter, sans-serif';
+    Chart.defaults.font.size = 12;
+
+    setTimeout(() => {
+        try {
+            createAdoptionChart();
+            createBenefitsChart();
+            createDaoTreasuryChart();
+        } catch (error) {
+            console.error('Error in chart initialization:', error);
+            showChartFallbacks();
+        }
+    }, 50);
+}
+
+function getAdoptionData() {
+    // Используем ключи для последующего перевода
+    return (window.externalData && window.externalData.adoption_data) ? window.externalData.adoption_data : {
+        country_keys: ["estonia", "singapore", "dubai", "uk", "china", "india", "australia", "switzerland", "usa", "russia"],
+        blockchain_adoption: [85, 75, 70, 45, 60, 40, 25, 40, 55, 45],
+        ai_in_gov: [80, 90, 75, 65, 85, 55, 35, 50, 92, 75],
+        digital_services: [99, 95, 80, 85, 75, 65, 60, 65, 85, 88],
+        investments: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8, 1800.0, null]
+    };
+}
+
+function createAdoptionChart() {
+    const ctx = document.getElementById('adoptionChart');
+    if (!ctx) return;
+
+    const colors = getChartColors();
+    const translations = window.translations[window.currentLanguage];
+    const adoptionData = getAdoptionData();
+
+    window.adoptionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: adoptionData.country_keys.map(key => translations.countries[key]),
+            datasets: [
+                { label: translations.adoptionChartFallbackBlockchain, data: adoptionData.blockchain_adoption, backgroundColor: colors.chart1, yAxisID: 'y' },
+                { label: translations.adoptionChartFallbackAI, data: adoptionData.ai_in_gov, backgroundColor: colors.chart2, yAxisID: 'y' },
+                { label: translations.adoptionChartFallbackDigital, data: adoptionData.digital_services, backgroundColor: colors.chart3, yAxisID: 'y' },
+                { label: translations.adoptionChartFallbackInvest, data: adoptionData.investments, backgroundColor: colors.chart4, type: 'line', yAxisID: 'y1', pointRadius: 6 }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top', labels: { color: colors.textColor, padding: 20 } },
+                title: { display: true, text: translations.adoptionChartTitle, color: colors.textColor, font: { size: 14, weight: 'bold' } }
+            },
+            scales: {
+                y: { beginAtZero: true, max: 100, position: 'left', ticks: { color: colors.secondaryColor }, grid: { color: colors.borderColor }, title: { display: true, text: translations.adoptionChartFallbackBlockchain, color: colors.textColor } },
+                y1: { beginAtZero: true, position: 'right', ticks: { color: colors.secondaryColor }, grid: { drawOnChartArea: false }, title: { display: true, text: translations.adoptionChartFallbackInvest, color: colors.textColor } },
+                x: { ticks: { color: colors.secondaryColor }, grid: { color: colors.borderColor } }
+            }
+        }
+    });
+}
+
+function createBenefitsChart() {
+    const ctx = document.getElementById('benefitsChart');
+    if (!ctx) return;
+
+    const colors = getChartColors();
+    const translations = window.translations[window.currentLanguage];
+
+    window.benefitsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                translations.benefitsChartLabel1, translations.benefitsChartLabel2, translations.benefitsChartLabel3,
+                translations.benefitsChartLabel4, translations.benefitsChartLabel5
+            ],
+            datasets: [
+                { label: translations.benefitsChartY1, data: [70, 80, 90, 85, 80], backgroundColor: colors.chart1, yAxisID: 'y' },
+                { label: translations.benefitsChartY2, data: [15.0, 2.3, 1.8, 3.2, 4.5], backgroundColor: colors.chart2, yAxisID: 'y1' }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top', labels: { color: colors.textColor, padding: 20 } },
+                title: { display: true, text: translations.benefitsChartTitle, color: colors.textColor, font: { size: 14, weight: 'bold' } }
+            },
+            scales: {
+                x: { ticks: { color: colors.secondaryColor }, grid: { color: colors.borderColor } },
+                y: { type: 'linear', display: true, position: 'left', title: { display: true, text: translations.benefitsChartY1, color: colors.textColor }, ticks: { color: colors.secondaryColor }, grid: { color: colors.borderColor } },
+                y1: { type: 'linear', display: true, position: 'right', title: { display: true, text: translations.benefitsChartY2, color: colors.textColor }, ticks: { color: colors.secondaryColor }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+}
+
+function createDaoTreasuryChart() {
+    const ctx = document.getElementById('daoTreasury');
+    if (!ctx) return;
+
+    const colors = getChartColors();
+    const translations = window.translations[window.currentLanguage];
+
+    window.daoTreasuryChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [translations.daoTreasuryChartLabelTop100, translations.daoTreasuryChartLabelOther],
+            datasets: [{ data: [18700, 22000], backgroundColor: [colors.chart1, colors.chart2], borderWidth: 1 }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: colors.textColor, padding: 20 } },
+                title: { display: true, text: translations.daoTreasuryChartTitle, color: colors.textColor, font: { size: 14, weight: 'bold' } }
+            },
+            cutout: '60%'
+        }
+    });
+}
+
+
+// --- Unchanged Functions (Theme, Navigation, etc.) ---
+
+/**
+ * Принудительно показывает все таблицы-фоллбэки и скрывает канвасы графиков.
+ * Это надежный способ отобразить данные, если с Chart.js есть проблемы.
+ */
 function showChartFallbacks() {
     document.querySelectorAll('.chart-container').forEach(container => {
         const canvas = container.querySelector('canvas');
@@ -48,186 +312,99 @@ function showChartFallbacks() {
         const fallback = container.querySelector('.chart-fallback');
         if (fallback) {
             fallback.style.display = 'block';
+            fallback.style.visibility = 'visible';
+            fallback.style.opacity = '1';
         }
     });
 }
 
-// Функция для отображения запасного варианта для конкретного графика
-function showChartFallback(chartId) {
-    showChartFallbacks([document.getElementById(chartId)]);
-}
-
-// Automatic Theme Detection
-function initThemeToggle() {
-    console.log('Initializing automatic theme detection');
-    
-    // Get current theme from system preference
-    function getCurrentTheme() {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        return prefersDark ? 'dark' : 'light';
-    }
-    
-    // Apply initial theme
-    const currentTheme = getCurrentTheme();
-    console.log('Detected system theme:', currentTheme);
-    applyTheme(currentTheme);
-    
-    // Listen for system preference changes
-    try {
-        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        if (darkModeMediaQuery.addEventListener) {
-            darkModeMediaQuery.addEventListener('change', (e) => {
-                const newTheme = e.matches ? 'dark' : 'light';
-                console.log('System theme changed to:', newTheme);
-                applyTheme(newTheme);
-                
-                // Update charts with new theme
-                setTimeout(() => {
-                    try {
-                        updateChartsTheme();
-                        console.log('Charts theme updated');
-                    } catch (error) {
-                        console.error('Error updating charts theme:', error);
-                    }
-                }, 100);
-            });
-        }
-    } catch (error) {
-        console.error('Error setting up media query listener:', error);
-    }
-}
-
-function applyTheme(theme) {
-    try {
-        document.documentElement.setAttribute('data-color-scheme', theme);
-        document.body.classList.toggle('dark-theme', theme === 'dark');
-        console.log('Theme applied:', theme);
-    } catch (error) {
-        console.error('Error applying theme:', error);
-    }
-}
-
-// Theme toggle function removed - using automatic detection only
-
-// Navigation
-function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                // Calculate offset to account for fixed header
-                const headerHeight = document.querySelector('.header').offsetHeight + 
-                                   document.querySelector('.nav').offsetHeight;
-                const elementPosition = targetSection.offsetTop;
-                const offsetPosition = elementPosition - headerHeight - 20;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav link
-                navLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            }
-        });
-    });
-    
-    // Update active navigation on scroll
-    window.addEventListener('scroll', throttle(updateActiveNavigation, 100));
-}
-
-function updateActiveNavigation() {
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const headerHeight = document.querySelector('.header').offsetHeight + 
-                        document.querySelector('.nav').offsetHeight;
-    const scrollPosition = window.scrollY + headerHeight + 100;
-    
-    let activeSection = null;
-    
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            activeSection = section;
-        }
-    });
-    
-    if (activeSection) {
-        navLinks.forEach(link => link.classList.remove('active'));
-        const activeLink = document.querySelector(`[href="#${activeSection.id}"]`);
-        if (activeLink) activeLink.classList.add('active');
-    }
-}
-
-// Throttle function for performance
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// Charts initialization
-function initCharts() {
-    if (typeof Chart === 'undefined') {
-        console.error('Chart.js не загружен. Проверьте подключение библиотеки.');
-        showChartFallbacks();
+/**
+ * Заполняет все таблицы-фоллбэки данными.
+ * Функция централизована для всех таблиц.
+ */
+function populateFallbackTables() {
+    const translations = window.translations[window.currentLanguage];
+    if (!translations || !translations.countries) {
+        // Если переводы еще не загрузились, попробуем позже
+        setTimeout(populateFallbackTables, 100);
         return;
     }
-    
-    Chart.defaults.font.family = 'Inter, sans-serif';
-    Chart.defaults.font.size = 12;
-    
-    // Small delay to ensure DOM is fully rendered
-    setTimeout(() => {
-        try {
-            console.log('Initializing charts...');
-            
-            try {
-                createAdoptionChart();
-                console.log('Adoption chart created');
-            } catch (error) {
-                console.error('Error creating adoption chart:', error);
-                showChartFallback('adoptionChart');
-            }
-            
-            try {
-                createBenefitsChart();
-                console.log('Benefits chart created');
-            } catch (error) {
-                console.error('Error creating benefits chart:', error);
-                showChartFallback('benefitsChart');
-            }
-            
-            try {
-                createDaoTreasuryChart();
-                console.log('DAO Treasury chart created');
-            } catch (error) {
-                console.error('Error creating DAO Treasury chart:', error);
-                showChartFallback('daoTreasury');
-            }
-            
-            console.log('Charts initialization completed');
-        } catch (error) {
-            console.error('Error in chart initialization:', error);
-            showChartFallbacks();
-        }
-    }, 50); // Уменьшаем задержку для быстрой отрисовки
+
+    // Заполняем таблицу adoptionChart
+    const adoptionTable = document.querySelector('#adoptionChart + .chart-fallback tbody');
+    if (adoptionTable) {
+        const adoptionData = getAdoptionData();
+        adoptionTable.innerHTML = ''; // Очищаем перед заполнением
+
+        adoptionData.country_keys.forEach((countryKey, index) => {
+            const row = document.createElement('tr');
+            // Определяем единицу измерения для инвестиций в зависимости от выбранного языка
+            const investUnit = window.currentLanguage === 'ru' ? 'млрд' : 'B';
+            const investValue = adoptionData.investments[index];
+            const investFormatted = investValue !== null
+                ? `${investValue}\u00A0${investUnit}`
+                : 'N/A';
+            row.innerHTML = `
+                <td>${translations.countries[countryKey] || countryKey}</td>
+                <td>${adoptionData.blockchain_adoption[index]}%</td>
+                <td>${adoptionData.ai_in_gov[index]}%</td>
+                <td>${adoptionData.digital_services[index]}%</td>
+                <td>${investFormatted}</td>
+            `;
+            adoptionTable.appendChild(row);
+        });
+    }
+
+    // Заполняем таблицу benefitsChart
+    const benefitsTable = document.querySelector('#benefitsChart + .chart-fallback tbody');
+    if (benefitsTable) {
+        const benefitsLabels = [
+            translations.benefitsChartLabel1,
+            translations.benefitsChartLabel2,
+            translations.benefitsChartLabel3,
+            translations.benefitsChartLabel4,
+            translations.benefitsChartLabel5
+        ];
+        const timeSavings = [70, 80, 90, 85, 80];
+        const costSavings = [15.0, 2.3, 1.8, 3.2, 4.5];
+
+        benefitsTable.innerHTML = ''; // Очищаем перед заполнением
+
+        benefitsLabels.forEach((label, index) => {
+            const row = document.createElement('tr');
+            // Единица измерения для экономии средств
+            const costUnit = window.currentLanguage === 'ru' ? 'млрд' : 'B';
+            const costFormatted = `$${costSavings[index]}\u00A0${costUnit}`;
+            row.innerHTML = `
+                <td>${label}</td>
+                <td>${timeSavings[index]}%</td>
+                <td>${costFormatted}</td>
+            `;
+            benefitsTable.appendChild(row);
+        });
+    }
+
+    // Заполняем таблицу daoTreasury
+    const daoTable = document.querySelector('#daoTreasury + .chart-fallback tbody');
+    if (daoTable) {
+        const daoData = {
+            labels: [translations.daoTreasuryChartLabelTop100, translations.daoTreasuryChartLabelOther],
+            values: [18700, 22000]
+        };
+        daoTable.innerHTML = ''; // Очищаем перед заполнением
+
+        daoData.labels.forEach((label, index) => {
+             const row = document.createElement('tr');
+             // Единица измерения для DAO казны: миллионы или миллионы в английском обозначены как M
+             const daoUnit = window.currentLanguage === 'ru' ? 'млн' : 'M';
+             const valueFormatted = `${daoData.values[index]}\u00A0${daoUnit}\u00A0$`;
+             row.innerHTML = `
+                <td>${label}</td>
+                <td>${valueFormatted}</td>
+             `;
+             daoTable.appendChild(row);
+        });
+    }
 }
 
 function getChartColors() {
@@ -244,519 +421,95 @@ function getChartColors() {
     };
 }
 
-function createAdoptionChart() {
-    try {
-        const ctx = document.getElementById('adoptionChart');
-        if (!ctx) {
-            console.error('Element with id "adoptionChart" not found');
-            return;
-        }
-        console.log('Creating adoption chart...');
-        
-        const colors = getChartColors();
-        // Используем данные из govtech_data.json, если они загружены, иначе fallback
-        const adoptionData = (window.externalData && window.externalData.adoption_data) ? window.externalData.adoption_data : {
-            countries: ["Эстония", "Сингапур", "Дубай", "Великобритания", "Китай", "Индия", "Австралия", "Швейцария", "США", "Россия"],
-            blockchain_adoption: [85, 75, 70, 45, 60, 40, 25, 40, 55, 45],
-            ai_in_gov: [80, 90, 75, 65, 85, 55, 35, 50, 92, 75],
-            digital_services: [99, 95, 80, 85, 75, 65, 60, 65, 85, 88],
-            investments: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8, "$1,800.0 bn", null],
-            gtmi_score: [0.95, 0.92, "n/a", "n/a", "n/a", "n/a", "n/a", "n/a", 0.90, "n/a"]
-        };
-    
-    try {
-        window.adoptionChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: adoptionData.countries,
-            datasets: [
-                {
-                    label: 'Внедрение блокчейна (%)',
-                    data: adoptionData.blockchain_adoption,
-                    backgroundColor: colors.chart1,
-                    borderColor: colors.chart1,
-                    borderWidth: 1,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'ИИ в госуправлении (%)',
-                    data: adoptionData.ai_in_gov,
-                    backgroundColor: colors.chart2,
-                    borderColor: colors.chart2,
-                    borderWidth: 1,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Цифровые услуги (%)',
-                    data: adoptionData.digital_services,
-                    backgroundColor: colors.chart3,
-                    borderColor: colors.chart3,
-                    borderWidth: 1,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Инвестиции (млрд $)',
-                    data: adoptionData.investments,
-                    backgroundColor: colors.chart4,
-                    borderColor: colors.chart4,
-                    borderWidth: 1,
-                    type: 'line',
-                    yAxisID: 'y1',
-                    pointStyle: 'circle',
-                    pointRadius: 6,
-                    pointHoverRadius: 8
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        color: colors.textColor,
-                        padding: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Уровень внедрения технологий и инвестиций по странам',
-                    color: colors.textColor,
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    position: 'left',
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    },
-                    title: {
-                        display: true,
-                        text: 'Уровень внедрения (%)',
-                        color: colors.textColor
-                    }
-                },
-                y1: {
-                    beginAtZero: true,
-                    position: 'right',
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        drawOnChartArea: false
-                    },
-                    title: {
-                        display: true,
-                        text: 'Инвестиции (млрд $)',
-                        color: colors.textColor
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    }
-                }
-            }
-        }
+function initThemeToggle() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(prefersDark ? 'dark' : 'light');
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const newTheme = e.matches ? 'dark' : 'light';
+        applyTheme(newTheme);
+        setTimeout(() => updateChartsTheme(), 100);
     });
 }
 
-function createTimelineChart() {
-    const ctx = document.getElementById('timelineChart');
-    if (!ctx) {
-        console.error('Element with id "timelineChart" not found');
-        showChartFallback('timelineChart');
-        return;
-    }
-    console.log('Creating timeline chart...');
-    
-    const colors = getChartColors();
-    
-    window.timelineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['2025-2027', '2028-2032', '2033-2040'],
-            datasets: [
-                {
-                    label: 'Количество стран',
-                    data: [15, 25, 40],
-                    backgroundColor: `${colors.chart1}33`,
-                    borderColor: colors.chart1,
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Уровень автоматизации (%)',
-                    data: [60, 75, 85],
-                    backgroundColor: `${colors.chart2}33`,
-                    borderColor: colors.chart2,
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    yAxisID: 'y1'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        color: colors.textColor,
-                        padding: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Прогноз автоматизации государственных услуг',
-                    color: colors.textColor,
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Временной период',
-                        color: colors.textColor
-                    },
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    }
-                },
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Количество стран',
-                        color: colors.textColor
-                    },
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    }
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    title: {
-                        display: true,
-                        text: 'Уровень автоматизации (%)',
-                        color: colors.textColor
-                    },
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                }
-            }
-        }
-    });
-}
-
-function createInvestmentChart() {
-    const ctx = document.getElementById('investmentChart');
-    if (!ctx) {
-        console.error('Element with id "investmentChart" not found');
-        showChartFallback('investmentChart');
-        return;
-    }
-    console.log('Creating investment chart...');
-    
-    const colors = getChartColors();
-    
-    window.investmentChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Эстония', 'Сингапур', 'Дубай', 'Великобритания', 'Китай', 'Индия', 'Австралия', 'Швейцария'],
-            datasets: [{
-                label: 'Инвестиции в смарт-города (млрд $)',
-                data: [0.3, 12.0, 8.5, 4.2, 30.0, 30.0, 2.1, 1.8],
-                backgroundColor: [
-                    colors.chart1,
-                    colors.chart2,
-                    colors.chart3,
-                    colors.chart4,
-                    colors.chart5,
-                    `${colors.chart1}CC`,
-                    `${colors.chart2}CC`,
-                    `${colors.chart3}CC`
-                ],
-                borderColor: [
-                    colors.chart1,
-                    colors.chart2,
-                    colors.chart3,
-                    colors.chart4,
-                    colors.chart5,
-                    `${colors.chart1}CC`,
-                    `${colors.chart2}CC`,
-                    `${colors.chart3}CC`
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Инвестиции в смарт-города по странам/регионам',
-                    color: colors.textColor,
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    },
-                    title: {
-                        display: true,
-                        text: 'Инвестиции (млрд $)',
-                        color: colors.textColor
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    }
-                }
-            }
-        }
-    });
-}
-
-function createBenefitsChart() {
-    const ctx = document.getElementById('benefitsChart');
-    if (!ctx) {
-        console.error('Element with id "benefitsChart" not found');
-        showChartFallback('benefitsChart');
-        return;
-    }
-    console.log('Creating benefits chart...');
-    
-    const colors = getChartColors();
-    
-    window.benefitsChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                'Налоговые проверки',
-                'Обработка документов', 
-                'Регистрация недвижимости',
-                'Выдача лицензий',
-                'Социальные выплаты'
-            ],
-            datasets: [
-                {
-                    label: 'Экономия времени (%)',
-                    data: [70, 80, 90, 85, 80],
-                    backgroundColor: '#1FB8CD',
-                    borderColor: '#1FB8CD',
-                    borderWidth: 1,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Экономия средств (млрд $)',
-                    data: [15.0, 2.3, 1.8, 3.2, 4.5],
-                    backgroundColor: '#FFC185',
-                    borderColor: '#FFC185',
-                    borderWidth: 1,
-                    yAxisID: 'y1'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        color: colors.textColor,
-                        padding: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Экономические выгоды по типам государственных услуг',
-                    color: colors.textColor,
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    }
-                },
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Экономия времени (%)',
-                        color: colors.textColor
-                    },
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        color: colors.borderColor
-                    }
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    title: {
-                        display: true,
-                        text: 'Экономия средств (млрд $)',
-                        color: colors.textColor
-                    },
-                    ticks: {
-                        color: colors.secondaryColor
-                    },
-                    grid: {
-                        drawOnChartArea: false,
-                    }
-                }
-            }
-        }
-    });
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-color-scheme', theme);
 }
 
 function updateChartsTheme() {
     const colors = getChartColors();
-    
-    // Update all charts
-    const charts = [
-        window.adoptionChart, 
-        window.investmentChart, 
-        window.timelineChart, 
-        window.benefitsChart,
-        window.daoTreasuryChart
-    ];
-    
+    const charts = [window.adoptionChart, window.benefitsChart, window.daoTreasuryChart];
     charts.forEach(chart => {
         if (chart) {
-            console.log(`Updating chart: ${chart.id}`);
-            
-            // Update legend colors
-            if (chart.options && chart.options.plugins && chart.options.plugins.legend) {
-                chart.options.plugins.legend.labels.color = colors.textColor;
-            }
-            
-            // Update title colors
-            if (chart.options && chart.options.plugins && chart.options.plugins.title) {
-                chart.options.plugins.title.color = colors.textColor;
-            }
-            
-            // Update scale colors
-            if (chart.options && chart.options.scales) {
-                Object.keys(chart.options.scales).forEach(scaleKey => {
-                    const scale = chart.options.scales[scaleKey];
-                    if (scale.ticks) scale.ticks.color = colors.secondaryColor;
-                    if (scale.grid) scale.grid.color = colors.borderColor;
-                    if (scale.title) scale.title.color = colors.textColor;
-                });
-            }
-            
-            try {
-                chart.update();
-            } catch (error) {
-                console.error(`Error updating chart: ${error.message}`);
-            }
-        } else {
-            console.warn("Chart not found or not initialized");
+            chart.options.plugins.legend.labels.color = colors.textColor;
+            chart.options.plugins.title.color = colors.textColor;
+            Object.keys(chart.options.scales).forEach(scaleKey => {
+                const scale = chart.options.scales[scaleKey];
+                if (scale.ticks) scale.ticks.color = colors.secondaryColor;
+                if (scale.grid) scale.grid.color = colors.borderColor;
+                if (scale.title) scale.title.color = colors.textColor;
+            });
+            chart.update();
         }
     });
 }
 
-// Load external data from JSON file
-async function loadExternalData() {
-    try {
-        const response = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/12fc9449763596efb4b49aa4afeb45cc/a551640b-f1e1-498d-af21-2310a6e520f6/689d4557.json');
-        const data = await response.json();
-        console.log('Loaded external data:', data);
-        
-        // Use external data to enhance charts if needed
-        enhanceChartsWithExternalData(data);
-    } catch (error) {
-        console.error('Failed to load external data:', error);
-        // Continue with default data
+function initNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+function initMobileMenu() {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    // Кнопка закрытия мобильного меню
+    const mobileNavClose = document.getElementById('mobileNavClose');
+
+    if (hamburgerMenu && mobileNav) {
+        // Переключение открытия/закрытия при клике на бургер
+        hamburgerMenu.addEventListener('click', function () {
+            hamburgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        // Закрываем меню при клике по любой ссылке внутри
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Закрываем меню при клике на кнопку закрытия
+        if (mobileNavClose) {
+            mobileNavClose.addEventListener('click', function () {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        }
     }
 }
 
-function enhanceChartsWithExternalData(externalData) {
-    // This function can be used to enhance charts with additional external data
-    // For now, we'll keep the existing static data as it's already comprehensive
-    console.log('External data loaded successfully, charts enhanced');
-}
-
-// Animation on scroll
 function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -764,9 +517,8 @@ function initScrollAnimations() {
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
-    
-    // Observe all cards
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
     document.querySelectorAll('.card').forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
@@ -775,163 +527,15 @@ function initScrollAnimations() {
     });
 }
 
-// Utility functions
-function formatNumber(num) {
-    return new Intl.NumberFormat('ru-RU').format(num);
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Handle resize events
-window.addEventListener('resize', debounce(function() {
-    // Update charts on resize
-    [window.adoptionChart, window.timelineChart, window.benefitsChart].forEach(chart => {
-        if (chart) {
-            chart.resize();
+function throttle(func, limit) {
+    let inThrottle;
+    return function () {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
-    });
-}, 250));
-
-// Error handling
-window.addEventListener('error', function(e) {
-    console.error('JavaScript error:', e.error);
-});
-
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-        }, 0);
-    });
-}// Mo
-bile menu functionality
-function initMobileMenu() {
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    
-    if (hamburgerMenu && mobileNav) {
-        hamburgerMenu.addEventListener('click', function() {
-            hamburgerMenu.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
-        });
-        
-        // Close mobile menu when clicking on a link
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburgerMenu.classList.remove('active');
-                mobileNav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-                
-                // Update active state
-                mobileNavLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Smooth scroll to section
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const elementPosition = targetSection.offsetTop;
-                    const offsetPosition = elementPosition - headerHeight - 20;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     }
-    
-    // Update active mobile nav link on scroll
-    window.addEventListener('scroll', throttle(function() {
-        updateActiveNavigation();
-        updateActiveMobileNavigation();
-    }, 100));
-}
-
-function updateActiveMobileNavigation() {
-    const sections = document.querySelectorAll('.section');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const headerHeight = document.querySelector('.header').offsetHeight;
-    const scrollPosition = window.scrollY + headerHeight + 100;
-    
-    let activeSection = null;
-    
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            activeSection = section;
-        }
-    });
-    
-    if (activeSection) {
-        mobileNavLinks.forEach(link => link.classList.remove('active'));
-        const activeLink = document.querySelector(`.mobile-nav-link[href="#${activeSection.id}"]`);
-        if (activeLink) activeLink.classList.add('active');
-    }
-}// D
-AO Treasury Chart
-function createDaoTreasuryChart() {
-    const ctx = document.getElementById('daoTreasury');
-    if (!ctx) {
-        console.error('Element with id "daoTreasury" not found');
-        return;
-    }
-    console.log('Creating DAO Treasury chart...');
-    
-    const colors = getChartColors();
-    
-    window.daoTreasuryChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['100 крупнейших', 'Прочие DAO'],
-            datasets: [{
-                data: [18700, 22000],   // значения в млн $
-                backgroundColor: [colors.chart1, colors.chart2],
-                borderColor: [colors.chart1, colors.chart2],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        color: colors.textColor,
-                        padding: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Распределение средств в DAO-экосистеме (млн $)',
-                    color: colors.textColor,
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                }
-            },
-            cutout: '60%'
-        }
-    });
 }
