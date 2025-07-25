@@ -158,15 +158,15 @@
   /* Основные цвета для темной темы */
   --background: #121212;
   --foreground: #f5f5f5;
-  --card: #1e1e1e;
+  --card: #2a2a2a;
   --card-foreground: #f5f5f5;
-  --popover: #1e1e1e;
+  --popover: #2a2a2a;
   --popover-foreground: #f5f5f5;
   --primary: #4dabf7;
   --primary-foreground: #121212;
   --secondary: rgba(160, 160, 160, 0.12);
   --secondary-foreground: #e0e0e0;
-  --muted: #2a2a2a;
+  --muted: #323232;
   --muted-foreground: #a0a0a0;
   --accent: rgba(77, 171, 247, 0.2);
   --accent-foreground: #f5f5f5;
@@ -182,6 +182,24 @@
   --chart-3: #fcc419;
   --chart-4: #ff6b6b;
   --chart-5: #cc5de8;
+
+  /* Специальные фоны для темной темы */
+  --dark-bg-black: #0a0a0a;
+  --dark-bg-darkest: #1a1a1a;
+  --dark-bg-darker: #1e1e1e;
+  --dark-bg-dark: #242424;
+  --dark-card-light: #2a2a2a;
+  --dark-card-lighter: #323232;
+
+  /* Обновленные фоновые цвета для секций */
+  --color-bg-1: var(--dark-bg-darker);
+  --color-bg-2: var(--dark-bg-dark);
+  --color-bg-3: var(--dark-bg-darkest);
+  --color-bg-4: var(--dark-bg-dark);
+  --color-bg-5: var(--dark-bg-darker);
+  --color-bg-6: var(--dark-bg-darkest);
+  --color-bg-7: var(--dark-bg-darkest);
+  --color-bg-8: var(--dark-bg-dark);
 }
 
 /* Base styles */
@@ -422,6 +440,49 @@ select.form-control {
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   position: relative;
+}
+
+/* Светлые карточки в темной теме */
+[data-color-scheme="dark"] .card {
+  background-color: var(--dark-card-light);
+  border-color: rgba(160, 160, 160, 0.15);
+}
+
+[data-color-scheme="dark"] .stat-card {
+  background: linear-gradient(135deg, var(--dark-card-light) 0%, var(--dark-card-lighter) 100%);
+  border-color: rgba(160, 160, 160, 0.15);
+}
+
+/* Дополнительные стили для темной темы */
+[data-color-scheme="dark"] .benefit-item,
+[data-color-scheme="dark"] .case-card,
+[data-color-scheme="dark"] .trend-card,
+[data-color-scheme="dark"] .challenge-card,
+[data-color-scheme="dark"] .quote-card,
+[data-color-scheme="dark"] .balance-item {
+  background-color: var(--dark-card-light);
+  border-color: rgba(160, 160, 160, 0.15);
+}
+
+[data-color-scheme="dark"] .country-info,
+[data-color-scheme="dark"] .chart-section {
+  background-color: var(--dark-card-light);
+  border-color: rgba(160, 160, 160, 0.15);
+}
+
+/* Улучшение читаемости в темной теме */
+[data-color-scheme="dark"] .metric {
+  background: var(--dark-card-lighter);
+  border-color: rgba(160, 160, 160, 0.2);
+  color: #e0e0e0;
+}
+
+[data-color-scheme="dark"] .data-table th {
+  background-color: var(--dark-card-lighter);
+}
+
+[data-color-scheme="dark"] .data-table tr:nth-child(even) {
+  background-color: rgba(160, 160, 160, 0.05);
 }
 
 .card__body {
@@ -716,12 +777,32 @@ select.form-control {
 }
 
 .stat-card {
-  background: var(--color-surface);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-1) 100%);
   border-radius: var(--radius-lg);
   padding: var(--space-32) var(--space-24);
   text-align: center;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--chart-2), var(--chart-3));
+  opacity: 0.7;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-2) 100%);
 }
 
 .stat-card__body h3 {
@@ -805,12 +886,53 @@ select.form-control {
   scroll-margin-top: 95px;
 }
 
-.section:nth-child(even) {
+/* Specific section backgrounds */
+#blockchain-ai {
   background: var(--color-bg-1);
 }
 
-.section:nth-child(3n) {
+#introduction {
   background: var(--color-bg-2);
+}
+
+#web3-governance {
+  background: var(--color-surface);
+}
+
+#cases {
+  background: var(--color-bg-3);
+}
+
+#digital-identity {
+  background: linear-gradient(135deg, var(--color-bg-4) 0%, var(--color-bg-2) 100%);
+}
+
+#experts {
+  background: var(--color-bg-1);
+}
+
+#dao {
+  background: var(--color-bg-5);
+}
+
+#trends {
+  background: var(--color-bg-4);
+}
+
+#challenges {
+  background: linear-gradient(135deg, var(--color-bg-2) 0%, var(--color-bg-7) 100%);
+}
+
+#timeline {
+  background: linear-gradient(135deg, var(--color-bg-8) 0%, var(--color-bg-1) 100%);
+}
+
+.genai-section {
+  background: linear-gradient(135deg, var(--color-bg-4) 0%, var(--color-bg-5) 100%);
+  padding: var(--space-48) var(--space-24);
+  border-radius: var(--radius-lg);
+  margin: var(--space-48) 0;
+  border: 1px solid var(--color-border);
 }
 
 .section h2 {
@@ -964,6 +1086,37 @@ select.form-control {
 @media (max-width: 768px) {
   .country-comparison {
     grid-template-columns: 1fr;
+  }
+  
+  /* Исправление для Implementation Timeline на мобильных */
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-16);
+  }
+  
+  .timeline-year {
+    position: relative;
+    margin-bottom: var(--space-16);
+    font-size: var(--font-size-lg) !important;
+    padding: var(--space-8) var(--space-16);
+    border-radius: var(--radius-base);
+    background: var(--color-primary);
+    color: white;
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+  
+  .timeline-content {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+  
+  .timeline-container::before {
+    display: none;
   }
 }
 
@@ -1122,13 +1275,22 @@ select.form-control {
 
 .analysis-section {
   margin-top: var(--space-64);
-  padding: var(--space-48) 0;
+  padding: var(--space-80) 0;
   background: var(--color-bg-4);
   border-radius: var(--radius-lg);
   margin-left: calc(-1 * var(--space-24));
   margin-right: calc(-1 * var(--space-24));
   padding-left: var(--space-24);
   padding-right: var(--space-24);
+}
+
+/* Специальный стиль для темной темы - темный фон для баланса */
+[data-color-scheme="dark"] .analysis-section {
+  background: var(--dark-bg-darker);
+  margin-left: calc(-100vw / 2 + 50%);
+  margin-right: calc(-100vw / 2 + 50%);
+  padding-left: calc(100vw / 2 - 50%);
+  padding-right: calc(100vw / 2 - 50%);
 }
 
 .analysis-section h3 {
@@ -2512,6 +2674,153 @@ body.no-scroll {
         right: 70px;
     }
 }
-.dark-theme .header, .dark-theme .nav {
-  background-color: rgba(30, 30, 30, 0.8);
+/* Dark Theme */
+.dark-theme {
+  /* Основные цвета для темной темы */
+  --background: oklch(0.1200 0.0050 260.0000);
+  --foreground: oklch(0.9500 0.0100 260.0000);
+  --card: oklch(0.1500 0.0080 260.0000);
+  --card-foreground: oklch(0.9200 0.0120 260.0000);
+  --popover: oklch(0.1500 0.0080 260.0000);
+  --popover-foreground: oklch(0.9200 0.0120 260.0000);
+  --primary: oklch(0.7000 0.2500 280.0000);
+  --primary-foreground: oklch(0.1000 0.0050 260.0000);
+  --secondary: oklch(0.2000 0.0100 260.0000);
+  --secondary-foreground: oklch(0.8500 0.0150 260.0000);
+  --muted: oklch(0.1800 0.0080 260.0000);
+  --muted-foreground: oklch(0.6500 0.0200 260.0000);
+  --accent: oklch(0.2200 0.0150 270.0000);
+  --accent-foreground: oklch(0.8800 0.0150 260.0000);
+  --destructive: oklch(0.6500 0.2500 25.0000);
+  --destructive-foreground: oklch(0.9800 0.0050 260.0000);
+  --border: oklch(0.2500 0.0150 260.0000);
+  --input: oklch(0.2500 0.0150 260.0000);
+  --ring: oklch(0.7000 0.2500 280.0000);
+  
+  /* Цвета для графиков в темной теме */
+  --chart-1: oklch(0.7000 0.2500 280.0000);
+  --chart-2: oklch(0.6500 0.2800 285.0000);
+  --chart-3: oklch(0.6000 0.2600 290.0000);
+  --chart-4: oklch(0.5500 0.2200 295.0000);
+  --chart-5: oklch(0.5000 0.1800 300.0000);
+  
+  /* Семантические цвета для темной темы */
+  --color-background: var(--background);
+  --color-surface: var(--card);
+  --color-text: var(--foreground);
+  --color-text-secondary: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: oklch(0.7500 0.2800 285.0000);
+  --color-primary-active: oklch(0.6500 0.2200 275.0000);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: oklch(0.2500 0.0150 260.0000);
+  --color-secondary-active: oklch(0.3000 0.0200 260.0000);
+  --color-border: var(--border);
+  --color-btn-primary-text: var(--primary-foreground);
+  --color-card-border: var(--border);
+  --color-card-border-inner: var(--border);
+  --color-error: var(--destructive);
+  --color-success: oklch(0.6000 0.2000 150.0000);
+  --color-warning: oklch(0.7000 0.2000 60.0000);
+  --color-info: oklch(0.6500 0.1800 220.0000);
+  --color-focus-ring: oklch(0.7000 0.2500 280.0000 / 0.3);
+  --color-purple-500: oklch(0.6500 0.2500 300.0000);
+  
+  /* Фоновые цвета для темной темы */
+  --color-bg-1: oklch(0.1400 0.0100 260.0000);
+  --color-bg-2: oklch(0.1600 0.0120 270.0000);
+  --color-bg-3: oklch(0.1800 0.0150 280.0000);
+  --color-bg-4: oklch(0.1600 0.0200 290.0000);
+  --color-bg-5: oklch(0.1700 0.0180 300.0000);
+  --color-bg-6: oklch(0.1500 0.0100 250.0000);
+  --color-bg-7: oklch(0.2000 0.0300 280.0000);
+  --color-bg-8: oklch(0.1900 0.0250 285.0000);
+}
+
+.dark-theme .header, 
+.dark-theme .nav {
+  background-color: rgba(20, 20, 25, 0.9);
+  backdrop-filter: blur(20px);
+}
+
+.dark-theme .stat-card {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-1) 100%);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .stat-card::before {
+  background: linear-gradient(90deg, var(--color-primary), var(--chart-2), var(--chart-3));
+  opacity: 0.9;
+}
+
+.dark-theme .stat-card:hover {
+  background: linear-gradient(135deg, var(--color-bg-2) 0%, var(--color-bg-3) 100%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .quote-card {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-1) 100%);
+  border-left: 4px solid var(--color-primary);
+}
+
+.dark-theme .genai-section {
+  background: linear-gradient(135deg, var(--color-bg-4) 0%, var(--color-bg-5) 100%);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark theme section backgrounds */
+.dark-theme #blockchain-ai {
+  background: var(--color-bg-1);
+}
+
+.dark-theme #introduction {
+  background: var(--color-bg-2);
+}
+
+.dark-theme #web3-governance {
+  background: var(--color-bg-3);
+}
+
+.dark-theme #cases {
+  background: var(--color-bg-4);
+}
+
+.dark-theme #digital-identity {
+  background: var(--color-bg-5);
+}
+
+.dark-theme #experts {
+  background: var(--color-bg-6);
+}
+
+.dark-theme #dao {
+  background: var(--color-bg-7);
+}
+
+.dark-theme #trends {
+  background: var(--color-bg-8);
+}
+
+.dark-theme #challenges {
+  background: linear-gradient(135deg, var(--color-bg-2) 0%, oklch(0.2000 0.0400 20.0000) 100%);
+}
+
+.dark-theme #timeline {
+  background: linear-gradient(135deg, var(--color-bg-8) 0%, var(--color-bg-1) 100%);
+}
+
+.dark-theme .section--hero {
+  background: linear-gradient(135deg, oklch(0.1000 0.0200 280.0000) 0%, oklch(0.1500 0.0300 260.0000) 100%);
 }

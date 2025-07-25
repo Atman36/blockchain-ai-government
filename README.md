@@ -19,9 +19,6 @@ This repository contains a bilingual (Russian / English) static website that e
 ├── app.js              — client‑side logic for localisation, charts and theme toggling
 ├── translations.json   — Russian/English localisation strings
 ├── govtech_data.json   — dataset for charts (can be extended)
-├── favicon.png         — site favicon
-├── current_content.md  — original content snapshot (for reference)
-├── research.md         — research notes integrated into the site
 └── README.md           — this file
 ```
 

@@ -98,12 +98,12 @@
                             <p data-key="statDubaiCorruption">сокращение коррупционных потерь при on-chain-закупках в Дубае</p>
                         </div>
                         <div class="stat-card">
-                            <h3>$7.6 млрд</h3>
-                            <p data-key="statUSAudit">экономия бюджета США от AI-аудита гос-закупок (FY 2024)</p>
+                            <h3 data-key="statUSAuditValue">$7.6B</h3>
+                            <p data-key="statUSAudit">US budget savings from AI audit of public procurement (FY 2024)</p>
                         </div>
                         <div class="stat-card">
-                            <h3>$1.5 млрд</h3>
-                            <p data-key="statDubaiSavings">экономии в Дубае ежегодно</p>
+                            <h3 data-key="statDubaiSavingsValue">$1.5B</h3>
+                            <p data-key="statDubaiSavings">in annual savings in Dubai</p>
                         </div>
                         <div class="stat-card">
                             <h3>15.8%</h3>
@@ -528,7 +528,21 @@
 
                 </div>
 
+                <!-- GenAI Trend Section -->
+                <div class="genai-section">
+                    <h3 data-key="genAISectionTitle">GenAI: новый инструментарий госуслуг</h3>
+                    <p data-key="genAISectionText">Генеративные модели помогают государству переводить документы на 24 языка, заполнять формы
+                        за граждан и моделировать последствия законопроектов ещё до их принятия. Проект
+                        Digital Europe с бюджетом €21 млн для автоматизации документооборота и симуляции политики с использованием GenAI уже показывает значительные результаты в мультиязычном доступе к госуслугам. в ЕС, США и Сингапуре показывают сокращение времени обработки запросов граждан до 90%.</p>
+                    <ul class="genai-highlights">
+                        <li data-key="genAIHighlight1">🇪🇺 EU Digital Europe: чат-агенты на 24 языках</li>
+                        <li data-key="genAIHighlight2">🇸🇬 Сингапур Smart Nation: GenAI HelpBot в службе поддержки</li>
+                        <li data-key="genAIHighlight3">🇺🇸 Raleigh Smart City: AI-агенты сервис-десков 24/7</li>
+                    </ul>
+                </div>
+
             </div>
+        </section>
 
         <!-- Digital Identity & Elections Section -->
         <section id="digital-identity" class="section">
@@ -635,18 +649,6 @@
                 </div>
             </section>
 
-            <!-- GenAI Trend Section -->
-            <div class="genai-section container">
-                <h3 data-key="genAISectionTitle">GenAI: новый инструментарий госуслуг</h3>
-                <p data-key="genAISectionText">Генеративные модели помогают государству переводить документы на 24 языка, заполнять формы
-                    за граждан и моделировать последствия законопроектов ещё до их принятия. Проект
-                    Digital Europe с бюджетом €21 млн для автоматизации документооборота и симуляции политики с использованием GenAI уже показывает значительные результаты в мультиязычном доступе к госуслугам. в ЕС, США и Сингапуре показывают сокращение времени обработки запросов граждан до 90%.</p>
-                <ul class="genai-highlights">
-                    <li data-key="genAIHighlight1">🇪🇺 EU Digital Europe: чат-агенты на 24 языках</li>
-                    <li data-key="genAIHighlight2">🇸🇬 Сингапур Smart Nation: GenAI HelpBot в службе поддержки</li>
-                    <li data-key="genAIHighlight3">🇺🇸 Raleigh Smart City: AI-агенты сервис-десков 24/7</li>
-                </ul>
-            </div>
 
             <!-- Technology Adoption Comparison Section -->
             <section id="tech-adoption" class="section section--alternate">
@@ -1127,55 +1129,81 @@
                     <div class="regulatory-grid">
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3 data-key="regEUAIActTitle">EU AI Act (2024)</h3>
-                                <p data-key="regEUAIActText">Вводит категорию «высокого риска» для AI-систем в госуслугах, требуя аудита и
-                                    прозрачности.</p>
-                                <span class="regulatory-tag status-active" data-key="regEUAIActStatus">В силе</span>
+                                <h3 data-key="regEUAIActTitle">EU AI Act</h3>
+                                <p data-key="regEUAIActText">Многоэтапное внедрение: с 02.02.2025 запрещены «неприемлемые» ИИ-практики; с 02.08.2025 вводятся требования к GPAI-моделям (прозрачность, техдокументация).</p>
+                                <span class="regulatory-tag status-active" data-key="regEUAIActStatus">Часть норм уже действует; следующие — 02.08.2025</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3 data-key="regISO42001Title">ISO/IEC 42001 (2025)</h3>
-                                <p data-key="regISO42001Text">Обязательная система менеджмента ИИ для всех IT-подрядчиков правительств стран ЕС.
-                                </p>
-                                <span class="regulatory-tag status-pending" data-key="regISO42001Status">Ожидается</span>
+                                <h3 data-key="regISO42001Title">ISO/IEC 42001:2023</h3>
+                                <p data-key="regISO42001Text">Добровольный, но фактический «золотой стандарт» AI-менеджмента; ожидается, что гос-заказчики ЕС с 2025 г. будут требовать сертификацию от IT-подрядчиков.</p>
+                                <span class="regulatory-tag status-pending" data-key="regISO42001Status">Ожидается включение в тендеры ЕС</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3 data-key="regISO307Title">ISO TC-307 Update (2025)</h3>
-                                <p data-key="regISO307Text">Добавляет новый блок требований к «Smart governance», включая стандарты для DAO и
-                                    оракулов.</p>
-                                <span class="regulatory-tag status-pending" data-key="regISO307Status">Ожидается</span>
+                                <h3 data-key="regISO307Title">ISO TC-307 (Blockchain) — обновление «Smart Governance»</h3>
+                                <p data-key="regISO307Text">Планируемое расширение стандарта: требования к DAO, oracle-сервисам и управлению децентрализованными реестрами; обсуждение на пленарной неделе ISO TC-307 в апреле 2025 г.</p>
+                                <span class="regulatory-tag status-pending" data-key="regISO307Status">В рассмотрении, публикация — конец 2025</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
                                 <h3 data-key="regUSCreateAITitle">US CREATE AI Act</h3>
-                                <p data-key="regUSCreateAIText">Открывает и лицензирует федеральные датасеты для обучения AI, стимулируя стартапы.
-                                </p>
+                                <p data-key="regUSCreateAIText">Предусматривает открытие и лицензирование федеральных датасетов для обучения ИИ, что снижает барьеры для стартапов. Принят в 2024 г., активные грантовые программы в 2025 г.</p>
                                 <span class="regulatory-tag status-active" data-key="regUSCreateAIStatus">В силе</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
-                                <h3 data-key="regAPACStablecoinTitle">APAC Stablecoin Guidelines</h3>
-                                <p data-key="regAPACStablecoinText">Устанавливает дополнительные KYC/AML-требования к муниципальным и государственным
-                                    крипто-кошелькам.</p>
-                                <span class="regulatory-tag status-pending" data-key="regAPACStablecoinStatus">В разработке</span>
+                                <h3 data-key="regAPACStablecoinTitle">APAC Stablecoin Ordinances</h3>
+                                <p data-key="regAPACStablecoinText">Гонконг вводит лицензионный режим и AML-требования для эмитентов c 01.08.2025; аналогичные инициативы разрабатываются в Сингапуре и Японии.</p>
+                                <span class="regulatory-tag status-pending" data-key="regAPACStablecoinStatus">Внедрение с авг 2025</span>
                             </div>
                         </div>
 
                         <div class="regulatory-card card">
                             <div class="card__body">
                                 <h3 data-key="regGlobalSandboxesTitle">Global Crypto Sandboxes</h3>
-                                <p data-key="regGlobalSandboxesText">Более 30 юрисдикций расширили правовые «песочницы» для безопасного тестирования
-                                    gov-dApps.</p>
-                                <span class="regulatory-tag status-active" data-key="regGlobalSandboxesStatus">Действует</span>
+                                <p data-key="regGlobalSandboxesText">Более 30 юрисдикций (ЕС, UK, UAE и др.) расширили регуляторные «песочницы» для тестирования gov-dApp-сервисов и токенизации госсекьюритизов.</p>
+                                <span class="regulatory-tag status-active" data-key="regGlobalSandboxesStatus">Активны</span>
+                            </div>
+                        </div>
+
+                        <div class="regulatory-card card">
+                            <div class="card__body">
+                                <h3 data-key="regMiCATitle">MiCA + Travel Rule</h3>
+                                <p data-key="regMiCAText">С 2025 г. ЕС требует регистрации CASP и передачу данных отправителя/получателя для всех криптопереводов, усиливая KYC/AML-нагрузку.</p>
+                                <span class="regulatory-tag status-active" data-key="regMiCAStatus">В силе</span>
+                            </div>
+                        </div>
+
+                        <div class="regulatory-card card">
+                            <div class="card__body">
+                                <h3 data-key="regGDPRTitle">GDPR vs Блокчейн</h3>
+                                <p data-key="regGDPRText">Новые гайдлайны EDPB (апрель 2025) подчёркивают необходимость off-chain-хранения персональных данных и использования ZK-proof для права на удаление.</p>
+                                <span class="regulatory-tag status-active" data-key="regGDPRStatus">Рекомендации опубликованы</span>
+                            </div>
+                        </div>
+
+                        <div class="regulatory-card card">
+                            <div class="card__body">
+                                <h3 data-key="regDAOTitle">Правовой статус DAO</h3>
+                                <p data-key="regDAOText">Специализированные формы (Wyoming DAO LLC и аналоги в UT, TN) закрепились; дискуссия о совместимости с MiCA/ISO TC-307 идёт в ЕС и Австралии.</p>
+                                <span class="regulatory-tag status-active" data-key="regDAOStatus">Применяются в нескольких штатах США</span>
+                            </div>
+                        </div>
+
+                        <div class="regulatory-card card">
+                            <div class="card__body">
+                                <h3 data-key="regZKTitle">ZK-Proof Off-Chain Records</h3>
+                                <p data-key="regZKText">Практика внедрения ZK-доказательств для проверки данных вне цепочки набирает обороты как компромисс между прозрачностью и конфиденциальностью.</p>
+                                <span class="regulatory-tag status-active" data-key="regZKStatus">Расширяется в пилотах ЕС и UK</span>
                             </div>
                         </div>
                     </div>
@@ -1327,43 +1355,6 @@
             </section>
     </main>
 
-    <!-- Compliance Section -->
-    <section id="compliance" class="section">
-        <div class="container">
-            <h2 data-key="sectionComplianceTitle">Регуляторика и комплаенс</h2>
-            <div class="compliance-grid">
-                <div class="card">
-                    <div class="card__body">
-                        <h3 data-key="complianceCard1Title">EU AI Act & MiCA</h3>
-                        <p data-key="complianceCard1Text">Законодательные рамки ЕС для регулирования искусственного интеллекта и крипто-активов.
-                            Устанавливают требования к прозрачности, безопасности и управлению рисками.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__body">
-                        <h3 data-key="complianceCard2Title">GDPR vs Immutable Ledger</h3>
-                        <p data-key="complianceCard2Text">Ключевой вызов: как совместить «право на забвение» (GDPR) с неизменяемостью данных в
-                            блокчейне. Решения включают off-chain хранение и использование ZK-доказательств.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__body">
-                        <h3 data-key="complianceCard3Title">Юридические рамки для DAO</h3>
-                        <p data-key="complianceCard3Text">Появление специальных правовых форм, таких как Wyoming DAO LLC в США, для интеграции
-                            децентрализованных организаций в существующую юридическую систему.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__body">
-                        <h3 data-key="complianceCard4Title">ZK-Proof Off-Chain Records</h3>
-                        <p data-key="complianceCard4Text">Zero-Knowledge доказательства позволяют подтверждать достоверность данных, хранящихся вне
-                            блокчейна, обеспечивая приватность и соблюдение GDPR при неизменности реестра.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Knowledge Base Section -->
     <section id="knowledge" class="section">
         <div class="container">
@@ -1388,11 +1379,19 @@
                 <div class="knowledge-category">
                     <h3 data-key="knowledgeCat2Title">Нормативная база</h3>
                     <div class="knowledge-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link1">EU AI Act (Official Journal, May 2024)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link2">ISO/IEC 42001 & ISO TC-307 (Drafts
-                            2025)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link3">DLA Piper «Digital Assets Regulation
-                            Review» (June 2025)</a>
+                        <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link1">EU AI Act (Regulation 2021/0106)</a>
+                        <a href="https://www.iso.org/standard/80347.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link2">ISO/IEC 42001:2023</a>
+                        <a href="https://www.iso.org/committee/6794475.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link3">ISO TC 307 (Blockchain and distributed ledger technologies)</a>
+                        <a href="https://www.congress.gov/bill/117th-congress/senate-bill/1489" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link4">US CREATE AI Act (Congress.gov)</a>
+                        <a href="https://www.sfc.hk/en/Regulatory-functions/Policy-Research/Consultation-papers" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link5">Hong Kong SFC Stablecoin Consultation</a>
+                        <a href="https://www.mas.gov.sg/regulation/explainers/crypto-assets" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link6">Monetary Authority of Singapore – Crypto Asset Regulations</a>
+                        <a href="https://www.fsa.go.jp/en/policy/virtual_currency/index.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link7">Japan Financial Services Agency – Virtual Currency Regulations</a>
+                        <a href="https://www.fca.org.uk/firms/innovation/regulatory-sandbox" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link8">FCA Regulatory Sandbox (UK)</a>
+                        <a href="https://sandboxnetwork.org" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link9">Global Sandbox Network</a>
+                        <a href="https://eur-lex.europa.eu/eli/reg/2023/1114/oj" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link10">MiCA Regulation (EU 2023/1114)</a>
+                        <a href="https://www.fatf-gafi.org/publications/fatfrecommendations/documents/travel-rule.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link11">FATF Recommendation 16 ("Travel Rule")</a>
+                        <a href="https://edpb.europa.eu/our-work-tools/our-documents/guidelines_en" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link12">EDPB Guidelines on Blockchain and GDPR</a>
+                        <a href="https://sos.wyo.gov/Business/Docs/DAO-LLC-FAQ.pdf" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link13">Wyoming DAO LLC FAQs</a>
                     </div>
                 </div>
                 <div class="knowledge-category">
