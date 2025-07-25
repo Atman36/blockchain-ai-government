@@ -768,18 +768,21 @@ select.form-control {
   box-shadow: var(--shadow-sm);
 }
 
+/* Navigation list: prevent wrapping and reduce gaps for compactness */
 .nav-list {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
   overflow-x: auto;
-  gap: var(--space-8);
+  flex-wrap: nowrap; /* prevent items from wrapping onto a second line */
+  gap: var(--space-3); /* slightly tighter spacing */
 }
 
+/* Navigation links: slightly reduce padding for compactness and keep single-line */
 .nav-link {
   display: block;
-  padding: var(--space-16) var(--space-20);
+  padding: 10px 14px;
   text-decoration: none;
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-medium);
@@ -1823,6 +1826,60 @@ body.no-scroll {
   border: 1px solid var(--color-border);
 }
 
+/* Wrapper for DAO treasury and governance blocks */
+.dao-section-wrapper {
+  margin-top: var(--space-48);
+}
+
+/* DAO treasury and governance sections: constrain width and style like cards */
+.dao-treasury-section,
+.dao-governance-section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  margin-bottom: var(--space-48);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Headings inside DAO sections */
+.dao-treasury-section h3,
+.dao-governance-section h3 {
+  text-align: center;
+  margin-bottom: var(--space-24);
+  font-size: var(--font-size-2xl);
+  color: var(--color-text);
+}
+
+/* Gov-as-a-Service section */
+.gov-service-section {
+  margin-top: var(--space-48);
+  background-color: var(--color-bg-3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  border: 1px solid var(--color-border);
+}
+
+.gov-service-section h3 {
+  margin-bottom: var(--space-16);
+  text-align: center;
+  font-size: var(--font-size-2xl);
+  color: var(--color-text);
+}
+
+.gov-service-section p {
+  margin-bottom: var(--space-16);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.gov-service-list {
+  padding-left: var(--space-24);
+  list-style-type: disc;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
 .dao-governance-section h3 {
   margin-bottom: var(--space-24);
   text-align: center;
@@ -2355,6 +2412,64 @@ body.no-scroll {
     align-items: center;
     gap: 4px;
     margin-left: 16px;
+}
+
+/* Theme switcher styles */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+
+#themeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  padding: 6px 10px;
+  line-height: 1;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+  border-radius: var(--radius-base);
+}
+
+#themeToggle:hover {
+  color: var(--color-primary);
+  transform: rotate(20deg);
+}
+
+/* Verifiable AI diagram styles */
+.verifiable-ai-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-16) 0;
+}
+
+.diagram-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.diagram-box {
+  padding: var(--space-12) var(--space-16);
+  background-color: var(--color-bg-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  min-width: 120px;
+}
+
+.diagram-arrow {
+  font-size: var(--font-size-4xl);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  user-select: none;
 }
 
 .lang-btn {

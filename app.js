@@ -13,14 +13,22 @@ window.externalData = null;
 document.addEventListener('DOMContentLoaded', async function () {
     // 1. Загружаем переводы в первую очередь
     try {
-        const response = await fetch('translations.json');
+        // Compute the absolute URL to translations.json relative to the current page.
+        // This fixes issues when loading from file:// or nested paths where a simple
+        // relative fetch may fail. Using new URL ensures the correct resolution
+        // whether the page is served over HTTP or opened directly from disk.
+        const translationsUrl = new URL('translations.json', window.location.href).href;
+        const response = await fetch(translationsUrl);
         // Для локальных файлов response.status может быть 0. Вместо использования response.json(),
         // считываем как текст и парсим вручную, чтобы избежать ошибок при status 0.
         const text = await response.text();
         window.translations = JSON.parse(text);
     } catch (error) {
         console.error('Fatal Error: Could not load translations.json.', error);
-        document.body.innerHTML = '<h1 style="text-align: center; margin-top: 50px; color: red;">Error loading page content.</h1>';
+        // If translations cannot be loaded (e.g. due to file protocol restrictions),
+        // present a simple error message. Encourage users to run a local server.
+        document.body.innerHTML = '<h1 style="text-align: center; margin-top: 50px; color: red;">Error loading page content.</h1>' +
+            '<p style="text-align: center; color: #b00020; font-size: 14px;">Failed to load translations. Try running a local server (e.g. python3 -m http.server) or open via HTTPS.</p>';
         return;
     }
 
@@ -34,7 +42,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // 4. Загружаем данные для графиков
     try {
-        const response = await fetch('govtech_data.json');
+        // Similarly compute the URL for govtech_data.json to avoid errors on file:// protocol.
+        const govtechUrl = new URL('govtech_data.json', window.location.href).href;
+        const response = await fetch(govtechUrl);
         const text = await response.text();
         // Если файл не найден или пустой, парсинг может выбросить ошибку – отлавливаем её в catch.
         window.externalData = JSON.parse(text);
@@ -308,8 +318,14 @@ function showChartFallbacks() {
         if (canvas) {
             canvas.style.display = 'none';
         }
-        
-        const fallback = container.querySelector('.chart-fallback');
+
+        // Try to find a fallback table: it might be a sibling of the container or
+        // nested elsewhere in the parent section. First check the next sibling.
+        let fallback = container.nextElementSibling;
+        if (!(fallback && fallback.classList && fallback.classList.contains('chart-fallback'))) {
+            // If not a direct sibling, search within the parent section
+            fallback = container.parentElement.querySelector('.chart-fallback');
+        }
         if (fallback) {
             fallback.style.display = 'block';
             fallback.style.visibility = 'visible';
@@ -385,26 +401,46 @@ function populateFallbackTables() {
     }
 
     // Заполняем таблицу daoTreasury
-    const daoTable = document.querySelector('#daoTreasury + .chart-fallback tbody');
-    if (daoTable) {
+    (function() {
+        const daoCanvas = document.getElementById('daoTreasury');
+        if (!daoCanvas) return;
+        // Находим таблицу-фоллбэк, используя ближайшую секцию или соседа
+        let daoSection = daoCanvas.closest('.dao-treasury-section');
+        let daoTable;
+        if (daoSection) {
+            const fallbackDiv = daoSection.querySelector('.chart-fallback');
+            if (fallbackDiv) {
+                daoTable = fallbackDiv.querySelector('tbody');
+            }
+        }
+        // Резервный поиск: ищем первый фоллбэк после контейнера канваса
+        if (!daoTable) {
+            const containerDiv = daoCanvas.parentElement;
+            let next = containerDiv.nextElementSibling;
+            while (next && !next.classList.contains('chart-fallback')) {
+                next = next.nextElementSibling;
+            }
+            if (next) {
+                daoTable = next.querySelector('tbody');
+            }
+        }
+        if (!daoTable) return;
         const daoData = {
             labels: [translations.daoTreasuryChartLabelTop100, translations.daoTreasuryChartLabelOther],
             values: [18700, 22000]
         };
-        daoTable.innerHTML = ''; // Очищаем перед заполнением
-
+        daoTable.innerHTML = '';
         daoData.labels.forEach((label, index) => {
-             const row = document.createElement('tr');
-             // Единица измерения для DAO казны: миллионы или миллионы в английском обозначены как M
-             const daoUnit = window.currentLanguage === 'ru' ? 'млн' : 'M';
-             const valueFormatted = `${daoData.values[index]}\u00A0${daoUnit}\u00A0$`;
-             row.innerHTML = `
+            const row = document.createElement('tr');
+            const daoUnit = window.currentLanguage === 'ru' ? 'млн' : 'M';
+            const valueFormatted = `${daoData.values[index]}\u00A0${daoUnit}\u00A0$`;
+            row.innerHTML = `
                 <td>${label}</td>
                 <td>${valueFormatted}</td>
-             `;
-             daoTable.appendChild(row);
+            `;
+            daoTable.appendChild(row);
         });
-    }
+    })();
 }
 
 function getChartColors() {
@@ -422,14 +458,42 @@ function getChartColors() {
 }
 
 function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(prefersDark ? 'dark' : 'light');
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    applyTheme(initialTheme);
+    updateThemeIcon(initialTheme);
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        const newTheme = e.matches ? 'dark' : 'light';
-        applyTheme(newTheme);
-        setTimeout(() => updateChartsTheme(), 100);
-    });
+    // Handle user click to toggle theme
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-color-scheme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            updateChartsTheme();
+        });
+    }
+
+    // Listen to system preference changes only when user hasn't chosen a theme
+    if (!savedTheme) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            const newTheme = e.matches ? 'dark' : 'light';
+            applyTheme(newTheme);
+            updateThemeIcon(newTheme);
+            setTimeout(() => updateChartsTheme(), 100);
+        });
+    }
+}
+
+// Update the icon on the theme toggle button based on the current theme
+function updateThemeIcon(theme) {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    // Use a sun icon for light mode and a moon icon for dark mode
+    btn.textContent = theme === 'dark' ? '🌙' : '☀️';
 }
 
 function applyTheme(theme) {

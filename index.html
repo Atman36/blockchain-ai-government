@@ -7,6 +7,8 @@
     <title data-key="pageTitle">Блокчейн и ИИ: будущее государственного управления</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
 </head>
 
 <body class="light-theme">
@@ -21,21 +23,25 @@
                 <!-- FIX: Десктопная навигация дополнена всеми разделами -->
                 <nav class="nav">
                     <ul class="nav-list">
+                        <!-- Desktop navigation: limit to 8 compact items -->
                         <li><a href="#home" class="nav-link active" data-key="navHome">Главная</a></li>
-                        <li><a href="#blockchain-ai" class="nav-link" data-key="navBlockchainAI">Блокчейн и ИИ</a></li>
-                        <li><a href="#web3-governance" class="nav-link" data-key="navWeb3">Web 3.0</a></li>
-                        <li><a href="#cases" class="nav-link" data-key="navCases">Кейсы</a></li>
-                        <li><a href="#trends" class="nav-link" data-key="navTrends">Тренды</a></li>
-                        <li><a href="#dao" class="nav-link" data-key="navDAO">DAO</a></li>
+                        <li><a href="#blockchain-ai" class="nav-link" data-key="navBlockchainAI">Технологии</a></li>
+                        <li><a href="#cases" class="nav-link" data-key="navCases">Внедрение</a></li>
+                        <li><a href="#dao" class="nav-link" data-key="navDAO">DAO и управление</a></li>
                         <li><a href="#experts" class="nav-link" data-key="navExperts">Цитаты</a></li>
-                        <!-- Убраны пункты вызовов, регуляторики, сроков и источников -->
-                        <li><a href="#conclusion" class="nav-link" data-key="navConclusion">Заключение</a></li>
+                        <li><a href="#trends" class="nav-link" data-key="navTrends">Тренды</a></li>
+                        <li><a href="#challenges" class="nav-link" data-key="navChallenges">Вызовы</a></li>
+                        <li><a href="#knowledge" class="nav-link" data-key="navKnowledge">Источники</a></li>
                     </ul>
                 </nav>
                 <div class="lang-switcher">
                     <button class="lang-btn" data-lang="ru">RU</button>
                     <span>/</span>
                     <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <!-- Theme toggle button; displays sun for light theme and moon for dark theme -->
+                <div class="theme-switcher">
+                    <button id="themeToggle" aria-label="Toggle color theme">🌙</button>
                 </div>
                 <!-- Hamburger menu for mobile -->
                 <div class="hamburger-menu" id="hamburgerMenu">
@@ -55,14 +61,13 @@
         <button class="mobile-nav-close" id="mobileNavClose" aria-label="Закрыть меню">&times;</button>
         <ul class="mobile-nav-list">
             <li><a href="#home" class="mobile-nav-link active" data-key="navHome">Главная</a></li>
-            <li><a href="#blockchain-ai" class="mobile-nav-link" data-key="navBlockchainAI">Блокчейн и ИИ</a></li>
-            <li><a href="#web3-governance" class="mobile-nav-link" data-key="navWeb3">Web 3.0</a></li>
-            <li><a href="#cases" class="mobile-nav-link" data-key="navCases">Кейсы</a></li>
-            <li><a href="#trends" class="mobile-nav-link" data-key="navTrends">Тренды</a></li>
+            <li><a href="#blockchain-ai" class="mobile-nav-link" data-key="navBlockchainAI">Технологии</a></li>
+            <li><a href="#cases" class="mobile-nav-link" data-key="navCases">Внедрение</a></li>
             <li><a href="#dao" class="mobile-nav-link" data-key="navDAO">DAO</a></li>
             <li><a href="#experts" class="mobile-nav-link" data-key="navExperts">Цитаты</a></li>
-            <!-- Убраны пункты вызовов, регуляторики, сроков и источников -->
-            <li><a href="#conclusion" class="mobile-nav-link" data-key="navConclusion">Заключение</a></li>
+            <li><a href="#trends" class="mobile-nav-link" data-key="navTrends">Тренды</a></li>
+            <li><a href="#challenges" class="mobile-nav-link" data-key="navChallenges">Вызовы</a></li>
+            <li><a href="#knowledge" class="mobile-nav-link" data-key="navKnowledge">Источники</a></li>
         </ul>
     </div>
 
@@ -525,6 +530,62 @@
 
             </div>
 
+        <!-- Digital Identity & Elections Section -->
+        <section id="digital-identity" class="section">
+            <div class="container">
+                <h2 data-key="sectionDigitalIdentityTitle">Цифровая идентичность и выборы</h2>
+                <p class="section-intro" data-key="digitalIdentityIntro">Децентрализованные ID и блокчейн‑системы выборов создают прозрачную и безопасную инфраструктуру для граждан.</p>
+                <div class="web3-grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="digitalIdentityCard1Title">Цифровая идентичность</h3>
+                            <p data-key="digitalIdentityCard1Text">Эстония обеспечивает 99% жителей e‑ID, позволяя голосовать, платить налоги и получать услуги. Индия выдала 1,38 млрд Aadhaar‑идентификаторов, а проекты Worldcoin используют биометрию и SMPC для доказательства «personhood».</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="digitalIdentityCard2Title">Реестры и активы</h3>
+                            <p data-key="digitalIdentityCard2Text">Калифорнийский департамент транспорта перевёл 42 млн автомобильных титулов на блокчейн, а Грузия ведёт реестр земель для борьбы с коррупцией. Балтимор отслеживает заброшенные дома, а кадастровые реестры хранятся в распределённом формате.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="digitalIdentityCard3Title">Выборы и голосование</h3>
+                            <p data-key="digitalIdentityCard3Text">Голосование через блокчейн тестировалось в Западной Виргинии для военных избирателей, а в Сьерра‑Леоне и Румынии блокчейн уже используется для прозрачной отчётности. Эти проекты показывают, как технология повышает доверие и уменьшает мошенничество.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI in Government & Ethics Section -->
+        <section id="ai-ethics" class="section section--alternate">
+            <div class="container">
+                <h2 data-key="sectionAIandEthicsTitle">ИИ в государстве и этика</h2>
+                <p class="section-intro" data-key="aiEthicsIntro">Государственный сектор ускоряет внедрение ИИ, но требует прозрачности, справедливости и надзора.</p>
+                <div class="web3-grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="aiEthicsCard1Title">Применение и экономия</h3>
+                            <p data-key="aiEthicsCard1Text">В 2024 году федеральные агентства США сообщили о 1 700+ случаях применения ИИ для закупок, налогов, медицины и соцпособий. Казначейство США предотвратило более $4 млрд потерь, а налоговые службы 65% стран используют ИИ для обнаружения мошенничества.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="aiEthicsCard2Title">Законодательство и регулирование</h3>
+                            <p data-key="aiEthicsCard2Text">Канада ввела Directive on Automated Decision‑Making, требующую классификации рисков и участия человека. Финляндия тестирует генеративный ИИ для драфта законов, а Великобритания открыла регуляторную «песочницу» для AI‑сервисов.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="aiEthicsCard3Title">Этика и доверие</h3>
+                            <p data-key="aiEthicsCard3Text">Главные вопросы — конфиденциальность данных, отсутствие дискриминации и законные рамки. OECD рекомендует обеспечивать прозрачность и подотчётность, а международные примеры, включая скандал со шведским welfare‑ИИ, подчеркивают необходимость аудита и объяснимости.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
             <section id="trends" class="section">
                 <div class="container">
                     <h2 data-key="sectionTrendsTitle">Тренды 2025-2030</h2>
@@ -717,12 +778,23 @@
                                     </div>
 
                                     <div class="flow-diagram">
-                                        <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8c3R5bGU+CiAgICAubm9kZSB7IGZpbGw6ICM0ZGFiZjc7IHN0cm9rZTogIzMzOWFmMDsgc3Ryb2tlLXdpZHRoOiAycHg7IH0KICAgIC5hcnJvdyB7IGZpbGw6IG5vbmU7IHN0cm9rZTogIzMzOWFmMDsgc3Ryb2tlLXdpZHRoOiAycHg7IH0KICAgIC50ZXh0IHsgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGZpbGw6ICMzMzM7IH0KICAgIC5ub2RlLXRleHQgeyBmb250LXNpemU6IDEycHg7IGZpbGw6ICNmZmY7IHRleHQtYW5jaG9yOiBtaWRkbGU7IH0KICA8L3N0eWxlPgogIAogIDwhLS0gTm9kZXMgLS0+CiAgPHJlY3QgY2xhc3M9Im5vZGUiIHg9IjUwIiB5PSI1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcng9IjUiIC8+CiAgPHRleHQgY2xhc3M9Im5vZGUtdGV4dCIgeD0iMTAwIiB5PSI3NSI+0JTQsNGC0LDRgdC10YIg0LPQvtGB0YPRgdC70YPQs9C4PC90ZXh0PgogIAogIDxyZWN0IGNsYXNzPSJub2RlIiB4PSI1MCIgeT0iMTUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiByeD0iNSIgLz4KICA8dGV4dCBjbGFzcz0ibm9kZS10ZXh0IiB4PSIxMDAiIHk9IjE3NSI+TUwt0LzQvtC00LXQu9GMPC90ZXh0PgogIAogIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjMwIiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjIwMCIgeT0iMTU1Ij56ay1Qcm9vZjwvdGV4dD4KICAKICA8cmVjdCBjbGFzcz0ibm9kZSIgeD0iMzAwIiB5PSIxNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHJ4PSI1IiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjM1MCIgeT0iMTc1Ij7QkdC70L7QutGH0LXQudC9LdGA0LXQtdGB0YLRgDwvdGV4dD4KICAKICA8cmVjdCBjbGFzcz0ibm9kZSIgeD0iMzAwIiB5PSIyNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHJ4PSI1IiAvPgogIDx0ZXh0IGNsYXNzPSJub2RlLXRleHQiIHg9IjM1MCIgeT0iMjc1Ij7Qk9C+0YEt0L/QvtGA0YLQsNC7PC90ZXh0PgogIAogIDxyZWN0IGNsYXNzPSJub2RlIiB4PSI0MDAiIHk9IjE1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIgcng9IjUiIC8+CiAgPHRleHQgY2xhc3M9Im5vZGUtdGV4dCIgeD0iNDUwIiB5PSIxNzUiPtCT0YDQsNC20LTQsNC90LjQvTwvdGV4dD4KICAKICA8IS0tIEFycm93cyAtLT4KICA8cGF0aCBjbGFzcz0iYXJyb3ciIGQ9Ik0xMDAgOTAgTCAxMDAgMTUwIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CiAgPHBhdGggY2xhc3M9ImFycm93IiBkPSJNMTUwIDE1MCBMIDE3MCAxNTAiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KICA8cGF0aCBjbGFzcz0iYXJyb3ciIGQ9Ik0yMzAgMTUwIEwgMzAwIDE1MCIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgogIDxwYXRoIGNsYXNzPSJhcnJvdyIgZD0iTTM1MCAxOTAgTCAzNTAgMjUwIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CiAgPHBhdGggY2xhc3M9ImFycm93IiBkPSJNNDAwIDE1MCBMIDQwMCAxNTAiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KICAKICA8IS0tIEFycm93aGVhZCBtYXJrZXIgLS0+CiAgPGRlZnM+CiAgICA8bWFya2VyIGlkPSJhcnJvd2hlYWQiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSI3IiByZWZYPSIwIiByZWZZPSIzLjUiIG9yaWVudD0iYXV0byI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwLCAxMCAzLjUsIDAgNyIgZmlsbD0iIzMzOWFmMCIgLz4KICAgIDwvbWFya2VyPgogIDwvZGVmcz4KPC9zdmc+"
-                                            alt="Схема работы Verifiable AI" width="100%">
-                                        <p class="diagram-caption" data-key="verifiableAIDiagramCaption">Схема работы Verifiable AI в государственных сервисах
-                                        </p>
+                                        <!-- New diagram: replaced complex SVG with a simple flowchart composed of boxes and arrows -->
+                                        <div class="verifiable-ai-diagram">
+                                            <div class="diagram-row">
+                                                <div class="diagram-box" data-key="diagramNode1">Данные</div>
+                                                <div class="diagram-arrow">→</div>
+                                                <div class="diagram-box" data-key="diagramNode2">AI‑модель</div>
+                                            </div>
+                                            <div class="diagram-row">
+                                                <div class="diagram-box" data-key="diagramNode3">zk‑доказательство</div>
+                                                <div class="diagram-arrow">→</div>
+                                                <div class="diagram-box" data-key="diagramNode4">Проверка</div>
+                                            </div>
+                                        </div>
+                                        <p class="diagram-caption" data-key="verifiableAIDiagramCaption">Схема работы Verifiable AI в государственных сервисах</p>
+                                    </div>
 
-                                        <div class="verifiable-ai-quote">
+                                    <div class="verifiable-ai-quote">
                                             <blockquote data-key="verifiableAIQuote">
                                                 «Verifiable AI — это мост между мощью искусственного интеллекта и
                                                 необходимостью прозрачности в государственном управлении. Это не просто
@@ -738,8 +810,9 @@
                         </div>
                     </div>
 
-                    <!-- DAO Treasury Metrics Section -->
-                    <div class="dao-treasury-section">
+                    <!-- DAO Treasury Metrics and DAO Governance Sections -->
+                    <div class="container dao-section-wrapper">
+                        <div class="dao-treasury-section">
                         <h3 class="centered-subtitle" data-key="daoTreasuryTitle">Метрики DAO-казначейств</h3>
                         <div class="treasury-metrics">
                             <h4 data-key="daoTreasurySubtitle">Ключевые показатели (июль 2025)</h4>
@@ -772,31 +845,28 @@
                                 </table>
                             </div>
 
-                            <div class="chart-section">
-                                <h4 data-key="daoTreasuryChartTitle">Распределение средств в DAO-экосистеме, июль 2025</h4>
-                                <div class="chart-container">
-                                    <canvas id="daoTreasury"
-                                        aria-label="Распределение средств в DAO-экосистеме"></canvas>
-                                    <div class="chart-fallback">
-                                        <table class="data-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Категория</th>
-                                                    <th>Объем средств (млн $)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                 <!-- Содержимое будет заполнено из JS -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            <!-- DAO Treasury Chart and fallback table: simplified structure -->
+                            <h4 data-key="daoTreasuryChartTitle">Распределение средств в DAO-экосистеме, июль 2025</h4>
+                            <div class="chart-container">
+                                <canvas id="daoTreasury" aria-label="Распределение средств в DAO-экосистеме"></canvas>
+                            </div>
+                            <!-- Fallback table displayed on small screens or if JS is disabled -->
+                            <div class="chart-fallback">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-key="daoCategoryHeader">Категория</th>
+                                            <th data-key="daoAmountHeader">Объем средств (млн $)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <!-- Содержимое будет заполнено из JS -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- DAO в государственном управлении -->
-                    <div class="dao-governance-section">
+                        <!-- DAO в государственном управлении -->
+                        <div class="dao-governance-section">
                         <h3 data-key="daoGovTitle">DAO в государственном управлении: Новая эра цифровой демократии</h3>
                         <div class="dao-governance-content">
                             <p data-key="daoGovText">Децентрализованные автономные организации (DAO) — это структуры, управляемые
@@ -837,7 +907,19 @@
                                     следующий шаг в эволюции демократических процессов, делая их более прозрачными, инклюзивными и эффективными.</p>
                             </div>
                         </div>
-                    </div>
+                        </div> <!-- End dao-governance-section -->
+
+                        <!-- Gov-as-a-Service Section -->
+                        <div class="gov-service-section">
+                            <h3 data-key="govServiceTitle">Гибридные модели «Gov-as-a-Service»</h3>
+                            <p data-key="govServiceIntro">Короткий подраздел о том, как DAO-платформы, смарт-контракты и ИИ формируют муниципальные гос-сервисы: бюджетирование, закупки, голосования.</p>
+                            <ul class="gov-service-list">
+                                <li data-key="govServicePoint1">DAO-платформы + смарт-контракты + ИИ формируют муниципальные гос-сервисы: бюджетирование, закупки, голосования.</li>
+                                <li data-key="govServicePoint2">Это следующий шаг после описанных кейсов — показывает, как технологии объединяются в единую операционную модель государства будущего.</li>
+                            </ul>
+                        </div>
+
+                    </div> <!-- End dao-section-wrapper -->
 
                 </div>
             </section>
