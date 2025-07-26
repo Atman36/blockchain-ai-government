@@ -1,0 +1,23 @@
+# Ignored files
+.DS_Store
+.kiro/
+.vscode/
+agents/
+docs/
+system/
+templates/
+scripts/
+package.json
+core-config.yaml
+_template.prompt.md
+README_AI-Vibe-Prompts.md
+sources copy.md
+sources.md
+analiz.md
+current_content.md
+logic-implementation-summary.md
+final-updates-summary.md
+Logic.md
+regulatory-updates-summary.md
+theme-updates-summary.md
+color-scheme-plan.md

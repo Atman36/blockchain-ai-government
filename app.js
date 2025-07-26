@@ -71,6 +71,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         showChartFallbacks();
         populateFallbackTables();
     }, 200);
+
+    // 8. Инициализируем аккордеоны для скрываемых разделов
+    initAccordion();
 });
 
 
@@ -571,6 +574,23 @@ function initMobileMenu() {
             });
         }
     }
+}
+
+/**
+ * Инициализирует аккордеоны: при клике на заголовок переключает видимость содержимого.
+ */
+function initAccordion() {
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+        header.addEventListener('click', function () {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            const content = this.nextElementSibling;
+            if (content) {
+                content.hidden = expanded;
+            }
+        });
+    });
 }
 
 function initScrollAnimations() {

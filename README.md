@@ -1,70 +1,89 @@
-# GovTech 3.0 — Blockchain & AI for Public Administration
+# GovTech 3.0 — Blockchain & AI for Public Administration / Блокчейн и ИИ для государства
 
-This repository contains a bilingual (Russian / English) static website that explores how blockchain and artificial intelligence will transform public administration. It integrates up‑to‑date research on digital identity, blockchain voting, DAOs, AI regulation and ethics. The project follows a modern design system with responsive layouts, light/dark themes and a fully localised interface.
+## About / О проекте
 
-## ✨ Features
+This repository contains a single–page, bilingual website exploring how **blockchain**, **decentralised autonomous organisations (DAOs)** and **artificial intelligence** can reshape the institutions of government.  The content synthesises research on digital identity, tokenised voting, legal wrappers for DAOs, ethics and regulation of AI, and presents it in an accessible, scrollable narrative.
 
-- **Bilingual Content:** All sections support Russian and English. Use the language toggle in the header to switch.
-- **Modern Design:** Built with CSS custom properties, flexbox/grid layouts and a dark/light theme. A theme toggle in the header allows you to pick your preferred colour scheme.
-- **Research Integration:** New sections on digital identity & elections and AI in government & ethics summarise the latest research (Estonian e‑ID adoption, blockchain voting pilots, AI regulation, etc.).
-- **Improved Diagram:** The Verifiable AI diagram has been redesigned using semantic HTML and CSS for better readability and accessibility. Labels are translated via `translations.json`.
-- **Reduced Navigation:** Navigation has been streamlined to eight items: Home, Technologies, Implementation, DAO & Governance, AI & Ethics, Trends, Challenges and Sources.
-- **Responsive:** The layout adapts from mobile to desktop, with a collapsible hamburger menu on small screens.
+В этом репозитории лежит одностраничный двуязычный сайт, посвящённый тому, как **блокчейн**, **децентрализованные автономные организации (DAO)** и **искусственный интеллект** могут изменить институты государства.  Сайт обобщает исследования о цифровой идентификации, токенизированном голосовании, юридических оболочках для DAO, регулировании и этике ИИ и представляет их в удобном виде.
 
-## 📁 Project Structure
+### Key Features / Основные разделы
+
+* **Overview & Big Picture.**  An opening section asks whether DAOs and AI will replace the nation–state or augment it, summarising the drivers of change and why modern governance needs an upgrade.
+* **Harsh Reality of DAO & Problems vs. Solutions.**  An accordion summarises concentration of power, low participation and legal uncertainties in DAOs, paired with design strategies like democratic governance, legal wrappers, incentives and agile adjustments.
+* **AI Governance & Ethics.**  A dedicated section summarises the potential of AI for public services (automation, predictive analysis, better service delivery) and the associated risks (bias, opacity), with a call for verifiable AI and human oversight.
+* **Practical Applications in Government.**  Three columns map blockchain and AI use cases to the executive, legislative and judicial branches: self–sovereign identity, asset registries, voting and treasury management, verifiable AI for lawmaking, evidence management and smart courts.
+* **Roadmap & Recommendations.**  A roadmap lists actionable steps, such as passing DAO legislation, piloting blockchain identity, enforcing AI audits and investing in education, providing a to‑do list for policymakers.
+* **Bilingual & Theme toggle.**  All headings, paragraphs and list items have `data‑key` attributes.  The texts are defined in `translations.json` for Russian and English.  A language switch and a light/dark theme switch are in the header.
+* **Responsive design.**  Built mobile‑first, the layout uses CSS custom properties, flexbox and grid.  It adapts to screens from phones to wide desktops, with the navigation collapsing into a hamburger menu on small devices.
+* **Interactive charts.**  The site uses Chart.js to visualise adoption trends for blockchain, AI, digital services and government investments.  Data lives in `govtech_data.json` and can be extended.
+
+### Project Structure / Структура проекта
 
 ```
-├── index.html           — main HTML page (single‑page app)
-├── style.css           — styles following the design‑system guidelines
-├── app.js              — client‑side logic for localisation, charts and theme toggling
-├── translations.json   — Russian/English localisation strings
-├── govtech_data.json   — dataset for charts (can be extended)
-└── README.md           — this file
+├── index.html           — main HTML (single‑page application) / главный HTML файл (SPA)
+├── style.css            — styles following the design‑system guidelines / стили в соответствии с дизайн‑системой
+├── app.js               — client‑side logic: localisation, charts, theme toggles / клиентская логика
+├── translations.json    — localisation strings for RU and EN / переводы на русский и английский
+├── govtech_data.json    — dataset for charts / данные для диаграмм
+├── recommendations.md   — AI‑generated recommendations used for new sections / рекомендации
+└── README.md            — this document / этот файл
 ```
 
-## 🧑‍💻 Local Development
+### Running Locally / Локальный запуск
 
-No build step is required; everything runs in the browser. To preview locally:
-
-1. **Clone** the repository or copy the contents to your machine.
-2. **Start a local server**. You can use Python’s built‑in server:
+1. **Clone or download** this repository to your computer.
+2. **Start a local server**.  Do **not** open `index.html` directly with a `file://` URL, because browsers block `fetch()` on local files.  Instead run:
 
    ```bash
    python3 -m http.server 8000
    ```
 
-   or, if you have Node.js installed:
+   or, if Node.js is available:
 
    ```bash
    npx http-server -p 8000
    ```
 
-3. Open your browser at `http://localhost:8000/index.html`.
+3. **Open your browser** at <http://localhost:8000/index.html>.
 
-> **Note:** Opening `index.html` directly from the file system (using a `file://` URL) will not work because modern browsers restrict JavaScript `fetch()` calls for local files. Always use a local HTTP server or deploy the site to GitHub Pages.
+4. **Switch languages and theme** using the toggles in the header.  The content will update on the fly based on `translations.json`.
 
-The site will load translations from `translations.json` and dataset from `govtech_data.json`. If you add new translation keys, ensure they exist in both language objects.
+1. **Склонируйте или скачайте** репозиторий на свой компьютер.
+2. **Запустите локальный сервер**.  Не открывайте `index.html` напрямую через `file://`: браузеры блокируют `fetch()` для локальных файлов.  Вместо этого выполните:
 
-## 🚀 Deployment on GitHub Pages
+   ```bash
+   python3 -m http.server 8000
+   ```
 
-1. **Commit** all files to a repository on GitHub (e.g. `username/blockchain‑ai‑government`).
-2. In the repository settings, navigate to **Pages** and choose the branch (e.g. `main` or `gh‑pages`) and the root folder (`/`).
-3. Save—GitHub Pages will publish your site at `https://username.github.io/blockchain‑ai‑government/`.
+   либо при наличии Node.js:
 
-If you prefer a separate `gh‑pages` branch, you can create one and push the contents of this project there. GitHub Pages automatically detects an `index.html` in the branch root.
+   ```bash
+   npx http-server -p 8000
+   ```
 
-## 💡 Extending the Site
+3. **Откройте браузер** по адресу <http://localhost:8000/index.html>.
+4. **Переключайте язык и тему** с помощью переключателей в шапке.  Содержимое автоматически подгружается из `translations.json`.
 
-- **Adding Sections:** Follow the existing markup structure. Use `data‑key` attributes on elements and define corresponding keys in both language objects in `translations.json`.
-- **Adding Charts:** Place your datasets in `govtech_data.json` and extend `initCharts()` in `app.js`.
-- **Customising Colours:** Tweak the CSS variables at the top of `style.css` or extend the dark‑theme declarations under `[data‑color‑scheme="dark"]`.
+### Deployment on GitHub Pages / Публикация на GitHub Pages
 
-## 💰 Support the Project
+1. Commit all files to a GitHub repository (e.g. `username/govtech-3.0`).
+2. In repository settings, open **Pages** and choose the branch (e.g. `main` or `gh‑pages`) and folder (`/`).
+3. Save the settings.  GitHub Pages will publish the site at `https://username.github.io/repo-name/`.
+4. For a separate `gh‑pages` branch, create the branch and push the contents there.  GitHub will auto‑detect `index.html` at root.
 
-If you find this project useful and would like to support its development, consider sending a donation to one of the following addresses (also displayed in the footer of the site):
+1. Зафиксируйте все файлы в репозитории GitHub (например, `username/govtech-3.0`).
+2. В настройках репозитория зайдите в раздел **Pages** и выберите ветку (`main` или `gh‑pages`) и папку (`/`).
+3. Сохраните — GitHub опубликует сайт по адресу `https://username.github.io/имя-репозитория/`.
+4. Если нужен отдельный бранч `gh‑pages`, создайте его и залейте туда содержимое проекта.  GitHub автоматически найдёт `index.html` в корне.
 
-- **Bitcoin:** `1FEvqUr9fhx9z8jZQ3ympj19QaKG4sfe1u`
-- **Ethereum:** `0x6b8d7137b60a6f3ee8869dc6c53ab989937e3462`
-- **USDT (TRC20):** `TBYiX5jAZ38qSHvkuyL3QMTytMf5P671VJ`
+### Extending the Site / Как расширять
 
-Thank you for exploring the future of public administration with blockchain and AI! Feel free to open issues or submit pull requests if you have suggestions or improvements.
+* **Adding content:**  Follow the existing semantic markup.  Use `data‑key` on each element and define corresponding strings in both languages inside `translations.json`.  For long paragraphs, consider using accordions or pop‑ups for better readability.
+* **Adding charts:**  Append new fields to `govtech_data.json` and modify the `initCharts()` function in `app.js`.  Use Chart.js only; do not hard‑code colours.  Charts should always have titles and axis labels for accessibility.
+* **Customising design:**  Adjust the CSS variables at the top of `style.css` to tweak colours and spacing.  The design system guidelines are documented in `design-system-css.md`.
+
+### Contributing / Вклад
+
+Pull requests and issues are welcome.  If you discover bugs, translation errors or have ideas for new sections, feel free to open an issue or a PR.  When adding features, please keep both languages in sync and adhere to the design system.
+
+**Спасибо / Thank you** for exploring the future of governance!  May this project inspire informed discussions on how technology can serve society.

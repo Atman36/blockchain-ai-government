@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="pageTitle">Блокчейн и ИИ: будущее государственного управления</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
     <!-- Favicon -->
     <link rel="icon" href="favicon.png" type="image/png">
 </head>
@@ -27,11 +27,12 @@
                         <li><a href="#home" class="nav-link active" data-key="navHome">Главная</a></li>
                         <li><a href="#blockchain-ai" class="nav-link" data-key="navBlockchainAI">Технологии</a></li>
                         <li><a href="#cases" class="nav-link" data-key="navCases">Внедрение</a></li>
+                        <li><a href="#architecture" class="nav-link" data-key="navArchitecture">Архитектура</a></li>
                         <li><a href="#dao" class="nav-link" data-key="navDAO">DAO и управление</a></li>
-                        <li><a href="#experts" class="nav-link" data-key="navExperts">Цитаты</a></li>
+
                         <li><a href="#trends" class="nav-link" data-key="navTrends">Тренды</a></li>
                         <li><a href="#challenges" class="nav-link" data-key="navChallenges">Вызовы</a></li>
-                        <li><a href="#knowledge" class="nav-link" data-key="navKnowledge">Источники</a></li>
+                        <li><a href="#knowledge" class="nav-link" data-key="navConclusion">Заключение</a></li>
                     </ul>
                 </nav>
                 <div class="lang-switcher">
@@ -63,11 +64,12 @@
             <li><a href="#home" class="mobile-nav-link active" data-key="navHome">Главная</a></li>
             <li><a href="#blockchain-ai" class="mobile-nav-link" data-key="navBlockchainAI">Технологии</a></li>
             <li><a href="#cases" class="mobile-nav-link" data-key="navCases">Внедрение</a></li>
+            <li><a href="#architecture" class="mobile-nav-link" data-key="navArchitecture">Архитектура</a></li>
             <li><a href="#dao" class="mobile-nav-link" data-key="navDAO">DAO</a></li>
-            <li><a href="#experts" class="mobile-nav-link" data-key="navExperts">Цитаты</a></li>
+
             <li><a href="#trends" class="mobile-nav-link" data-key="navTrends">Тренды</a></li>
             <li><a href="#challenges" class="mobile-nav-link" data-key="navChallenges">Вызовы</a></li>
-            <li><a href="#knowledge" class="mobile-nav-link" data-key="navKnowledge">Источники</a></li>
+            <li><a href="#knowledge" class="mobile-nav-link" data-key="navConclusion">Заключение</a></li>
         </ul>
     </div>
 
@@ -92,26 +94,32 @@
                         <div class="stat-card">
                             <h3>99%</h3>
                             <p data-key="statEstonia">онлайн-услуг в Эстонии</p>
+                            <small class="stat-source" data-key="sourceDeloitte">Источник: Deloitte "GovTech Trends 2025"</small>
                         </div>
                         <div class="stat-card">
                             <h3>30%</h3>
-                            <p data-key="statDubaiCorruption">сокращение коррупционных потерь при on-chain-закупках в Дубае</p>
+                            <p data-key="statDubaiCorruption">сокращение коррупционных потерь при on-chain-закупках</p>
+                            <small class="stat-source" data-key="sourceWEF">Источник: WEF "Digital Trust & Blockchain 2025"</small>
                         </div>
                         <div class="stat-card">
                             <h3 data-key="statUSAuditValue">$7.6B</h3>
                             <p data-key="statUSAudit">US budget savings from AI audit of public procurement (FY 2024)</p>
+                            <small class="stat-source" data-key="sourceUSTreasury">Источник: US Treasury "AI Audit Report FY 2024"</small>
                         </div>
                         <div class="stat-card">
                             <h3 data-key="statDubaiSavingsValue">$1.5B</h3>
                             <p data-key="statDubaiSavings">in annual savings in Dubai</p>
+                            <small class="stat-source" data-key="sourceDubai">Источник: Dubai Blockchain Strategy 2025</small>
                         </div>
                         <div class="stat-card">
                             <h3>15.8%</h3>
-                            <p data-key="statGovTechCAGR">CAGR мирового GovTech-рынка 2024-2034</p>
+                            <p data-key="statGovTechCAGR">CAGR мирового GovTech-рынка</p>
+                            <small class="stat-source" data-key="sourceGovTechMarket">Источник: Global GovTech Market Analysis 2024-2034</small>
                         </div>
                         <div class="stat-card">
                             <h3>42%</h3>
-                            <p data-key="statGreenNodes">доля «зелёных» блокчейн-узлов в ЕС-секторе</p>
+                            <p data-key="statGreenNodes">доля «зелёных» блокчейн-узлов в ЕС</p>
+                            <small class="stat-source" data-key="sourceEUGreen">Источник: EU Green Digital Initiative 2025</small>
                         </div>
                     </div>
                 </div>
@@ -222,7 +230,7 @@
         <!-- Introduction Section -->
         <section id="introduction" class="section">
             <div class="container">
-                <h2 data-key="sectionIntroTitle">Что дальше? Изучите, как DAO-механизмы дополняют Web 3.0-госуслуги</h2>
+                <h2 data-key="sectionIntroTitle">Как DAO-механизмы дополняют Web 3.0-госуслуги</h2>
                 <div class="intro-grid">
                     <div class="card">
                         <div class="card__body">
@@ -420,6 +428,18 @@
 
                     <div class="case-card card">
                         <div class="card__body">
+                            <h3 data-key="caseFranceTitle">Франция: AI-охота на бассейны</h3>
+                            <div class="status status--success" data-key="caseFranceStatus">Масштабирование</div>
+                            <p data-key="caseFranceText">Налоговые органы Франции в сотрудничестве с Google и Capgemini использовали ИИ для анализа спутниковых снимков. К 2023 году было выявлено 140 000 незадекларированных бассейнов.</p>
+                            <div class="case-metrics">
+                                <span class="metric" data-key="caseFranceMetric1">📈 Выгода: €40 млн доп. налогов</span>
+                                <span class="metric" data-key="caseFranceMetric2">🎯 Точность: 94% выявления нарушений</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card card">
+                        <div class="card__body">
                             <h3 data-key="caseChinaTitle">Китай Smart Cities</h3>
                             <div class="status status--success" data-key="caseChinaStatus">Масштабирование</div>
                             <p data-key="caseChinaText">ИИ в управлении городами: Шэньчжэнь, Ханчжоу (City Brain от Alibaba), Пекин. Управление трафиком и городскими ресурсами.</p>
@@ -600,11 +620,38 @@
             </div>
         </section>
 
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="section">
+            <div class="container">
+                <h2 data-key="roadmapSectionTitle">🛠️ Дорожная карта для GovTech 3.0: Что делать сейчас</h2>
+                <p class="section-intro" data-key="roadmapIntro">Ключевые рекомендации для политиков и разработчиков, создающих цифровое государство.</p>
+                <div class="roadmap-grid">
+                    <div class="roadmap-item">
+                        <h4 data-key="roadmapItem1Title">Регулируйте механизмы, а не технологии</h4>
+                        <p data-key="roadmapItem1Text">Вместо запрета блокчейна вводите требования к моделям управления, например, обязательное <strong>квадратичное голосование</strong> для публичных DAO.</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h4 data-key="roadmapItem2Title">Внедряйте верифицируемый ИИ</h4>
+                        <p data-key="roadmapItem2Text">Требуйте, чтобы хеши модели, набора данных и результата работы ИИ записывались в публичный реестр для обеспечения прозрачности.</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h4 data-key="roadmapItem3Title">Начинайте с «песочниц»</h4>
+                        <p data-key="roadmapItem3Text">Запускайте пилоты с ограниченным масштабом (муниципальное бюджетирование, земельные реестры), а не общенациональные проекты.</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h4 data-key="roadmapItem4Title">Используйте юридические «обёртки»</h4>
+                        <p data-key="roadmapItem4Text">Сопровождайте любой пилотный проект с DAO созданием юридического лица (LLC или фонда), чтобы обеспечить правовую определённость.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
             <section id="trends" class="section">
                 <div class="container">
-                    <h2 data-key="sectionTrendsTitle">Тренды 2025-2030</h2>
-                    <p class="section-intro" data-key="trendsIntro">Основные направления, которые будут определять развитие GovTech в ближайшие
-                        годы.</p>
+                    <h2 data-key="sectionTrendsTimelineTitle">Тренды и временные рамки 2025-2040</h2>
+                    <p class="section-intro" data-key="trendsTimelineIntro">Ключевые направления развития GovTech и этапы их внедрения в ближайшие 15 лет.</p>
+                    
+                    <h3 data-key="trendsSubtitle">Основные тренды 2025-2030</h3>
                     <div class="trends-grid">
                         <div class="trend-card card">
                             <div class="card__body">
@@ -643,6 +690,54 @@
                             <div class="card__body">
                                 <h3 data-key="trend6Title">6. ZK-доказательства для приватности</h3>
                                 <p data-key="trend6Text">Массовое внедрение Zero-Knowledge proofs для верификации данных граждан (возраст, статус) без раскрытия персональной информации.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 data-key="timelineSubtitle">Временные рамки внедрения</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-year" data-key="timeline1Year">2025-2027</div>
+                            <div class="timeline-content">
+                                <h3 data-key="timeline1Title">Первая волна</h3>
+                                <p data-key="timeline1Text">Автоматизация базовых услуг: лицензирование, реестры недвижимости, субсидии</p>
+                                <div class="timeline-stats">
+                                    <span data-key="timeline1Stat1">🌍 15+ стран</span>
+                                    <span data-key="timeline1Stat2">📊 60% автоматизация</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-year" data-key="timeline2Year">2028-2032</div>
+                            <div class="timeline-content">
+                                <h3 data-key="timeline2Title">Средний этап</h3>
+                                <p data-key="timeline2Text">Электронное голосование, таможенные процедуры, государственные закупки</p>
+                                <div class="timeline-stats">
+                                    <span data-key="timeline2Stat1">🌍 25+ стран</span>
+                                    <span data-key="timeline2Stat2">📊 75% автоматизация</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-year" data-key="timeline3Year">2033-2040</div>
+                            <div class="timeline-content">
+                                <h3 data-key="timeline3Title">Поздний этап</h3>
+                                <p data-key="timeline3Text">Частичная монетарная политика, ИИ-арбитры в судах, полицейские расследования</p>
+                                <div class="timeline-stats">
+                                    <span data-key="timeline3Stat1">🌍 40+ стран</span>
+                                    <span data-key="timeline3Stat2">📊 85% автоматизация</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="critical-point">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 data-key="criticalPointTitle">⚠️ Критический перелом</h3>
+                                <p data-key="criticalPointText">При достижении <strong>35% ВВП в смарт-контрактах</strong> возврат к традиционным бумажным процессам станет технически невозможным (IMF, 2024)</p>
                             </div>
                         </div>
                     </div>
@@ -830,17 +925,17 @@
                                     <tbody>
                                         <tr>
                                             <td data-key="daoTreasuryActive">Активные DAO</td>
-                                            <td>30,842</td>
+                                            <td>30,842 организаций</td>
                                             <td>+19%</td>
                                         </tr>
                                         <tr>
                                             <td data-key="daoTreasuryTotal">Совокупный treasury</td>
-                                            <td>$40.7 млрд</td>
+                                            <td>$40.7B</td>
                                             <td>+22%</td>
                                         </tr>
                                         <tr>
                                             <td data-key="daoTreasuryAvg">Средний treasury 100 крупнейших</td>
-                                            <td>$187 млн</td>
+                                            <td>$187M</td>
                                             <td>+15%</td>
                                         </tr>
                                     </tbody>
@@ -919,6 +1014,19 @@
                                 <li data-key="govServicePoint1">DAO-платформы + смарт-контракты + ИИ формируют муниципальные гос-сервисы: бюджетирование, закупки, голосования.</li>
                                 <li data-key="govServicePoint2">Это следующий шаг после описанных кейсов — показывает, как технологии объединяются в единую операционную модель государства будущего.</li>
                             </ul>
+                <!-- Дополнительный разворачиваемый блок о недостатках DAO -->
+                <div class="accordion-section">
+                    <button class="accordion-header" aria-expanded="false" data-key="daoRealityTitle">⚠️ Жестокая реальность DAO: Почему они пока не заменят государство</button>
+                    <div class="accordion-content" hidden>
+                        <p data-key="daoRealityIntro">Идея о том, что DAO могут полностью заменить современные государства в ближайшие годы, маловероятна. Хотя DAO контролируют активы в миллиарды долларов, они сталкиваются с фундаментальными проблемами, которые мешают их масштабированию до уровня нации:</p>
+                        <ul>
+                            <li data-key="daoRealityItem1"><strong>Концентрация власти («Киты»):</strong> В большинстве крупных DAO небольшая группа (4-5 «китовых» кошельков) контролирует более 76% голосов. Это превращает демократию в олигархию.</li>
+                            <li data-key="daoRealityItem2"><strong>Низкая явка избирателей:</strong> В голосованиях участвует менее 30% членов, что ставит под угрозу легитимность решений.</li>
+                            <li data-key="daoRealityItem3"><strong>Юридический вакуум:</strong> Правовой статус DAO признан лишь в нескольких юрисдикциях. В случае споров суды рассматривают их как партнёрства, возлагая полную ответственность на всех участников.</li>
+                        </ul>
+                        <p data-key="daoRealityConclusion">Эти «законы управленческой физики» показывают, что DAO в их нынешнем виде скорее дополняют, чем заменяют традиционные государственные институты.</p>
+                    </div>
+                </div>
                         </div>
 
                     </div> <!-- End dao-section-wrapper -->
@@ -926,17 +1034,56 @@
                 </div>
             </section>
 
+            <!-- AI Human-in-the-Loop Section (inside AI Ethics) -->
+            <section id="ai-human-loop" class="section">
+                <div class="container">
+                    <h2 data-key="humanLoopTitle">💡 «Человек в цепи»: Почему ИИ — мощный помощник, а не новый правитель</h2>
+                    <div class="human-loop-content">
+                        <p data-key="humanLoopIntro">Хотя ИИ может автоматизировать законотворчество и административные процессы, законодательство и здравый смысл требуют человеческого контроля. Глобальные регуляторы вводят принцип «human-in-the-loop» для всех критически важных систем.</p>
+                        <ul>
+                            <li data-key="humanLoopItem1"><strong>Требования регуляторов:</strong> Канадская директива об автоматизированном принятии решений и европейский AI Act обязывают обеспечивать человеческий надзор за любыми ИИ‑системами, влияющими на права и безопасность граждан.</li>
+                            <li data-key="humanLoopItem2"><strong>Практический пример:</strong> В Финляндии генеративный ИИ создаёт черновики законопроектов за считанные минуты, однако парламентские комитеты требуют ручной проверки каждого документа.</li>
+                        </ul>
+                        <p data-key="humanLoopConclusion">Вывод: государство готово использовать ИИ как инструмент анализа и автоматизации рутины (как показала экономия $4&nbsp;млрд в США), но не готово делегировать ему окончательное право принятия решений.</p>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Architecture Future Section -->
+            <section id="architecture" class="section">
+                <div class="container">
+                    <h2 data-key="architectureSectionTitle">🚀 Gov-as-a-Service: Архитектура государства будущего</h2>
+                    <p class="section-intro" data-key="architectureIntro">Вместо полной замены государства формируется гибридная модель, в которой ведомства сохраняют контроль над политикой, но делегируют исполнение и аудит технологической инфраструктуре.</p>
+                    <div class="architecture-levels">
+                        <div class="level-item">
+                            <h4 data-key="architectureLevel1Title">1. Уровень идентичности и реестров</h4>
+                            <p data-key="architectureLevel1Text">Самосуверенная цифровая личность (e-ID, EU eIDAS 2.0) и неизменяемые реестры активов (как в DMV Калифорнии), защищенные от мошенничества.</p>
+                        </div>
+                        <div class="level-item">
+                            <h4 data-key="architectureLevel2Title">2. Уровень исполнения (Бэк-офис)</h4>
+                            <p data-key="architectureLevel2Text">Смарт-контракты для автоматизации рутинных операций: распределение грантов, отслеживание цепочек поставок, исполнение госзакупок.</p>
+                        </div>
+                        <div class="level-item">
+                            <h4 data-key="architectureLevel3Title">3. Уровень аудита</h4>
+                            <p data-key="architectureLevel3Text"><strong>Верифицируемый ИИ (Verifiable AI)</strong>, чьи входные данные, модель и результат хешируются и записываются в блокчейн для прозрачного аудита (пример: фреймворк Hedera/Accenture EQTY).</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <p data-key="architectureConclusion">В этой модели блокчейн обеспечивает защищённые записи, ИИ — аналитику, а министерства сохраняют герб на документах и право принятия решений.</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Experts Section -->
             <section id="experts" class="section">
                 <div class="container">
-                    <h2 data-key="sectionExpertsTitle">Цитаты</h2>
-                    <div class="quotes-grid">
-                        <!-- Row 1: Most important quotes -->
-                        <div class="quote-card card">
-                            <div class="card__body">
-                                <blockquote data-key="quoteAltman">
-                                    «ИИ имеет потенциал кардинально трансформировать общество и экономику… и может стать ключевым инструментом в управлении, который в перспективе способен заменить некоторые традиционные государственные институты»
-                                </blockquote>
+                    <h2 data-key="sectionExpertsTitle">Мнения экспертов</h2>
+                    <div class="expert-callouts">
+                        <div class="callout callout--primary">
+                            <div class="callout-content">
+                                <blockquote data-key="quoteAltman">«ИИ имеет потенциал кардинально трансформировать общество и экономику… и может стать ключевым инструментом в управлении»</blockquote>
                                 <cite data-key="quoteAltmanCite">— Сэм Альтман, CEO OpenAI</cite>
                             </div>
                         </div>
@@ -992,6 +1139,24 @@
                                     транспарентно, а граждане — со-создатели решений»
                                 </blockquote>
                                 <cite data-key="quoteTangCite">— Одри Танг, министр цифровых технологий Тайваня</cite>
+                            </div>
+                        </div>
+
+                        <div class="quote-card card">
+                            <div class="card__body">
+                                <blockquote data-key="quoteMuskAI">
+                                    «Я предполагаю, что у нас появится ИИ, который будет умнее любого отдельного человека, вероятно, где-то к концу следующего года [2025 года].»
+                                </blockquote>
+                                <cite data-key="quoteMuskAICite">— Илон Маск, 8 апреля 2024 г.</cite>
+                            </div>
+                        </div>
+
+                        <div class="quote-card card">
+                            <div class="card__body">
+                                <blockquote data-key="quoteAmodeiAlignment">
+                                    «Будущее ИИ — это согласование; создание инструментов, которые будут действительно полезны на каждом уровне.»
+                                </blockquote>
+                                <cite data-key="quoteAmodeiAlignmentCite">— Дарио Амодей, CEO Anthropic (2023-2024)</cite>
                             </div>
                         </div>
 
@@ -1115,9 +1280,124 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="challenge-card card">
+                            <div class="card__body">
+                                <h3 data-key="challenge7Title">7. «Трилемма блокчейна»</h3>
+                                <p data-key="challenge7Text">Государственным системам приходится идти на компромисс между децентрализацией, безопасностью и масштабируемостью. Большинство сетей могут оптимизировать только два из трёх атрибутов, что создаёт барьеры для общенациональных систем, требующих и скорости, и надёжности.</p>
+                                <div class="challenge-impact">
+                                    <span class="impact-level impact--high" data-key="challenge7Impact">Высокий риск</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section">
+                <div class="container">
+                    <h2 data-key="overviewTitle">Общая картина: Заменят ли DAO и ИИ государство?</h2>
+                    <p data-key="overviewIntro">Замена государственных институтов технологиями в ближайшие 5–10 лет маловероятна, однако их дополнение и усовершенствование уже происходит.</p>
+                    <ul>
+                        <li data-key="overviewPoint1">Сегодня существует более 6000\u00a0DAO, контролирующих активы на сумму свыше $25\u00a0млрд, однако все крупные государственные проекты на блокчейне и ИИ по-прежнему подотчётны традиционным ведомствам.</li>
+                        <li data-key="overviewPoint2">Проекты e‑ID в Эстонии, оцифровка 42\u00a0млн автомобильных титулов в Калифорнии, отчётность выборов в Румынии и AI‑система Казначейства США по возврату мошеннических выплат — все они работают под надзором министерств.</li>
+                    </ul>
+                    <p data-key="overviewConclusion">Технологии скорее станут инфраструктурной основой для государства, чем его полной заменой.</p>
+                </div>
+            </section>
+
+            <!-- DAO Problems and Solutions Section -->
+            <section id="dao-problems" class="section section--alternate">
+                <div class="container">
+                    <h2 data-key="daoProblemsTitle">Проблемы и решения DAO</h2>
+                    <p data-key="daoProblemsIntro">Несмотря на идею полной децентрализации, DAO сталкиваются с фундаментальными проблемами, которые мешают их масштабированию до уровня государства.</p>
+                    <div class="dao-problems-grid">
+                        <div class="dao-problems-column">
+                            <h3 data-key="daoProblemsSubTitleProblems">Ключевые проблемы</h3>
+                            <ul>
+                                <li data-key="daoProblem1">Концентрация власти: несколько «китов» контролируют более 76\u00a0% голосов.</li>
+                                <li data-key="daoProblem2">Апатия избирателей: менее 30\u00a0% членов остаются неактивными, что ставит под угрозу кворум.</li>
+                                <li data-key="daoProblem3">Структурная нестабильность: средняя продолжительность жизни DAO составляет всего 18 месяцев, что указывает на проблемы с долгосрочным управлением.</li>
+                                <li data-key="daoProblem4">Юридический вакуум: статус DAO признан лишь в нескольких юрисдикциях.</li>
+                            </ul>
+                        </div>
+                        <div class="dao-problems-column">
+                            <h3 data-key="daoProblemsSubTitleSolutions">Стратегии решения</h3>
+                            <ul>
+                                <li data-key="daoSolution1">Квадратичное голосование снижает влияние «китов» и увеличивает равенство.</li>
+                                <li data-key="daoSolution2">Управление на основе репутации и делегирование голосов повышают вовлечённость.</li>
+                                <li data-key="daoSolution3">Гибридные модели, суб‑DAO и многоподписные механизмы распределяют ответственность.</li>
+                                <li data-key="daoSolution4">Юридические обёртки (DAO LLC) дают правовой статус и ограничивают ответственность.</li>
+                            </ul>
+                            <div class="dao-effectiveness-data">
+                                <p data-key="daoEffectivenessText"><strong>Практика подтверждает эффективность гибридных моделей:</strong> по данным исследований, гибридные DAO+LLC показывают снижение риска централизации на 44% и увеличение участия членов на 124% по сравнению с чисто ончейн-структурами.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Governance Section -->
+            <section id="ai-governance" class="section">
+                <div class="container">
+                    <h2 data-key="aiGovTitle">ИИ в госуправлении: потенциал и риски</h2>
+                    <p data-key="aiGovPotential">ИИ уже доказал свою эффективность в государственных процессах, автоматизируя законотворчество, предотвращая мошенничество и сокращая время обслуживания граждан.</p>
+                    <div class="ai-gov-grid">
+                        <div class="ai-gov-column">
+                            <h3 data-key="aiGovPotentialTitle">Потенциал ИИ</h3>
+                            <ul>
+                                <li data-key="aiGovPotentialItem1">Генеративный ИИ создаёт черновики законопроектов за минуты, экономя время законодателей.</li>
+                                <li data-key="aiGovPotentialItem2">Машинное обучение помогает обнаруживать мошенничество и экономить миллиарды (пример: казначейство США).</li>
+                                <li data-key="aiGovPotentialItem3">ИИ-агенты ускоряют административные процессы, освобождая чиновников для более сложных задач.</li>
+                            </ul>
+                        </div>
+                        <div class="ai-gov-column">
+                            <h3 data-key="aiGovRisksTitle">Этические риски</h3>
+                            <ul>
+                                <li data-key="aiGovRisk1">Алгоритмическая предвзятость может приводить к дискриминации определённых групп (как показал опыт Швеции, где система ИИ для соцобеспечения непропорционально часто помечала как «рискованные» заявки от женщин, мигрантов и людей с низким доходом).</li>
+                                <li data-key="aiGovRisk2">Принцип «human-in-the-loop»: регуляции требуют человеческого контроля над критическими решениями (EU AI Act, Канадская директива).</li>
+                                <li data-key="aiGovRisk3">Риск «цифрового авторитаризма»: технологии ИИ могут использоваться для массового надзора и социального контроля. Яркий пример — китайская система социального кредита, где для оценки более 33 млн предприятий и наблюдения за гражданами используются свыше 200 млн камер с распознаванием лиц.</li>
+                            </ul>
+                            <p data-key="aiGovConclusion" style="margin-top: var(--space-24);">Государство использует ИИ как инструмент, но окончательные решения должны оставаться за людьми.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practical Applications Section -->
+            <section id="practical-applications" class="section section--alternate">
+                <div class="container">
+                    <h2 data-key="practicalTitle">Практическое применение: трансформация ветвей власти</h2>
+                    <div class="practical-grid">
+                        <div class="practical-column">
+                            <h3 data-key="execTitle">Исполнительная власть</h3>
+                            <ul>
+                                <li data-key="execItem1">Управление бюджетом через DAO: прозрачное распределение грантов и субсидий с помощью смарт‑контрактов.</li>
+                                <li data-key="execItem2">Верифицируемый ИИ для закупок: криптографически подтверждаемая аналитика для выявления коррупционных рисков.</li>
+                                <li data-key="execItem3">Токенизация активов: перевод реестров земли и имущества на блокчейн для уменьшения мошенничества.</li>
+                            </ul>
+                        </div>
+                        <div class="practical-column">
+                            <h3 data-key="legTitle">Законодательная власть</h3>
+                            <ul>
+                                <li data-key="legItem1">Цифровые комитеты (суб‑DAO) привлекают депутатов, экспертов и граждан к обсуждению законопроектов.</li>
+                                <li data-key="legItem2">AI‑помощники анализируют данные и помогают готовить черновики законов.</li>
+                                <li data-key="legItem3">Взвешенное голосование (например, квадратичное) обеспечивает учёт мнений разных слоёв населения.</li>
+                            </ul>
+                        </div>
+                        <div class="practical-column">
+                            <h3 data-key="judTitle">Судебная власть и надзор</h3>
+                            <ul>
+                                <li data-key="judItem1">Неизменяемая доказательная база: хранение цифровых доказательств и протоколов на блокчейне.</li>
+                                <li data-key="judItem2">Стандартизация управления: международные стандарты (ISO) для DAO и oracle повышают прозрачность.</li>
+                                <li data-key="judItem3">Регуляторные песочницы позволяют тестировать решения перед масштабированием.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
 
             <!-- Regulatory Compliance Section -->
             <section id="regulatory" class="section">
@@ -1206,60 +1486,21 @@
                                 <span class="regulatory-tag status-active" data-key="regZKStatus">Расширяется в пилотах ЕС и UK</span>
                             </div>
                         </div>
+
+                        <!-- New expert quotes from analiz.md -->
+
+
+
                     </div>
 
-                </div>
-            </section>
-
-            <!-- Timeline Section -->
-            <section id="timeline" class="section">
-                <div class="container">
-                    <h2 data-key="sectionTimelineTitle">Временные рамки внедрения</h2>
-                    <div class="timeline-container">
-                        <div class="timeline-item">
-                            <div class="timeline-year" data-key="timeline1Year">2025-2027</div>
-                            <div class="timeline-content">
-                                <h3 data-key="timeline1Title">Первая волна</h3>
-                                <p data-key="timeline1Text">Автоматизация базовых услуг: лицензирование, реестры недвижимости, субсидии</p>
-                                <div class="timeline-stats">
-                                    <span data-key="timeline1Stat1">🌍 15+ стран</span>
-                                    <span data-key="timeline1Stat2">📊 60% автоматизация</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-year" data-key="timeline2Year">2028-2032</div>
-                            <div class="timeline-content">
-                                <h3 data-key="timeline2Title">Средний этап</h3>
-                                <p data-key="timeline2Text">Электронное голосование, таможенные процедуры, государственные закупки</p>
-                                <div class="timeline-stats">
-                                    <span data-key="timeline2Stat1">🌍 25+ стран</span>
-                                    <span data-key="timeline2Stat2">📊 75% автоматизация</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-year" data-key="timeline3Year">2033-2040</div>
-                            <div class="timeline-content">
-                                <h3 data-key="timeline3Title">Поздний этап</h3>
-                                <p data-key="timeline3Text">Частичная монетарная политика, ИИ-арбитры в судах, полицейские расследования</p>
-                                <div class="timeline-stats">
-                                    <span data-key="timeline3Stat1">🌍 40+ стран</span>
-                                    <span data-key="timeline3Stat2">📊 85% автоматизация</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="critical-point">
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 data-key="criticalPointTitle">⚠️ Критический перелом</h3>
-                                <p data-key="criticalPointText">При достижении <strong>35% ВВП в смарт-контрактах</strong> возврат
-                                    к традиционным
-                                    бумажным процессам станет технически невозможным (IMF, 2024)</p>
+                    <!-- Current AI Statistics -->
+                    <div class="ai-stats-section">
+                        <h3 data-key="aiStatsTitle">Актуальная статистика ИИ</h3>
+                        <div class="ai-stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value" data-key="aiStatValue">2.5 млрд</div>
+                                <div class="stat-label" data-key="aiStatLabel">промтов в ChatGPT ежедневно</div>
+                                <div class="stat-date" data-key="aiStatDate">(данные на июль 2025)</div>
                             </div>
                         </div>
                     </div>
@@ -1300,12 +1541,10 @@
                         </div>
                     </div>
 
-                    <h3 class="future-governance-title" data-key="futureGovTitle">🚀 Будущее государственного управления</h3>
-
                     <div class="final-thoughts">
                         <div class="card">
                             <div class="card__body future-governance-card">
-                                <p> </p>
+                                <h3 class="future-governance-title" data-key="futureGovTitle">🚀 Будущее государственного управления</h3>
                                 <p data-key="futureGovText1">🔗 <strong>Блокчейн и ИИ</strong> не «убьют» государство, а перезапустят его в более
                                     справедливой форме, создавая новые возможности для эффективного управления и участия
                                     граждан.</p>
@@ -1355,54 +1594,96 @@
             </section>
     </main>
 
+    <!-- Glossary Section -->
+    <section id="glossary" class="section">
+        <div class="container">
+            <h2 data-key="sectionGlossaryTitle">Глоссарий</h2>
+            <p class="section-intro" data-key="glossaryIntro">Основные термины и определения, используемые в документе.</p>
+            
+            <div class="glossary-grid">
+                <div class="glossary-item">
+                    <h4 data-key="glossaryDAO">DAO (Decentralized Autonomous Organization)</h4>
+                    <p data-key="glossaryDAODef">Децентрализованная автономная организация, управляемая смарт-контрактами и голосованием участников без централизованного руководства.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <h4 data-key="glossarySmartContract">Smart Contract</h4>
+                    <p data-key="glossarySmartContractDef">Самоисполняющийся контракт с условиями соглашения, записанными непосредственно в код и автоматически выполняющимися при соблюдении условий.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <h4 data-key="glossaryZKProof">ZK-Proof (Zero-Knowledge Proof)</h4>
+                    <p data-key="glossaryZKProofDef">Криптографический метод, позволяющий одной стороне доказать другой, что она знает определенную информацию, не раскрывая саму информацию.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <h4 data-key="glossaryCBDC">CBDC (Central Bank Digital Currency)</h4>
+                    <p data-key="glossaryCBDCDef">Цифровая валюта центрального банка — цифровая форма фиатной валюты страны, выпускаемая и регулируемая центральным банком.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <h4 data-key="glossaryL2">L2 (Layer 2)</h4>
+                    <p data-key="glossaryL2Def">Решения второго уровня для масштабирования блокчейна, которые обрабатывают транзакции вне основной цепи для увеличения пропускной способности.</p>
+                </div>
+                
+                <div class="glossary-item">
+                    <h4 data-key="glossarySSI">SSI (Self-Sovereign Identity)</h4>
+                    <p data-key="glossarySSIDef">Модель цифровой идентичности, дающая пользователям полный контроль над своими личными данными без зависимости от централизованных провайдеров.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Knowledge Base Section -->
     <section id="knowledge" class="section">
         <div class="container">
             <h2 data-key="sectionKnowledgeTitle">Источники и база знаний</h2>
             <p style="text-align: center;" data-key="knowledgeIntro">Ключевые документы, отчеты и ресурсы, использованные при подготовке этого
                 обзора.</p>
-            <div class="knowledge-categories">
+            <div class="knowledge-categories knowledge-categories--grid">
+                <!-- Первый ряд -->
                 <div class="knowledge-category">
                     <h3 data-key="knowledgeCat1Title">Аналитика и отчеты</h3>
                     <div class="knowledge-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link1">UN E-Government Survey 2024 (метрики
-                            цифровой зрелости)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link2">Deloitte «GovTech Trends 2025»</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link3">Gartner: «AI in Public Sector» (Q2
-                            2025)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link4">BIS «CBDC and the future of payments»
-                            (July 2025)</a>
-                        <a href="https://oecd.ai/en/dashboards/public-sector-2025" target="_blank"
-                            rel="noopener noreferrer" data-key="knowledgeCat1Link5">OECD: AI in the Public Sector 2025 Outlook</a>
+                        <a href="https://desapublications.un.org/sites/default/files/publications/2024-09/(Web%20version)%20E-Government%20Survey%202024%201392024.pdf" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link1">UN E-Government Survey 2024</a>
+                        <a href="https://www2.deloitte.com/content/dam/Deloitte/us/Documents/public-sector/govtech-trends-2025.pdf" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link2">Deloitte GovTech Trends 2025</a>
+                        <a href="https://www.gartner.com/en/newsroom/press-releases/2024-12-11-top-strategic-technology-trends-for-2025" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link3">Gartner Strategic Technology Trends 2025</a>
+                        <a href="https://www.oecd.org/gov/2023-oecd-digital-government-index-1a89ed5e-en.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link5">OECD Digital Government Index 2023</a>
+                        <a href="http://hdl.handle.net/10986/38503" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link6">World Bank Digital Governance Projects</a>
                     </div>
                 </div>
+                
+                <div class="knowledge-category">
+                    <h3 data-key="knowledgeCat4Title">Исследования DAO и ИИ</h3>
+                    <div class="knowledge-links">
+                        <a href="https://www.csail.mit.edu/" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat4Link1">MIT Transparent AI Research (CSAIL)</a>
+                        <a href="https://hai.stanford.edu/" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat4Link2">Stanford HAI DAO Analysis</a>
+                        <a href="https://www.anthropic.com/research" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat4Link3">Anthropic AI Alignment Research</a>
+                        <a href="https://openai.com/research/" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat4Link4">OpenAI Research</a>
+                        <a href="https://doi.org/10.3390/ai6030044" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat1Link9">MDPI AI in Public Administration 2025</a>
+                    </div>
+                </div>
+
+                <!-- Второй ряд -->
+                <div class="knowledge-category">
+                    <h3 data-key="knowledgeCat3Title">Технические ресурсы</h3>
+                    <div class="knowledge-links">
+                        <a href="https://besu.hyperledger.org" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link1">Hyperledger Besu Documentation</a>
+                        <a href="https://github.com/Consensys/hyperledger-besu-ethers" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link2">GitHub: Hyperledger Besu</a>
+                        <a href="https://docs.celo.org/developer/oracles/chainlink-oracles" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link3">Chainlink Oracle Documentation</a>
+                        <a href="https://ideausher.com/blog/what-is-aragon-dao/" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link4">Aragon DAO Framework</a>
+                        <a href="https://zkproof.org" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link6">ZKProof Standards 2024</a>
+                    </div>
+                </div>
+                
                 <div class="knowledge-category">
                     <h3 data-key="knowledgeCat2Title">Нормативная база</h3>
                     <div class="knowledge-links">
                         <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link1">EU AI Act (Regulation 2021/0106)</a>
                         <a href="https://www.iso.org/standard/80347.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link2">ISO/IEC 42001:2023</a>
-                        <a href="https://www.iso.org/committee/6794475.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link3">ISO TC 307 (Blockchain and distributed ledger technologies)</a>
-                        <a href="https://www.congress.gov/bill/117th-congress/senate-bill/1489" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link4">US CREATE AI Act (Congress.gov)</a>
-                        <a href="https://www.sfc.hk/en/Regulatory-functions/Policy-Research/Consultation-papers" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link5">Hong Kong SFC Stablecoin Consultation</a>
-                        <a href="https://www.mas.gov.sg/regulation/explainers/crypto-assets" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link6">Monetary Authority of Singapore – Crypto Asset Regulations</a>
-                        <a href="https://www.fsa.go.jp/en/policy/virtual_currency/index.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link7">Japan Financial Services Agency – Virtual Currency Regulations</a>
-                        <a href="https://www.fca.org.uk/firms/innovation/regulatory-sandbox" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link8">FCA Regulatory Sandbox (UK)</a>
-                        <a href="https://sandboxnetwork.org" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link9">Global Sandbox Network</a>
+                        <a href="https://www.iso.org/committee/6794475.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link3">ISO TC 307 (Blockchain)</a>
                         <a href="https://eur-lex.europa.eu/eli/reg/2023/1114/oj" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link10">MiCA Regulation (EU 2023/1114)</a>
-                        <a href="https://www.fatf-gafi.org/publications/fatfrecommendations/documents/travel-rule.html" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link11">FATF Recommendation 16 ("Travel Rule")</a>
-                        <a href="https://edpb.europa.eu/our-work-tools/our-documents/guidelines_en" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link12">EDPB Guidelines on Blockchain and GDPR</a>
                         <a href="https://sos.wyo.gov/Business/Docs/DAO-LLC-FAQ.pdf" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat2Link13">Wyoming DAO LLC FAQs</a>
-                    </div>
-                </div>
-                <div class="knowledge-category">
-                    <h3 data-key="knowledgeCat3Title">Технические ресурсы</h3>
-                    <div class="knowledge-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link1">GitHub: Hyperledger Besu (Enterprise
-                            Ethereum)</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link2">Chainlink Oracle Documentation</a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link3">Aragon: DAO Framework</a>
-                        <a href="https://zkproof.org/2024-standard" target="_blank" rel="noopener noreferrer" data-key="knowledgeCat3Link4">ZKProof
-                            2024: Unified Standards</a>
                     </div>
                 </div>
             </div>
@@ -1413,6 +1694,7 @@
     <footer class="footer">
         <div class="container">
             <p data-key="footerText">© 2025 GovTech 3.0. Исследование трансформации государственного управления.</p>
+            <p data-key="aiToolsCredit">Данное исследование разработано с использованием передовых ИИ-технологий: OpenAI o3, Claude Sonnet 3.7 и 4.0, Google Gemini 2.5 Pro, Grok 4, Perplexity, ChatGPT Agent, а также современных инструментов разработки Kiro, Cursor и Windsurf.</p>
             <div class="support-project">
                 <h3 data-key="supportProjectTitle">Поддержать проект</h3>
                 <br>
