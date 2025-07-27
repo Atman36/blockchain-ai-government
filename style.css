@@ -155,51 +155,48 @@
 
 /* Data attribute for manual theme switching */
 [data-color-scheme="dark"] {
-  /* Основные цвета для темной темы */
-  --background: #121212;
-  --foreground: #f5f5f5;
-  --card: #2a2a2a;
-  --card-foreground: #f5f5f5;
-  --popover: #2a2a2a;
-  --popover-foreground: #f5f5f5;
-  --primary: #4dabf7;
-  --primary-foreground: #121212;
+  /* Новая цветовая схема для темной темы */
+  --background: #15161F;
+  --foreground: #EEEEEE;
+  --card: #1A1B26;
+  --card-foreground: #EEEEEE;
+  --popover: #1A1B26;
+  --popover-foreground: #EEEEEE;
+  --primary: #3794FF;
+  --primary-foreground: #15161F;
   --secondary: rgba(160, 160, 160, 0.12);
-  --secondary-foreground: #e0e0e0;
-  --muted: #323232;
-  --muted-foreground: #a0a0a0;
-  --accent: rgba(77, 171, 247, 0.2);
-  --accent-foreground: #f5f5f5;
+  --secondary-foreground: #A0A0A0;
+  --muted: #1C1F2D;
+  --muted-foreground: #A0A0A0;
+  --accent: rgba(55, 148, 255, 0.2);
+  --accent-foreground: #EEEEEE;
   --destructive: #ff6b6b;
-  --destructive-foreground: #121212;
+  --destructive-foreground: #15161F;
   --border: rgba(160, 160, 160, 0.2);
   --input: rgba(160, 160, 160, 0.2);
-  --ring: rgba(77, 171, 247, 0.4);
+  --ring: rgba(55, 148, 255, 0.4);
   
   /* Цвета для графиков в темной теме */
-  --chart-1: #4dabf7;
+  --chart-1: #3794FF;
   --chart-2: #51cf66;
   --chart-3: #fcc419;
   --chart-4: #ff6b6b;
   --chart-5: #cc5de8;
 
   /* Специальные фоны для темной темы */
-  --dark-bg-black: #0a0a0a;
-  --dark-bg-darkest: #1a1a1a;
-  --dark-bg-darker: #1e1e1e;
-  --dark-bg-dark: #242424;
-  --dark-card-light: #2a2a2a;
-  --dark-card-lighter: #323232;
+  --dark-bg-main: #15161F;
+  --dark-card-primary: #1A1B26;
+  --dark-card-secondary: #1C1F2D;
 
   /* Обновленные фоновые цвета для секций */
-  --color-bg-1: var(--dark-bg-darker);
-  --color-bg-2: var(--dark-bg-dark);
-  --color-bg-3: var(--dark-bg-darkest);
-  --color-bg-4: var(--dark-bg-dark);
-  --color-bg-5: var(--dark-bg-darker);
-  --color-bg-6: var(--dark-bg-darkest);
-  --color-bg-7: var(--dark-bg-darkest);
-  --color-bg-8: var(--dark-bg-dark);
+  --color-bg-1: var(--dark-bg-main);
+  --color-bg-2: var(--dark-bg-main);
+  --color-bg-3: var(--dark-bg-main);
+  --color-bg-4: var(--dark-bg-main);
+  --color-bg-5: var(--dark-bg-main);
+  --color-bg-6: var(--dark-bg-main);
+  --color-bg-7: var(--dark-bg-main);
+  --color-bg-8: var(--dark-bg-main);
 }
 
 /* Base styles */
@@ -442,14 +439,14 @@ select.form-control {
   position: relative;
 }
 
-/* Светлые карточки в темной теме */
+/* Карточки в темной теме */
 [data-color-scheme="dark"] .card {
-  background-color: var(--dark-card-light);
+  background-color: var(--dark-card-primary);
   border-color: rgba(160, 160, 160, 0.15);
 }
 
 [data-color-scheme="dark"] .stat-card {
-  background: linear-gradient(135deg, var(--dark-card-light) 0%, var(--dark-card-lighter) 100%);
+  background: linear-gradient(135deg, var(--dark-card-primary) 0%, var(--dark-card-secondary) 100%);
   border-color: rgba(160, 160, 160, 0.15);
 }
 
@@ -460,25 +457,25 @@ select.form-control {
 [data-color-scheme="dark"] .challenge-card,
 [data-color-scheme="dark"] .quote-card,
 [data-color-scheme="dark"] .balance-item {
-  background-color: var(--dark-card-light);
+  background-color: var(--dark-card-primary);
   border-color: rgba(160, 160, 160, 0.15);
 }
 
 [data-color-scheme="dark"] .country-info,
 [data-color-scheme="dark"] .chart-section {
-  background-color: var(--dark-card-light);
+  background-color: var(--dark-card-primary);
   border-color: rgba(160, 160, 160, 0.15);
 }
 
 /* Улучшение читаемости в темной теме */
 [data-color-scheme="dark"] .metric {
-  background: var(--dark-card-lighter);
+  background: var(--dark-card-secondary);
   border-color: rgba(160, 160, 160, 0.2);
-  color: #e0e0e0;
+  color: #A0A0A0;
 }
 
 [data-color-scheme="dark"] .data-table th {
-  background-color: var(--dark-card-lighter);
+  background-color: var(--dark-card-secondary);
 }
 
 [data-color-scheme="dark"] .data-table tr:nth-child(even) {
@@ -717,7 +714,8 @@ select.form-control {
 /* END PERPLEXITY DESIGN SYSTEM */
 /* Hero Section */
 .section--hero {
-  background: var(--color-bg-1);
+  background: radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
   color: var(--color-text);
   padding: var(--space-80) 0 var(--space-96) 0;
   min-height: 70vh;
@@ -727,16 +725,11 @@ select.form-control {
   overflow: hidden;
 }
 
-.section--hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
-  pointer-events: none;
+/* Dark theme hero gradient */
+[data-color-scheme="dark"] .section--hero {
+  background: radial-gradient(circle at 30% 20%, rgba(55, 148, 255, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.2) 0%, transparent 50%),
+              var(--dark-bg-main);
 }
 
 .hero-content {
@@ -774,6 +767,16 @@ select.form-control {
   gap: var(--space-32);
   margin-top: var(--space-56);
   padding: 0 var(--space-16);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+  }
 }
 
 .stat-card {
@@ -879,47 +882,17 @@ select.form-control {
   position: relative;
   /* FIX: Скорректирован отступ для точной навигации */
   scroll-margin-top: 95px;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* Specific section backgrounds */
-#blockchain-ai {
-  background: var(--color-bg-3);
+.section:last-child {
+  border-bottom: none;
 }
 
-#introduction {
-  background: var(--color-bg-2);
-}
-
-#web3-governance {
-  background: var(--color-surface);
-}
-
-#cases {
-  background: var(--color-bg-3);
-}
-
-#digital-identity {
-  background: linear-gradient(135deg, var(--color-bg-4) 0%, var(--color-bg-2) 100%);
-}
-
-#experts {
-  background: var(--color-bg-1);
-}
-
-#dao {
-  background: var(--color-bg-5);
-}
-
-#trends {
-  background: var(--color-bg-4);
-}
-
-#challenges {
-  background: linear-gradient(135deg, var(--color-bg-2) 0%, var(--color-bg-7) 100%);
-}
-
-#timeline {
-  background: linear-gradient(135deg, var(--color-bg-8) 0%, var(--color-bg-1) 100%);
+/* Hero section keeps its gradient background */
+.section--hero {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .genai-section {
@@ -972,6 +945,35 @@ select.form-control {
 .benefit-item {
   text-align: center;
   padding: var(--space-24);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.benefit-item::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--color-primary), var(--chart-2), var(--chart-3));
+  border-radius: var(--radius-lg);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+}
+
+.benefit-item:hover::before {
+  opacity: 0.3;
+}
+
+[data-color-scheme="dark"] .benefit-item {
+  background-color: var(--dark-card-primary);
+  border-color: rgba(160, 160, 160, 0.2);
 }
 
 .benefit-icon {
@@ -1304,6 +1306,43 @@ select.form-control {
   border: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
+}
+
+/* Quote styles with quotation marks */
+.quote, blockquote {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  margin: var(--space-32) 0;
+  border-left: 4px solid var(--color-primary);
+  font-style: italic;
+  font-size: var(--font-size-lg);
+  position: relative;
+}
+
+.quote::before, blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--color-primary);
+  position: absolute;
+  top: var(--space-16);
+  left: var(--space-24);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.quote-author {
+  text-align: right;
+  margin-top: var(--space-16);
+  color: var(--color-text-secondary);
+  font-style: normal;
+  font-size: var(--font-size-sm);
+}
+
+[data-color-scheme="dark"] .quote,
+[data-color-scheme="dark"] blockquote {
+  background: var(--dark-card-primary);
+  border-left-color: var(--primary);
 }
 
 .quote-card::before {
@@ -2029,13 +2068,21 @@ body.no-scroll {
 
 .verifiable-ai-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-24);
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-32);
   margin-top: var(--space-16);
+  align-items: start;
 }
 
 .verifiable-ai-text {
   padding-right: var(--space-16);
+}
+
+.flow-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 @media (max-width: 768px) {
@@ -2953,7 +3000,7 @@ body.no-scroll {
 .roadmap-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-32);
+  gap: var(--space-40);
   margin-top: var(--space-32);
   counter-reset: roadmap-counter;
 }
@@ -2972,11 +3019,12 @@ body.no-scroll {
   content: counter(roadmap-counter);
   position: absolute;
   top: var(--space-16);
-  left: var(--space-16);
-  width: 32px;
-  height: 32px;
-  background: var(--color-primary);
-  color: white;
+  right: var(--space-16);
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -3773,4 +3821,140 @@ Reduce spacing for DAO treasury chart title */
 v-as-a-Service section background */
 #architecture {
   background: var(--color-bg-2);
+}/* Key Play
+ers section spacing */
+.key-players-section {
+  margin-bottom: var(--space-64);
+}
+
+.key-players-subtitle {
+  margin-bottom: var(--space-40);
+  margin-top: var(--space-48);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.key-players-subtitle:first-child {
+  margin-top: 0;
+}/
+* Knowledge section subtitle alignment */
+.knowledge-category h3 {
+  text-align: left !important;
+  margin-bottom: var(--space-20);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text) !important;
+}/* Reg
+ulatory section styling fixes */
+.regulatory-card h3 {
+  color: var(--color-text) !important;
+}
+
+.regulatory-tag {
+  color: var(--color-text-secondary) !important;
+  background-color: var(--color-secondary) !important;
+  border-color: var(--color-border) !important;
+}/* D
+ecentralization section title fix */
+.web3-case-study h3 {
+  color: var(--color-text) !important;
+}/* Speci
+al quote styling with vertical lines for specific quotes */
+.verifiable-ai-quote blockquote,
+.callout blockquote {
+  border-left: 4px solid var(--color-primary) !important;
+  padding-left: var(--space-24);
+  margin-left: 0;
+  position: relative;
+  border-radius: 0 !important;
+}
+
+.verifiable-ai-quote blockquote::before,
+.callout blockquote::before {
+  display: none !important;
+}
+
+/* Remove existing border-left from parent elements */
+.callout {
+  border-left: none !important;
+}
+
+/* Fix quote positioning for other quotes */
+.quote::before, 
+blockquote:not(.verifiable-ai-quote blockquote):not(.callout blockquote)::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--color-primary);
+  position: absolute;
+  top: var(--space-16);
+  left: var(--space-24);
+  opacity: 0.3;
+  line-height: 1;
+}/*
+ Knowledge section links styling */
+.knowledge-links a {
+  color: var(--color-text-secondary) !important;
+}/* DA
+O distribution cards */
+.dao-distribution-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-24);
+  margin-top: var(--space-24);
+}
+
+.dao-distribution-cards .card h4 {
+  text-align: left;
+}
+
+.dao-amount {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: var(--space-16) 0;
+}
+
+@media (max-width: 768px) {
+  .dao-distribution-cards {
+    grid-template-columns: 1fr;
+  }
+}/* Re
+move accent vertical lines and add borders for specific sections */
+#architecture .architecture-levels .level-item,
+#dao-problems .dao-problems-grid .dao-problem-card,
+#ai-governance .ai-gov-grid .ai-gov-card {
+  border: 1px solid var(--color-border) !important;
+  border-left: 1px solid var(--color-border) !important;
+  margin-bottom: var(--space-24);
+  border-radius: var(--radius-lg);
+}
+
+/* Add spacing between cards in these sections */
+.architecture-levels,
+.dao-problems-grid,
+.ai-gov-grid {
+  gap: var(--space-24);
+}
+
+/* Ensure no accent border-left for these sections */
+#architecture .level-item,
+#dao-problems .dao-problem-card,
+#ai-governance .ai-gov-card {
+  border-left: 1px solid var(--color-border) !important;
+}/* Gl
+ossary section separator */
+#glossary {
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-48);
+  padding-top: var(--space-80);
+}/
+* Reduce empty space after DAO treasury chart title */
+.dao-treasury-section h4 {
+  margin-bottom: var(--space-16);
+}
+
+.dao-treasury-section .chart-container {
+  margin-top: 0;
 }

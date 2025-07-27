@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="pageTitle">Блокчейн и ИИ: будущее государственного управления</title>
+    <link rel="stylesheet" href="test/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../favicon.png" type="image/png">
+</head>
+
+<body class="light-theme">
+
+    <!-- Header with navigation and theme toggle -->
+    <header class="header">
+        <div class="container">
+            <div class="flex items-center justify-between">
+                <div class="logo">
+                    <h1>GovTech 3.0</h1>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link active" data-key="navHome">Главная</a></li>
+                        <li><a href="#introduction" class="nav-link" data-key="navBlockchainAI">DAO и госуслуги</a></li>
+                        <li><a href="#cases" class="nav-link" data-key="navCases">Внедрение</a></li>
+                        <li><a href="#trends" class="nav-link" data-key="navTrends">Тренды</a></li>
+                        <li><a href="#experts" class="nav-link" data-key="navExperts">Эксперты</a></li>
+                        <li><a href="#footer" class="nav-link" data-key="navConclusion">Подвал</a></li>
+                    </ul>
+                </nav>
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                    <span>/</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <div class="theme-switcher">
+                    <button id="themeToggle" aria-label="Toggle color theme">🌙</button>
+                </div>
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Закрыть меню">&times;</button>
+        <ul class="mobile-nav-list">
+            <li><a href="#home" class="mobile-nav-link active" data-key="navHome">Главная</a></li>
+            <li><a href="#introduction" class="mobile-nav-link" data-key="navBlockchainAI">DAO и госуслуги</a></li>
+            <li><a href="#cases" class="mobile-nav-link" data-key="navCases">Внедрение</a></li>
+            <li><a href="#trends" class="mobile-nav-link" data-key="navTrends">Тренды</a></li>
+            <li><a href="#experts" class="mobile-nav-link" data-key="navExperts">Эксперты</a></li>
+            <li><a href="#footer" class="mobile-nav-link" data-key="navConclusion">Подвал</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section section--hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-key="heroTitle">Блокчейн и ИИ: будущее государственного управления</h1>
+                    <p class="hero-subtitle" data-key="heroSubtitle">
+                        AI-агенты и неизменяемые реестры уже переводят государство из бумажной эпохи в режим
+                        код-как-политика, где доверие строится математикой, а решения принимаются в реальном времени.
+                        Исследуйте, как эти технологии трансформируют государственное управление по всему миру.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <h3 data-key="statUSBudgetValue">$4 млрд</h3>
+                            <p data-key="statUSBudget">Экономия бюджета США благодаря ИИ-аудиту в 2024 году</p>
+                            <small class="stat-source" data-key="statUSBudgetSource">Источник: Казначейство США, 2024</small>
+                        </div>
+                        <div class="stat-card">
+                            <h3 data-key="statFranceTaxValue">€40 млн</h3>
+                            <p data-key="statFranceTax">Дополнительные налоговые поступления во Франции от поиска незадекларированных бассейнов с помощью ИИ</p>
+                            <small class="stat-source" data-key="statFranceTaxSource">Источник: Налоговая служба Франции (DGFiP), 2023</small>
+                        </div>
+                        <div class="stat-card">
+                            <h3>99%</h3>
+                            <p data-key="statEstonia">Государственных услуг Эстонии доступны онлайн благодаря блокчейн-инфраструктуре</p>
+                            <small class="stat-source" data-key="statEstoniaSource">Источник: UN E-Government Survey 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="section">
+            <div class="container">
+                <h2 data-key="sectionIntroTitle">Как DAO-механизмы дополняют Web 3.0-госуслуги</h2>
+                <div class="intro-grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="introCard1Title">Смарт-контракты</h3>
+                            <p data-key="introCard1Text">Автоматически исполняемые контракты, которые устраняют посредников и обеспечивают
+                                прозрачность государственных операций.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="introCard2Title">GovTech 3.0</h3>
+                            <p data-key="introCard2Text">Новое поколение государственных технологий, основанное на блокчейне,
+                                ИИ и автоматизации процессов.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 data-key="introCard3Title">AI-аудит</h3>
+                            <p data-key="introCard3Text">Использование искусственного интеллекта для автоматической проверки государственных
+                                расходов и выявления коррупции.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cases Section -->
+        <section id="cases" class="section section--alternate">
+            <div class="container">
+                <h2 data-key="sectionCasesTitle">Кейсы внедрения</h2>
+
+                <div class="estonia-case-header">
+                    <h3 data-key="estoniaCaseTitle">Эстония — пионер Web 3.0 в госуправлении</h3>
+                </div>
+
+                <div class="estonia-case-full">
+                    <div class="estonia-case-content">
+                        <div class="estonia-case-text">
+                            <p data-key="estoniaCaseText1">Эстония интегрировала X-Road c DID-кошельками, создав единую экосистему цифровых
+                                госуслуг. Результаты впечатляют:</p>
+                            <ul>
+                                <li data-key="estoniaCaseList1">99% госуслуг доступны онлайн 24/7</li>
+                                <li data-key="estoniaCaseList2">100% медицинских карт хранятся в распределённом реестре</li>
+                                <li data-key="estoniaCaseList3">125,000+ электронных резидентов из 170+ стран</li>
+                                <li data-key="estoniaCaseList4">Экономия 2% ВВП ежегодно на административных расходах</li>
+                            </ul>
+                        </div>
+                        <div class="estonia-case-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">99%</div>
+                                <div class="stat-label" data-key="estoniaStat1Label">Госуслуг онлайн</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2%</div>
+                                <div class="stat-label" data-key="estoniaStat2Label">ВВП экономия</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2.1B</div>
+                                <div class="stat-label" data-key="estoniaStat3Label">Хэшей (2024)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cases-grid">
+
+                    <div class="case-card card">
+                        <div class="card__body">
+                            <h3 data-key="caseDubaiTitle">Дубай Blockchain Strategy</h3>
+                            <div class="status status--success" data-key="caseDubaiStatus">В развитии</div>
+                            <p data-key="caseDubaiText">План стать первым blockchain-powered городом. Токенизация недвижимости и правительственных документов.</p>
+                            <div class="case-metrics">
+                                <span class="metric" data-key="caseDubaiMetric1">📈 Экономия: 5.5 млрд дирхам/год ($1.5 млрд)</span>
+                                <span class="metric" data-key="caseDubaiMetric2">🏢 Сервисы: 50+ департаментов</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card card">
+                        <div class="card__body">
+                            <h3 data-key="caseCryptoTowerTitle">Crypto Tower (Dubai)</h3>
+                            <div class="status status--info" data-key="caseCryptoTowerStatus">Проект</div>
+                            <p data-key="caseCryptoTowerText">Инфраструктура для Web 3-компаний, объединяющая госуслуги и недвижимость. On-chain аренда и голосование через смарт-контракты.</p>
+                            <div class="case-metrics">
+                                <span class="metric" data-key="caseCryptoTowerMetric1">🏢 Площадь: 13,935 м²</span>
+                                <span class="metric" data-key="caseCryptoTowerMetric2">🎯 Цель: Тест-площадка для умных кадастров</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card card">
+                        <div class="card__body">
+                            <h3 data-key="caseTitanTitle">ЕС Project TITAN</h3>
+                            <div class="status status--info" data-key="caseTitanStatus">Пилот</div>
+                            <p data-key="caseTitanText">ИИ для выявления НДС-уклонений в Италии, Франции, Испании. Машинное обучение анализирует налоговые декларации.</p>
+                            <div class="case-metrics">
+                                <span class="metric" data-key="caseTitanMetric1">📈 Экономия: 4-6 млрд евро</span>
+                                <span class="metric" data-key="caseTitanMetric2">🎯 Точность: 85% выявления нарушений</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trends Section -->
+        <section id="trends" class="section">
+            <div class="container">
+                <h2 data-key="sectionTrendsTimelineTitle">Тренды и временные рамки 2025-2040</h2>
+                <p class="section-intro" data-key="trendsTimelineIntro">Ключевые направления развития GovTech и этапы их внедрения в ближайшие 15 лет.</p>
+                
+                <h3 data-key="trendsSubtitle">Основные тренды 2025-2030</h3>
+                <div class="trends-grid">
+                    <div class="trend-card card">
+                        <div class="card__body">
+                            <h3 data-key="trend1Title">1. Гибридные DAO</h3>
+                            <p data-key="trend1Text">Интеграция DAO с традиционными юридическими структурами (DAO LLC) для легальной работы в госсекторе. Рост на 45% к 2030 году.</p>
+                        </div>
+                    </div>
+                    <div class="trend-card card">
+                        <div class="card__body">
+                            <h3 data-key="trend2Title">2. AI-агенты в госуслугах</h3>
+                            <p data-key="trend2Text">Автономные AI-агенты для проактивного предоставления госуслуг, например, автоматического начисления льгот. Внедрение в 70+ странах к 2028 году.</p>
+                        </div>
+                    </div>
+                    <div class="trend-card card">
+                        <div class="card__body">
+                            <h3 data-key="trend3Title">3. AI-first Regulation Sandboxes</h3>
+                            <p data-key="trend3Text">30+ юрисдикций перешли к continuous compliance-модели: смарт-контракты автоматически
+                                проверяют соблюдение норм в режиме near-real-time.</p>
+                        </div>
+                    </div>
+                    <div class="trend-card card">
+                        <div class="card__body">
+                            <h3 data-key="trend4Title">4. L2-решения для госсектора</h3>
+                            <p data-key="trend4Text">Масштабирование госсервисов с помощью L2-rollups для снижения транзакционных издержек
+                                и увеличения пропускной способности. Экономия до 90% на газе.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="trend-card card">
+                        <div class="card__body">
+                            <h3 data-key="trend5Title">5. Цифровые валюты ЦБ (CBDC)</h3>
+                            <p data-key="trend5Text">Более 90% центральных банков мира исследуют CBDC, что приведет к появлению программируемых денег для целевых госвыплат и автоматизации налогов.</p>
+                        </div>
+                    </div>
+                    <div class="trend-card card">
+                        <div class="card__body">
+                            <h3 data-key="trend6Title">6. ZK-доказательства для приватности</h3>
+                            <p data-key="trend6Text">Массовое внедрение Zero-Knowledge proofs для верификации данных граждан (возраст, статус) без раскрытия персональной информации.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experts Section -->
+        <section id="experts" class="section">
+            <div class="container">
+                <h2 data-key="sectionExpertsTitle">Мнения экспертов</h2>
+                <div class="expert-callouts">
+                    <div class="callout callout--primary">
+                        <div class="callout-content">
+                            <blockquote data-key="quoteAltman">«ИИ имеет потенциал кардинально трансформировать общество и экономику… и может стать ключевым инструментом в управлении»</blockquote>
+                            <cite data-key="quoteAltmanCite">— Сэм Альтман, CEO OpenAI</cite>
+                        </div>
+                    </div>
+
+                    <div class="quote-card card">
+                        <div class="card__body">
+                            <blockquote data-key="quoteHarari">
+                                «Человечество находится на пороге эпохи, когда авторитет и власть могут
+                                перейти от людей к алгоритмам»
+                            </blockquote>
+                            <cite data-key="quoteHarariCite">— Юваль Ной Харари, историк, философ</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-key="footerText">© 2025 GovTech 3.0. Исследование трансформации государственного управления.</p>
+            <p data-key="aiToolsCredit">Данное исследование разработано с использованием передовых ИИ-технологий: OpenAI o3, Claude Sonnet 3.7 и 4.0, Google Gemini 2.5 Pro, Grok 4, Perplexity, ChatGPT Agent, а также современных инструментов разработки Kiro, Cursor и Windsurf.</p>
+            <div class="support-project">
+                <h3 data-key="supportProjectTitle">Поддержать проект</h3>
+                <br>
+                <div class="crypto-wallets">
+                    <p data-key="btcAddress"><strong>Bitcoin:</strong> 1FEvqUr9fhx9z8jZQ3ympj19QaKG4sfe1u</p>
+                    <p data-key="ethAddress"><strong>Ethereum:</strong> 0x6b8d7137b60a6f3ee8869dc6c53ab989937e3462</p>
+                    <p data-key="usdtAddress"><strong>USDT (TRC20):</strong> TBYiX5jAZ38qSHvkuyL3QMTytMf5P671VJ</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple theme toggle logic (no full JS framework)
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Set initial theme based on local storage or default to light
+            const currentTheme = localStorage.getItem('theme') || 'light-theme';
+            body.classList.add(currentTheme);
+            themeToggle.textContent = currentTheme === 'light-theme' ? '🌙' : '☀️';
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-theme')) {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark-theme');
+                    themeToggle.textContent = '☀️';
+                } else {
+                    body.classList.remove('dark-theme');
+                    body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light-theme');
+                    themeToggle.textContent = '🌙';
+                }
+            });
+
+            // Mobile menu toggle
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const mobileNavLinks = mobileNav.querySelectorAll('.mobile-nav-link');
+
+            hamburgerMenu.addEventListener('click', () => {
+                mobileNav.classList.toggle('active');
+                hamburgerMenu.classList.toggle('active');
+                document.body.classList.toggle('no-scroll'); // Prevent scrolling when menu is open
+            });
+
+            mobileNavClose.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                hamburgerMenu.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    hamburgerMenu.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
